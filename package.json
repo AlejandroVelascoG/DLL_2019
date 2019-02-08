@@ -1,0 +1,8 @@
+{
+    "name": "DLL_2019",
+    "version": "0.0.1",
+    "description": "This is a nodeGame game based on dictator",
+    "author": "Alejandro Velasco <javier.velasco@urosario.edu.co>",
+    "license": "MIT/X11",
+    "homepage": "http://nodegame.org"
+}
