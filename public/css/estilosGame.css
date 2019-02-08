@@ -1,0 +1,253 @@
+* {
+    box-sizing: border-box;
+}
+
+/* Create three unequal columns that floats next to each other */
+.column {
+    float: left;
+    padding: 10px;
+}
+
+.left, .right {
+  width: 25%;
+}
+
+.middle {
+  width: 40%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Popup - notificación de mensaje recibido */
+
+.popup{
+    width: 250px;
+    height: 80px;
+    background-color: Goldenrod;
+    color: white;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: relative;
+    z-index: 1;
+    margin-left: 30px;
+    text-align: center;
+}
+
+.button1{
+    background-color: #e7e7e7;
+    color: black;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.table, th, td {
+  border: 1px solid black;
+}
+
+button {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  outline: 0;
+  -webkit-appearance: none;
+}
+
+/* Custom */
+button {
+  display: inline-block;
+  position: relative;
+  padding: 20px 38px;
+  top: 0;
+  font-size: 20px;
+  font-family: "Open Sans", Helvetica;
+  border-radius: 4px;
+  border-bottom: 1px solid rgba( 28, 227, 125, 0.5 );
+  background: rgba( 22, 230, 137, 1 );
+  color: #fff;
+  box-shadow: 0px 0px 0px rgba( 15, 165, 60, 0.1 );
+
+  -webkit-transform: translateZ(0);
+     -moz-transform: translateZ(0);
+      -ms-transform: translateZ(0);
+          transform: translateZ(0);
+
+  -webkit-transition: all 0.2s ease;
+     -moz-transition: all 0.2s ease;
+      -ms-transition: all 0.2s ease;
+          transition: all 0.2s ease;
+}
+
+button:hover {
+  top: -10px;
+  box-shadow: 0px 10px 10px rgba( 15, 165, 60, 0.2 );
+
+  -webkit-transform: rotateX(20deg);
+     -moz-transform: rotateX(20deg);
+      -ms-transform: rotateX(20deg);
+          transform: rotateX(20deg);
+}
+
+button:active {
+  top: 0px;
+  box-shadow: 0px 0px 0px rgba( 15, 165, 60, 0.0 );
+  background: rgba( 20, 224, 133, 1 );
+}
+
+.droptarget {
+    float: left;
+    width: 100px;
+    height: 80px;
+    margin: 15px;
+    padding: 10px;
+    border: 1px solid #aaaaaa;
+}
+
+/* Propiedades de la ventana para seleccionar objetos del toolbox */
+.objetos {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 35%;
+    overflow: auto;
+}
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+    overflow: auto;
+}
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.centered {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-55%, -200%);
+}
+
+/* -------------------- Select Box Styles: stackoverflow.com Method */
+/* -------------------- Source: http://stackoverflow.com/a/5809186 */
+select#soflow, select#soflow-color {
+   -webkit-appearance: button;
+   -webkit-border-radius: 2px;
+   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+   -webkit-padding-end: 20px;
+   -webkit-padding-start: 2px;
+   -webkit-user-select: none;
+   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+   background-position: 97% center;
+   background-repeat: no-repeat;
+   border: 1px solid #AAA;
+   color: #555;
+   font-size: inherit;
+   margin: 20px;
+   overflow: hidden;
+   padding: 5px 10px;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   width: 300px;
+}
+
+select#soflow-color {
+   color: #fff;
+   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#779126, #779126 40%, #779126);
+   background-color: #779126;
+   -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 20px;
+   padding-left: 15px;
+}
+
+div.gallery{
+  margin: 5px;
+  border: 1px solid #ccc;
+  width: 200px;
+  float: left;
+  height: 220px;
+}
+
+/* div.gallery:hover {
+    border: 5px solid #FFFF00;
+} */
+
+div.gallery img {
+  width: 187px;
+  height: 150px;
+  padding-left: 12px;
+  padding-top: 12px;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: left;
+}
+
+img.ovalar{
+    border-radius: 10%;
+}
+    
+.Enviar{
+    display: "";
+    draggable: false;
+    width: 110px; 
+    height: 110px;
+}
+
+.Recibido{
+    display: "";
+    draggable: true;
+    width: 110px; 
+    height: 110px;    
+}
+
+.Propio{
+    display: "";
+    draggable: true;
+    width: 110px; 
+    height: 110px;    
+}
