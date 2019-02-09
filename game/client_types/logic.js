@@ -37,34 +37,18 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
     });
 
     stager.extendStep('game', {
-        matcher: {
-            roles: [ 'DICTATOR', 'OBSERVER' ],
-            match: 'round_robin',
-            cycle: 'mirror_invert',
-            sayPartner: false
-            // skipBye: false,
-
-        },
+        // matcher: {
+        //     roles: [ 'DICTATOR', 'OBSERVER' ],
+        //     match: 'round_robin',
+        //     cycle: 'mirror_invert',
+        //     sayPartner: false
+        //     skipBye: false,
+        //
+        // },
         cb: function() {
-            node.once.data('done', function(msg) {
-                var offer, observer;
-                offer = msg.data.offer;
-
-                // Validate incoming offer.
-                if (false === J.isInt(offer, 0, 100)) {
-                    console.log('Invalid offer received from ' + msg.from);
-                    // If dictator is cheating re-set his/her offer.
-                    msg.data.offer = settings.defaultOffer;
-                    // Mark the item as manipulated.
-                    msg.data.originalOffer = offer;
-                }
-
-                observer = node.game.matcher.getMatchFor(msg.from);
-                // Send the decision to the other player.
-                node.say('decision', observer, msg.data.offer);
-
-            });
+            console.log('\n--------------------------------')
             console.log('Game round: ' + node.player.stage.round);
+            perros();
         }
     });
 
@@ -88,5 +72,31 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
         plot: stager.getState(),
 
     };
+
+    function perros(){
+
+      var as = [];
+      var bs = [];
+      var cs = [];
+      var ds = [];
+
+      for (var i=1; i < 25; i++) {
+        as[i - 1] = 'A/A' + i + '.jpg';
+      }
+
+      for (var i=1; i < 25; i++) {
+        bs[i - 1] = 'B/B' + i + '.jpg';
+      }
+
+      for (var i=1; i < 25; i++) {
+        cs[i - 1] = 'C/C' + i + '.jpg';
+      }
+
+      for (var i=1; i < 25; i++) {
+        ds[i - 1] = 'D/D' + i + '.jpg';
+      }
+
+      node.say('Settings', [as, bs, cs, ds]);
+    }
 
 };

@@ -1,19 +1,139 @@
-<!doctype html>
-<title>Game</title>
-<link rel="stylesheet" href="/lib/bootstrap/bootstrap.min.css" />
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/estilosGame.css" />
+<style>
+  #container{
+    width:1050px;
+    margin: 0 auto;
+    padding-top: 20px;
+  }
+
+  #mens{
+    padding-top: 250px;
+    padding-left: 20px;
+    margin: 0 auto;
+  }
+  #mensaje{
+    font-size:30px;
+    font-family: "Open Sans", Helvetica;    
+  }
+  #comm{    
+    padding-right: 35px;
+    padding-top: 20px;
+    padding-bottom: 100px;      
+    
+    margin: 0 auto;
+  }
+    
+</style>
+</head>
+
+    <div id="container">
+      <h1 align="center" id=mensaje>Clasifique todos los objetos:</h1>
+        <div class="gallery">
+         <img src="A/A1.jpg" alt="Perrito1">
+         <div class="desc">
+          <select text-align="center">
+            <option>Elija una opción</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+            <option>D</option>
+          </select>
+         </div>
+      </div>
+
+      <div class="gallery">
+         <img src="A/A2.jpg" alt="Perrito2">
+         <div class="desc">
+          <select text-align="center">
+            <option>Elija una opción</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+            <option>D</option>
+          </select>
+         </div>
+      </div>
+
+      <div class="gallery">
+         <img src="A/A3.jpg" alt="Perrito3">
+         <div class="desc">
+          <select text-align="center">
+            <option>Elija una opción</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+            <option>D</option>
+          </select>
+         </div>
+      </div>
+
+      <div class="gallery">
+         <img src="A/A4.jpg" alt="Perrito4">
+         <div class="desc">
+          <select text-align="center">
+            <option>Elija una opción</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+            <option>D</option>
+          </select>
+         </div>
+      </div>
+
+      <div class="gallery">
+         <img src="A/A5.jpg" alt="Perrito5">
+         <div class="desc">
+          <select text-align="center">
+            <option>Elija una opción</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+            <option>D</option>
+          </select>
+         </div>
+      </div>
+    </div>
+
+    <div id="mens" align="left">
+      
+    </div>
+
+    <div class="column left" style="">
+      <span id="mensaje">Solicitudes pendientes:</span>
+        <br>
+      <div class="popup" style="display: none"><span id="notif">NUEVA SOLICITUD</span></div>
+      <select id=soflow-color>
+          <option>Tiene <span id ="numSol"></span> solicitudes sin leer</option>
+      </select>
+    </div>
+    
+    <div class="column middle" style="padding-left: 150px; padding-top: 30px;">
+        <div id="solicitudAbierta" class="modal">
+            <div align="center">
+                <h2>Su compañero dice: <span id="Solicitud"></span></h2>
+                    <button class="button1" id='correcto'>Correcto</button>
+                    <button class="button1" id='incorrecto'>Incorrecto</button>             
+            </div>           
+        </div>            
+    </div>
+    
+    
+    <div class="column right" style="">
+      <div id="comm" align="right">
+        <img src="questionmark.png" alt="interrogacion" id="enviarSolicitud" width="100px" height="100px">
+      </div>
+      <div id = "confirmar" align="right">
+        <button class="button" id='continuar' style="top:-10px;">Confirmar!</button>
+      </div>
+    </div>    
+    
+
 <body>
-  <div id="container" style="font-size: 20px">
-    <h2>Game</h2>
-    <div id="dictator" style="display: none">
-      <h4>Make an offer from 0 to 100 to the other player</h4>
-      <input type="number" min="0" max="100" name="offer" id="offer" />
-      <input type="button" value="Submit" name="submitOffer" id="submitOffer" class="btn" />
-      <br/>
-    </div>
-    <div id="observer" style="display: none">
-      <h4 id="waitingFor">Waiting for the decision of the dictator<span id="dots"></span></h4>
-      <span id="decision"></span>
-      <br/>
-    </div>
-  </div>
+
 </body>
+</html>

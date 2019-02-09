@@ -28,18 +28,6 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 
         var header, frame;
 
-        // Bid is valid if it is a number between 0 and 100.
-        this.isValidBid = function(n) {
-            return node.JSUS.isInt(n, -1, 101);
-        };
-
-        this.randomOffer = function(offer, submitOffer) {
-            var n;
-            n = JSUS.randomInt(-1,100);
-            offer.value = n;
-            submitOffer.click();
-        };
-
         // Setup page: header + frame.
         header = W.generateHeader();
         frame = W.generateFrame();
@@ -49,6 +37,13 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
         this.visualTimer = node.widgets.append('VisualTimer', header);
 
         this.doneButton = node.widgets.append('DoneButton', header);
+
+        this.contadorComunicacion = 1;
+        this.contadorComunicacionMensajes = 1;
+        this.contadorMensajes = 0;
+        this.indiceMensaje = 0;
+        var dict = {};
+        this.puntajeAcumulado = dict;
 
         // Additional debug information while developing the game.
         // this.debugInfo = node.widgets.append('DebugInfo', header)
@@ -61,60 +56,22 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
     stager.extendStep('game', {
         donebutton: false,
         frame: 'game.htm',
-        roles: {
-            DICTATOR: {
-                timer: settings.bidTime,
-                cb: function() {
-                    var button, offer, div;
+        cb: function(){
 
-                    // Make the dictator display visible.
-                    div = W.getElementById('dictator').style.display = '';
-                    button = W.getElementById('submitOffer');
-                    offer =  W.getElementById('offer');
+          node.on.data('Settings', function(msg) {
 
-                    // Listen on click event.
-                    button.onclick = function() {
-                        var decision;
+            var MESSAGE = msg.data; //Datos enviados desde logic con informacion para la ronda
+            var as = MESSAGE[0]
+            var enviar = W.getElementById('enviarSolicitud')
+            var ok = W.getElementById('correcto')
+            var nok = W.getElementById('incorrecto')
 
-                        // Validate offer.
-                        decision = node.game.isValidBid(offer.value);
-                        if ('number' !== typeof decision) {
-                            W.writeln('Please enter a number between ' +
-                                      '0 and 100.');
-                            return;
-                        }
-                        button.disabled = true;
+            var rand = Math.floor((Math.random() * 24) + 1);
 
-                        // Mark the end of the round, and
-                        // store the decision in the server.
-                        node.done({ offer: decision });
-                    };
-                },
-                timeup: function() {
-                    node.game.randomOffer(W.getElementById('offer'),
-                                          W.getElementById('submitOffer'));
-                }
-            },
-            OBSERVER: {
-                cb: function() {
-                    var span, div, dotsObj;
-
-                    // Make the observer display visible.
-                    div = W.getElementById('observer').style.display = '';
-                    span = W.getElementById('dots');
-                    dotsObj = W.addLoadingDots(span);
-
-                    node.on.data('decision', function(msg) {
-                        dotsObj.stop();
-                        W.setInnerHTML('waitingFor', 'Decision arrived: ');
-                        W.setInnerHTML('decision',
-                                       'The dictator offered: ' +
-                                       msg.data + ' ECU.');
-
-                        node.timer.randomDone();
-                    });
-                }
-            }
+            var continuar;
+            continuar = W.getElementById('continuar');
+            continuar.onclick = function() { node.done(); };
+          });
         }
     });
 
