@@ -61,12 +61,23 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
           node.on.data('Settings', function(msg) {
 
             var MESSAGE = msg.data; //Datos enviados desde logic con informacion para la ronda
-            var as = MESSAGE[0]
+
+            var perros = MESSAGE;
+            // var bs = MESSAGE[1];
+            // var cs = MESSAGE[2];
+            // var ds = MESSAGE[3];
+
+            for(var i = 1; i < 6; i++){
+              var foto = 'Perro' + i;
+              var ubicacion = 'CarpetaPerros/' + perros[i];
+              W.getElementById(foto).src = ubicacion;
+            }
+
             var enviar = W.getElementById('enviarSolicitud')
             var ok = W.getElementById('correcto')
             var nok = W.getElementById('incorrecto')
 
-            var rand = Math.floor((Math.random() * 24) + 1);
+            // var rand = Math.floor((Math.random() * 24) + 1);
 
             var continuar;
             continuar = W.getElementById('continuar');

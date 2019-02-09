@@ -75,28 +75,37 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 
     function perros(){
 
+      var players = node.game.pl.id.getAllKeys();
+
       var as = [];
       var bs = [];
       var cs = [];
       var ds = [];
 
       for (var i=1; i < 25; i++) {
-        as[i - 1] = 'A/A' + i + '.jpg';
+        as[i - 1] = 'A' + i + '.jpg';
       }
 
       for (var i=1; i < 25; i++) {
-        bs[i - 1] = 'B/B' + i + '.jpg';
+        bs[i - 1] = 'B' + i + '.jpg';
       }
 
       for (var i=1; i < 25; i++) {
-        cs[i - 1] = 'C/C' + i + '.jpg';
+        cs[i - 1] = 'C' + i + '.jpg';
       }
 
       for (var i=1; i < 25; i++) {
-        ds[i - 1] = 'D/D' + i + '.jpg';
+        ds[i - 1] = 'D' + i + '.jpg';
       }
 
-      node.say('Settings', [as, bs, cs, ds]);
+      var perros = as.concat(bs, cs, ds);
+      perros.sort(function(a, b){return 0.5 - Math.random()});
+
+      console.log(perros);
+
+
+      node.say('Settings', players[0], perros);
+      node.say('Settings', players[1], perros);
     }
 
 };
