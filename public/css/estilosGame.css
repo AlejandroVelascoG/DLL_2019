@@ -38,6 +38,67 @@
     text-align: center;
 }
 
+.pop1{
+    width: 150px;
+    height: 50px;
+    background-color: OrangeRed;
+    color: white;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: relative;
+    z-index: 1;
+    margin-left: 30px;
+    text-align: center;
+}
+.pop2{
+    width: 150px;
+    height: 50px;
+    background-color: OrangeRed;
+    color: white;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: relative;
+    z-index: 1;
+    margin-left: 30px;
+    text-align: center;
+}
+.pop3{
+    width: 150px;
+    height: 50px;
+    background-color: OrangeRed;
+    color: white;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: relative;
+    z-index: 1;
+    margin-left: 30px;
+    text-align: center;
+}
+.pop4{
+    width: 150px;
+    height: 50px;
+    background-color: OrangeRed;
+    color: white;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: relative;
+    z-index: 1;
+    margin-left: 30px;
+    text-align: center;
+}
+.pop5{
+    width: 150px;
+    height: 50px;
+    background-color: OrangeRed;
+    color: white;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: relative;
+    z-index: 1;
+    margin-left: 30px;
+    text-align: center;
+}
+
 .button1{
     background-color: #e7e7e7;
     color: black;
@@ -105,11 +166,11 @@ button:active {
 
 .droptarget {
     float: left;
-    width: 100px;
-    height: 80px;
+    width: 125px;
+    height: 125px;
     margin: 15px;
     padding: 10px;
-    border: 1px solid #aaaaaa;
+    border: 1px solid #fff;
 }
 
 /* Propiedades de la ventana para seleccionar objetos del toolbox */
@@ -215,7 +276,7 @@ div.gallery{
 }
 
 /* div.gallery:hover {
-    border: 5px solid #FFFF00;
+    border: 5px solid #ccc;
 } */
 
 div.gallery img {

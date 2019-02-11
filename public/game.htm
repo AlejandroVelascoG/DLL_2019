@@ -10,37 +10,30 @@
     margin: 0 auto;
     padding-top: 20px;
   }
-
-  #comm{    
-    padding-right: 35px;
-    padding-top: 20px;
-    padding-bottom: 100px;      
-    
-    margin: 0 auto;
-  }
-    
 </style>
 </head>
 
     <div id="container">
       <h1 align="center" id=mensaje>Clasifique todos los objetos:</h1>
         <div class="gallery">
-            <img id="Perro1" src="">
-         <div class="desc">
-          <select text-align="center">
+         <div class="pop1" style="display: none"><span id="pop1dog"></span></div>
+          <img id="Perro1" src="">
+          <div class="desc">
+           <select text-align="center" id="select1">
             <option>Elija una opción</option>
             <option>A</option>
             <option>B</option>
             <option>C</option>
             <option>D</option>
-          </select>
+           </select>
          </div>
       </div>
 
       <div class="gallery">
+        <div class="pop2" style="display: none"><span id="pop2dog"></span></div>
          <img id="Perro2" src="">
          <div class="desc">
-          <select text-align="center">
+          <select text-align="center" id="select2">
             <option>Elija una opción</option>
             <option>A</option>
             <option>B</option>
@@ -51,9 +44,10 @@
       </div>
 
       <div class="gallery">
+        <div class="pop3" style="display: none"><span id="popdog3"></span></div>
          <img id="Perro3" src="">
          <div class="desc">
-          <select text-align="center">
+          <select text-align="center" id="select3">
             <option>Elija una opción</option>
             <option>A</option>
             <option>B</option>
@@ -64,9 +58,10 @@
       </div>
 
       <div class="gallery">
+        <div class="pop4" style="display: none"><span id="popdog4"></span></div>
          <img id="Perro4" src="">
          <div class="desc">
-          <select text-align="center">
+          <select text-align="center" id="select4">
             <option>Elija una opción</option>
             <option>A</option>
             <option>B</option>
@@ -77,14 +72,15 @@
       </div>
 
       <div class="gallery">
+        <div class="pop5" style="display: none"><span id="popdog5"></span></div>
          <img id="Perro5" src="">
          <div class="desc">
-          <select text-align="center">
-            <option>Elija una opción</option>
-            <option>A</option>
-            <option>B</option>
-            <option>C</option>
-            <option>D</option>
+          <select text-align="center" id= "select5">            
+                <option>Elija una opción</option>
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+                <option>D</option>
           </select>
          </div>
       </div>
@@ -93,7 +89,7 @@
 
     <div class="column left" style="">
       <h3 style="padding-left: 25px;">Solicitudes pendientes:</h3>
-      <div class="popup" style="display: none"><span id="notif">NUEVA SOLICITUD</span></div>
+      <div class="popup" style="display: none"><span id="notif"></span></div>
       <select id=soflow-color>
           <option>Tiene <span id ="numSol"></span> solicitudes sin leer</option>
       </select>
@@ -103,9 +99,9 @@
     	
         <div id="solicitudAbierta" class="modal">
             <div align="center">
-                <h2>Su compañero dice:<span id="Solicitud"></span></h2>
-                    <button class="button1" id='correcto'>Correcto</button>
-                    <button class="button1" id='incorrecto'>Incorrecto</button>             
+                <h2>Su compañero dice: ¿este perro es <span id="Solicitud"></span>?</h2>
+                    <button class="button1" id='correcto'>¡Sí!</button>
+                    <button class="button1" id='incorrecto'>¡No!</button>             
             </div>           
         </div>  
 
@@ -124,12 +120,17 @@
     
     
     <div class="column right" style="">
-      <div id="comm" align="right">
+    
+    <div style="padding-left: 150px; padding-bottom: 120px; padding-top: 20px;">
+      <div class="droptarget" id = "botonComunicacion">
         <img src="questionmark.png" alt="interrogacion" id="botonSolicitud" width="100px" height="100px">
-      </div>
-      <div id = "confirmar" align="right">
+      </div>        
+    </div>
+        
+      <div id = "confirmar" align="right" style="padding-top: 100px;">
         <button class="button" id='continuar' style="top:-10px;">Confirmar!</button>
       </div>
+        
     </div>    
     
 
@@ -137,3 +138,179 @@
 
 </body>
 </html>
+
+<script>
+
+    window.onload = function() {
+        
+        var node = parent.node;
+
+        window.mostrarPopup = function() {
+
+            console.log('Mostrando popup!');
+
+            $(document).ready(function(){
+                          $(".popup").slideDown(500);
+                          $(".popup").fadeOut(6000);
+            });
+
+        }; // Fin de mostrarPopup
+        
+        
+        window.mostrarP1 = function() {
+
+            console.log('Mostrando popup!');
+
+            $(document).ready(function(){
+                          $(".pop1").slideDown(500);
+                          $(".pop1").fadeOut(6000);
+            });
+
+        }; // Fin de mostrarPopup
+        
+        
+        window.mostrarP2 = function() {
+
+            console.log('Mostrando popup!');
+
+            $(document).ready(function(){
+                          $(".pop2").slideDown(500);
+                          $(".pop2").fadeOut(6000);
+            });
+
+        }; // Fin de mostrarPopup
+        
+        
+        window.mostrarP3 = function() {
+
+            console.log('Mostrando popup!');
+
+            $(document).ready(function(){
+                          $(".pop3").slideDown(500);
+                          $(".pop3").fadeOut(6000);
+            });
+
+        }; // Fin de mostrarPopup
+        
+        window.mostrarP4 = function() {
+
+            console.log('Mostrando popup!');
+
+            $(document).ready(function(){
+                          $(".pop4").slideDown(500);
+                          $(".pop4").fadeOut(6000);
+            });
+
+        }; // Fin de mostrarPopup
+        
+        window.mostrarP5 = function() {
+
+            console.log('Mostrando popup!');
+
+            $(document).ready(function(){
+                          $(".pop5").slideDown(500);
+                          $(".pop5").fadeOut(6000);
+            });
+
+        }; // Fin de mostrarPopup
+
+        // Muestra el popup
+        node.events.game.on('Muestra_Popup', window.mostrarPopup); 
+
+        node.events.game.on('Muestra_Pop1', window.mostrarP1); 
+        
+        node.events.game.on('Muestra_Pop2', window.mostrarP2); 
+        
+        node.events.game.on('Muestra_Pop3', window.mostrarP3); 
+        
+        node.events.game.on('Muestra_Pop4', window.mostrarP4); 
+        
+        node.events.game.on('Muestra_Pop5', window.mostrarP5); 
+
+        /* Events fired on the drag target */
+
+        // LISTENER DRAG 
+
+
+        document.addEventListener("dragstart", function(event) {
+            // The dataTransfer.setData() method sets the data type and the value of the dragged data
+            event.dataTransfer.setData("Text", event.target.id);
+
+            // Change the opacity of the draggable element
+            // event.target.style.opacity = "0.4";
+        });
+
+        /* Events fired on the drop target */
+
+
+        // When the draggable p element enters the droptarget, change the DIVS's border style
+        document.addEventListener("dragenter", function(event) {
+            if ( event.target.className == "droptarget" ) {
+                event.target.style.border = "3px dotted red";
+            }
+        }); 
+
+        // By default, data/elements cannot be dropped in other elements. To allow a drop, we must prevent the default handling of the element
+        document.addEventListener("dragover", function(event) {
+          event.preventDefault();
+        });
+
+        
+        
+        // When the draggable p element leaves the droptarget, reset the DIVS's border style
+        document.addEventListener("dragleave", function(event) {
+          if ( event.target.className == "droptarget" ) {
+              event.target.style.border = "";
+          }
+        }); 
+
+
+        // LISTENER DROP
+
+        document.addEventListener("drop", function(event) {
+          event.preventDefault();
+          if (event.target.className == "droptarget" ) {
+              event.target.style.border = "";
+              var data = event.dataTransfer.getData("Text");
+              console.log('Se enviaron datos', data);
+              console.log('Se arrastro en el', event.target.id);
+              node.emit('Arrastrar', [data, event.target.className]);
+          }
+        });
+
+        
+        // LISTENERS BOTONES
+
+        document.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (event.target.className == "close" ) {
+              node.emit('Solicitud', 'cerrar');    
+          }
+          if (event.target.className == "button1"){
+              if(event.target.id == "botonA"){
+                  node.emit('Solicitud', 'A');
+              }
+              if(event.target.id == "botonB"){
+                  node.emit('Solicitud', 'B');
+              }
+              if(event.target.id == "botonC"){
+                  node.emit('Solicitud', 'C');
+              }
+              if(event.target.id == "botonD"){
+                  node.emit('Solicitud', 'D');
+              }
+              if(event.target.id == "correcto"){
+                  node.emit('Solicitud', 'Correcto');
+              }
+              if(event.target.id == "incorrecto"){
+                  node.emit('Solicitud', 'Incorrecto');
+              }
+              
+              node.emit('Solicitud', 'cerrar');    
+          }    
+        }); 
+
+    } // end onload function
+
+</script>

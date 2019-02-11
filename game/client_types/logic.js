@@ -101,11 +101,11 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
       var perros = as.concat(bs, cs, ds);
       perros.sort(function(a, b){return 0.5 - Math.random()});
 
-      console.log(perros);
+      // console.log(perros);
 
 
-      node.say('Settings', players[0], perros);
-      node.say('Settings', players[1], perros);
+      node.say('Settings', players[0], [players[1], perros, as, bs, cs, ds]);
+      node.say('Settings', players[1], [players[0], perros, as, bs, cs, ds]);
     }
 
 };
