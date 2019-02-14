@@ -62,7 +62,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 
             var MESSAGE = msg.data; //Datos enviados desde logic con informacion para la ronda
             var ronda = node.player.stage.round; //Ronda en curso
-            var mensajeEnviado = ['A', 'B', 'C', 'D'];
+            var mensajeEnviado = ['Cairn Terrier', 'Norwich Terrier', 'Irish Wolfhound', 'Scottish Deerhound'];
 
             node.game.puntajeAcumulado[ronda] = 0;
             node.game.indiceMensaje = 0;
@@ -82,6 +82,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             var listaB = MESSAGE[3];
             var listaC = MESSAGE[4];
             var listaD = MESSAGE[5];
+
 
                   // carga las imágenes de los cinco perros
 
@@ -179,6 +180,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             }); // End node.on.data('Comunicacion'
 
                           // ABRIR SOLICITUDES
+
             var preg = '';
 
             selectMensajes.onchange = function() {
@@ -188,7 +190,6 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
               console.log('indiceMensaje', indiceMensaje);
               node.game.indiceMensaje = indiceMensaje;
               var correo = this.options[indice].value; // Lo que dice el mensaje
-              preg = correo;
               this.remove(this.selectedIndex); // Elimina item de la lista desplegable
               node.game.contadorMensajes -= 1;
               selectMensajes.options[0].text = "Tiene " + node.game.contadorMensajes + " mensajes";
@@ -198,59 +199,60 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             };
 
             node.on.data('Respuesta', function(msg){
-              console.log(preg);
-              if(msg[1] == 'Perro1'){
-                if(msg[0] == 'Correcto'){
-                  node.emit('Muestra_Popup');
-                  W.setInnerHTML('nofit', "<br> Su compañero dice: " + preg);
+              console.log('preg es', preg);
+              console.log("OK ", msg.data);
+              if(msg.data[1] == 'Perro1'){
+                if(msg.data[0] == 'Correcto'){
+                  node.emit('Muestra_Pop1');
+                  W.setInnerHTML('popdog1', "<br> Su compañero dice: " + preg);
                   preg = '';
                 } else {
-                  node.emit('Muestra_Popup');
-                  W.setInnerHTML('notif', "<br> Su compañero dice: no es" + preg);
+                  node.emit('Muestra_Pop1');
+                  W.setInnerHTML('popdog1', "<br> Su compañero dice: no es " + preg);
                   preg = '';
                 }
               }
-              if(msg[1] == 'Perro2'){
-                if(msg[0] == 'Correcto'){
+              if(msg.data[1] == 'Perro2'){
+                if(msg.data[0] == 'Correcto'){
                   node.emit('Muestra_Pop2');
                   W.setInnerHTML('popdog2', "<br> Su compañero dice: " + preg);
                   preg = '';
                 } else {
                   node.emit('Muestra_Pop2');
-                  W.setInnerHTML('popdog2', "<br> Su compañero dice: no es" + preg);
+                  W.setInnerHTML('popdog2', "<br> Su compañero dice: no es " + preg);
                   preg = '';
                 }
               }
-              if(msg[1] == 'Perro3'){
-                if(msg[0] == 'Correcto'){
+              if(msg.data[1] == 'Perro3'){
+                if(msg.data[0] == 'Correcto'){
                   node.emit('Muestra_Pop3');
                   W.setInnerHTML('popdog3', "<br> Su compañero dice: " + preg);
                   preg = '';
                 } else {
                   node.emit('Muestra_Pop3');
-                  W.setInnerHTML('popdog3', "<br> Su compañero dice: no es" + preg);
+                  W.setInnerHTML('popdog3', "<br> Su compañero dice: no es " + preg);
                   preg = '';
                 }
               }
-              if(msg[1] == 'Perro4'){
-                if(msg[0] == 'Correcto'){
+              if(msg.data[1] == 'Perro4'){
+                if(msg.data[0] == 'Correcto'){
                   node.emit('Muestra_Pop4');
                   W.setInnerHTML('popdog4', "<br> Su compañero dice: " + preg);
                   preg = '';
                 } else {
                   node.emit('Muestra_Pop4');
-                  W.setInnerHTML('popdog4', "<br> Su compañero dice: no es" + preg);
+                  W.setInnerHTML('popdog4', "<br> Su compañero dice: no es " + preg);
                   preg = '';
                 }
               }
-              if(msg[1] == 'Perro5'){
-                if(msg[0] == 'Correcto'){
+              if(msg.data[1] == 'Perro5'){
+                if(msg.data[0] == 'Correcto'){
                   node.emit('Muestra_Pop5');
                   W.setInnerHTML('popdog5', "<br> Su compañero dice: " + preg);
                   preg = '';
                 } else {
                   node.emit('Muestra_Pop5');
-                  W.setInnerHTML('popdog5', "<br> Su compañero dice: no es" + preg);
+                  W.setInnerHTML('popdog5', "<br> Su compañero dice: no es " + preg);
                   preg = '';
                 }
               }
