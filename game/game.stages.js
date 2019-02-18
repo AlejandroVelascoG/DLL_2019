@@ -13,12 +13,19 @@ module.exports = function(stager, settings) {
 
      stager
         .next('instructions')
-        .repeat('game', settings.REPEAT)
+        //.repeat('training', settings.TRAINING)
+        .repeat('trials', settings.REPEAT)
         .next('end')
         .gameover();
 
+    stager.extendStage('trials', {
+      steps: [
+        'game',
+        'puntaje'
+      ]
+});
     // Modify the stager to skip one stage.
-    // stager.skip('instructions');
+    stager.skip('instructions');
 
     return stager.getState();
 };

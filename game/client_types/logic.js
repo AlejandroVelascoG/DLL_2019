@@ -37,20 +37,20 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
     });
 
     stager.extendStep('game', {
-        // matcher: {
-        //     roles: [ 'DICTATOR', 'OBSERVER' ],
-        //     match: 'round_robin',
-        //     cycle: 'mirror_invert',
-        //     sayPartner: false
-        //     skipBye: false,
-        //
-        // },
         cb: function() {
-            console.log('\n--------------------------------')
+            console.log('\n--------------------------------');
             console.log('Game round: ' + node.player.stage.round);
             perros();
         }
     });
+
+    stager.extendStep('puntaje', {
+        cb: function() {
+            console.log('Score');
+        }
+    });
+
+
 
     stager.extendStep('end', {
         cb: function() {

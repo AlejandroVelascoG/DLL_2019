@@ -312,6 +312,26 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
         }
     });
 
+    stager.extendStep('puntaje', {
+      frame: 'puntaje.htm',
+      cb: function(){
+        for(var i = 1; i < 6; i++){
+          if(node.game.check[i-1] == 1){
+            console.log('right' + i);
+            //W.getElementById('right' + i+1).style.display = "block";
+          } else {
+            console.log('wrong' + i);
+
+            //W.getElementById('wrong' + i+1).style.display = "block";
+          }
+        }
+        // var continuar = W.getElementById('continuar');
+        // continuar.onclick = function() { node.done(); };
+      }
+    });
+
+
+
     stager.extendStep('end', {
         donebutton: false,
         frame: 'end.htm',
