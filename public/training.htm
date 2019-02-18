@@ -22,11 +22,11 @@
           <img id="Perro1" src="">
           <div class="desc">
            <select text-align="center" id="select1">
-            <option value="Nada">Elija una opción</option>
-            <option value="Cairn Terrier">Cairn Terrier</option>
-            <option value="Norwich Terrier">Norwich Terrier</option>
-            <option value="Irish Wolfhound">Irish Wolfhound</option>
-            <option value="Scottish Deerhound">Scottish Deerhound</option>
+            <option>Elija una opción</option>
+            <option>Cairn Terrier</option>
+            <option>Norwich Terrier</option>
+            <option>Irish Wolfhound</option>
+            <option>Scottish Deerhound</option>
            </select>
          </div>
       </div>
@@ -36,11 +36,11 @@
          <img id="Perro2" src="">
          <div class="desc">
           <select text-align="center" id="select2">
-            <option value="Nada">Elija una opción</option>
-            <option value="Cairn Terrier">Cairn Terrier</option>
-            <option value="Norwich Terrier">Norwich Terrier</option>
-            <option value="Irish Wolfhound">Irish Wolfhound</option>
-            <option value="Scottish Deerhound">Scottish Deerhound</option>
+            <option>Elija una opción</option>
+            <option>Cairn Terrier</option>
+            <option>Norwich Terrier</option>
+            <option>Irish Wolfhound</option>
+            <option>Scottish Deerhound</option>
           </select>
          </div>
       </div>
@@ -50,11 +50,11 @@
          <img id="Perro3" src="">
          <div class="desc">
           <select text-align="center" id="select3">
-            <option value="Nada">Elija una opción</option>
-            <option value="Cairn Terrier">Cairn Terrier</option>
-            <option value="Norwich Terrier">Norwich Terrier</option>
-            <option value="Irish Wolfhound">Irish Wolfhound</option>
-            <option value="Scottish Deerhound">Scottish Deerhound</option>
+            <option>Elija una opción</option>
+            <option>Cairn Terrier</option>
+            <option>Norwich Terrier</option>
+            <option>Irish Wolfhound</option>
+            <option>Scottish Deerhound</option>
           </select>
          </div>
       </div>
@@ -64,11 +64,11 @@
          <img id="Perro4" src="">
          <div class="desc">
           <select text-align="center" id="select4">
-            <option value="Nada">Elija una opción</option>
-            <option value="Cairn Terrier">Cairn Terrier</option>
-            <option value="Norwich Terrier">Norwich Terrier</option>
-            <option value="Irish Wolfhound">Irish Wolfhound</option>
-            <option value="Scottish Deerhound">Scottish Deerhound</option>
+            <option>Elija una opción</option>
+            <option>Cairn Terrier</option>
+            <option>Norwich Terrier</option>
+            <option>Irish Wolfhound</option>
+            <option>Scottish Deerhound</option>
           </select>
          </div>
       </div>
@@ -78,18 +78,18 @@
          <img id="Perro5" src="">
          <div class="desc">
           <select text-align="center" id= "select5">            
-            <option value="Nada">Elija una opción</option>
-            <option value="Cairn Terrier">Cairn Terrier</option>
-            <option value="Norwich Terrier">Norwich Terrier</option>
-            <option value="Irish Wolfhound">Irish Wolfhound</option>
-            <option value="Scottish Deerhound">Scottish Deerhound</option>
+                <option>Elija una opción</option>s
+            <option>Cairn Terrier</option>
+            <option>Norwich Terrier</option>
+            <option>Irish Wolfhound</option>
+            <option>Scottish Deerhound</option>
           </select>
          </div>
       </div>
     </div>
 
 
-    <div class="column left" style="padding-top: 100px">
+    <div class="column left" style="padding-top: 100px; display:none">
       <h3 style="padding-left: 25px;">Solicitudes pendientes:</h3>
       <div class="popup" style="display: none"><span id="notif"></span></div>
       <select id=soflow-color>
@@ -121,9 +121,9 @@
     </div>
     
     
-    <div class="column right" style="">
+    <div class="column right">
     
-    <div style="padding-left: 300px; padding-bottom: 120px; padding-top: 100px;">
+    <div style="padding-left: 300px; padding-bottom: 120px; padding-top: 100px; display:none">
       <div class="droptarget" id = "botonComunicacion">
         <img src="questionmark.png" alt="interrogacion" id="botonSolicitud" width="100px" height="100px">
       </div>        
@@ -140,6 +140,9 @@
 
 </body>
 </html>
+
+
+<!--
 
 <script>
 
@@ -247,10 +250,8 @@
 
         // When the draggable p element enters the droptarget, change the DIVS's border style
         document.addEventListener("dragenter", function(event) {
-            if ( event.target.className == "droptarget" ) { 
-                if ( document.getElementById('enviarSolicitud').style.display == "none" ){
-                    event.target.style.border = "3px dotted red";
-                }                
+            if ( event.target.className == "droptarget" ) {
+                event.target.style.border = "3px dotted red";
             }
         }); 
 

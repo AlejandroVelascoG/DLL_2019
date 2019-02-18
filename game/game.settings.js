@@ -47,33 +47,34 @@ module.exports = {
     // # Game specific properties
 
     // Number of game rounds repetitions.
-    REPEAT: 4,
+    REPEAT: 40,
+    TRAINING: 20,
 
     // In case an incoming offer does not pass validation, which indicates
     // cheating, re-set the dictator's offer to this value.
-    defaultOffer: 100,
-
-    // # Treatments definition.
-
-    // They can contain any number of properties, and also overwrite
-    // those defined above.
-
-    // If the `treatments` object is missing a treatment named _standard_
-    // will be created automatically, and will contain all variables.
-
-    treatments: {
-
-        standard: {
-            fullName: "Standard Treatment",
-            description: "Longer time",
-            bidTime: 30000
-        },
-
-        pressure: {
-            fullName: "Time Pressure Treatment",
-            description: "Short times to take decisions",
-            bidTime: 10000
-        }
-
-    }
+    // defaultOffer: 100,
+    //
+    // // # Treatments definition.
+    //
+    // // They can contain any number of properties, and also overwrite
+    // // those defined above.
+    //
+    // // If the `treatments` object is missing a treatment named _standard_
+    // // will be created automatically, and will contain all variables.
+    //
+    // treatments: {
+    //
+    //     standard: {
+    //         fullName: "Standard Treatment",
+    //         description: "Longer time",
+    //         bidTime: 30000
+    //     },
+    //
+    //     pressure: {
+    //         fullName: "Time Pressure Treatment",
+    //         description: "Short times to take decisions",
+    //         bidTime: 10000
+    //     }
+    //
+    // }
 };
