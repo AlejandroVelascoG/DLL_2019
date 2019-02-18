@@ -70,7 +70,6 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             node.game.contadorComunicacion = 1;
             node.game.contadorMensajes = 0;
             node.game.check = [];
-            console.log('Lista', node.game.check);
             var selectMensajes = W.getElementById('soflow-color'); // La lista de mensajes recibidos
             var selectPerro1 = W.getElementById('select1');
             var selectPerro2 = W.getElementById('select2');
@@ -280,8 +279,6 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
               var choice4 = selectPerro4.selectedIndex;
               var choice5 = selectPerro5.selectedIndex;
 
-              console.log('Aquí', node.game.check);
-
               if (selectPerro1.options[choice1].value == claves[perros[0]]){
                 node.game.check.push(1);
               } else {
@@ -307,7 +304,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
               } else {
                 node.game.check.push(0);
               }
-              console.log(node.game.check);
+              console.log('puntos', node.game.check);
               node.done();
             };
 
