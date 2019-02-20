@@ -33,7 +33,7 @@ module.exports = function(stager, settings) {
     });
     // Modify the stager to skip one stage.
     stager.skip('instructions');
-    //stager.skip('training');
+    // stager.skip('prep');
 
     return stager.getState();
 };

@@ -142,9 +142,6 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             continuar = W.getElementById('continuar');
             continuar.onclick = function() {
               W.getElementById('confirmar').style.display = "block";
-
-
-
             };
 
           });
@@ -409,7 +406,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             var continuar;
             continuar = W.getElementById('continuar');
             continuar.onclick = function() {
-              W.getElementById('confirmar').style.displau = "block";
+              W.getElementById('finishround').style.display = "block";
             };
           });
         }
