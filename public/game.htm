@@ -23,10 +23,10 @@
           <div class="desc">
            <select text-align="center" id="select1">
             <option value="Nada">Elija una opción</option>
-            <option value="Cairn Terrier">Cairn Terrier</option>
-            <option value="Norwich Terrier">Norwich Terrier</option>
-            <option value="Irish Wolfhound">Irish Wolfhound</option>
-            <option value="Scottish Deerhound">Scottish Deerhound</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
            </select>
          </div>
       </div>
@@ -37,10 +37,10 @@
          <div class="desc">
           <select text-align="center" id="select2">
             <option value="Nada">Elija una opción</option>
-            <option value="Cairn Terrier">Cairn Terrier</option>
-            <option value="Norwich Terrier">Norwich Terrier</option>
-            <option value="Irish Wolfhound">Irish Wolfhound</option>
-            <option value="Scottish Deerhound">Scottish Deerhound</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
           </select>
          </div>
       </div>
@@ -51,10 +51,10 @@
          <div class="desc">
           <select text-align="center" id="select3">
             <option value="Nada">Elija una opción</option>
-            <option value="Cairn Terrier">Cairn Terrier</option>
-            <option value="Norwich Terrier">Norwich Terrier</option>
-            <option value="Irish Wolfhound">Irish Wolfhound</option>
-            <option value="Scottish Deerhound">Scottish Deerhound</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
           </select>
          </div>
       </div>
@@ -65,10 +65,10 @@
          <div class="desc">
           <select text-align="center" id="select4">
             <option value="Nada">Elija una opción</option>
-            <option value="Cairn Terrier">Cairn Terrier</option>
-            <option value="Norwich Terrier">Norwich Terrier</option>
-            <option value="Irish Wolfhound">Irish Wolfhound</option>
-            <option value="Scottish Deerhound">Scottish Deerhound</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
           </select>
          </div>
       </div>
@@ -79,10 +79,10 @@
          <div class="desc">
           <select text-align="center" id= "select5">            
             <option value="Nada">Elija una opción</option>
-            <option value="Cairn Terrier">Cairn Terrier</option>
-            <option value="Norwich Terrier">Norwich Terrier</option>
-            <option value="Irish Wolfhound">Irish Wolfhound</option>
-            <option value="Scottish Deerhound">Scottish Deerhound</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
           </select>
          </div>
       </div>
@@ -111,10 +111,10 @@
             <div align="center">
             	<span class="close">&times;</span>
                 <h3>Usted cree que el perro seleccionado es: <span id="Solicitud"></span></h3>
-                    <button class="button1" id='botonA'>Cairn Terrier</button>
-                    <button class="button1" id='botonB'>Norwich Terrier</button>             
-                    <button class="button1" id='botonC'>Irish Wolfhound</button>
-                    <button class="button1" id='botonD'>Scottish Deerhound</button>
+                    <button class="button1" id='botonA'>A</button>
+                    <button class="button1" id='botonB'>B</button>             
+                    <button class="button1" id='botonD'>C</button>
+                    <button class="button1" id='botonC'>D</button>
             </div>           
         </div>          
 
@@ -310,7 +310,11 @@
               if(event.target.id == "incorrecto"){
                   node.emit('Solicitud', 'Incorrecto');
               }
-              
+              if(event.target.id == "salir"){
+                  node.emit('Solicitud', 'terminar');
+              }if(event.target.id == "quedar"){
+                  node.emit('Solicitud', 'continuar');    
+              }              
               node.emit('Solicitud', 'cerrar');    
           }    
         }); 

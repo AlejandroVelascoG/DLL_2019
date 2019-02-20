@@ -45,6 +45,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
         var dict = {};
         this.puntajeAcumulado = dict;
         this.check = [];
+        this.perrosPantalla = [];
 
         // Additional debug information while developing the game.
         // this.debugInfo = node.widgets.append('DebugInfo', header)
@@ -52,6 +53,102 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 
     stager.extendStep('instructions', {
         frame: 'instructions.htm'
+    });
+
+    stager.extendStep('training', {
+        donebutton: false,
+        frame: 'training.htm',
+        cb: function(){
+
+          node.on.data('Settings', function(msg) {
+
+            var MESSAGE = msg.data; //Datos enviados desde logic con informacion para la ronda
+            var ronda = node.player.stage.round; //Ronda en curso
+
+            node.game.puntajeAcumulado[ronda] = 0;
+            node.game.contadorComunicacion = 1;
+            node.game.check = [];
+            node.game.perrosPantalla = [];
+            var selectPerro1 = W.getElementById('select1');
+            var selectPerro2 = W.getElementById('select2');
+            var selectPerro3 = W.getElementById('select3');
+            var selectPerro4 = W.getElementById('select4');
+            var selectPerro5 = W.getElementById('select5');
+
+            var otroJugador = MESSAGE[0];
+            var perros = MESSAGE[1];
+            var claves = MESSAGE[2];
+            var raza = MESSAGE[3];
+
+                  // carga las imágenes de los cinco perros
+
+            for(var i = 1; i < 6; i++){
+              var foto = 'Perro' + i;
+              var ubicacion = 'carpetaPerros/' + perros[i-1];
+              node.game.perrosPantalla.push(ubicacion);
+              W.getElementById(foto).src = ubicacion;
+              if(raza == 'terrier'){
+                W.getElementById('opB'+i).style.display = "none";
+                W.getElementById('opD'+i).style.display = "none";
+              }
+              if(raza == 'hound'){
+                W.getElementById('opA'+i).style.display = "none";
+                W.getElementById('opC'+i).style.display = "none";
+              }
+            }
+
+            node.on('Solicitud', function(msg){
+              if(msg == 'terminar'){
+                var choice1 = selectPerro1.selectedIndex;
+                var choice2 = selectPerro2.selectedIndex;
+                var choice3 = selectPerro3.selectedIndex;
+                var choice4 = selectPerro4.selectedIndex;
+                var choice5 = selectPerro5.selectedIndex;
+
+                if (selectPerro1.options[choice1].value == claves[perros[0]]){
+                  node.game.check.push(1);
+                } else {
+                  node.game.check.push(0);
+                }
+                if (selectPerro2.options[choice2].value == claves[perros[1]]){
+                  node.game.check.push(1);
+                } else {
+                  node.game.check.push(0);
+                }
+                if (selectPerro3.options[choice3].value == claves[perros[2]]){
+                  node.game.check.push(1);
+                } else {
+                  node.game.check.push(0);
+                }
+                if (selectPerro4.options[choice4].value == claves[perros[3]]){
+                  node.game.check.push(1);
+                } else {
+                  node.game.check.push(0);
+                }
+                if (selectPerro5.options[choice5].value == claves[perros[4]]){
+                  node.game.check.push(1);
+                } else {
+                  node.game.check.push(0);
+                }
+                console.log('puntos', node.game.check);
+                node.done();
+              }
+              if(msg == 'seguir'){
+                W.getElementById('confirmar').style.display = "none";
+              }
+            });
+
+            var continuar;
+            continuar = W.getElementById('continuar');
+            continuar.onclick = function() {
+              W.getElementById('confirmar').style.display = "block";
+
+
+
+            };
+
+          });
+        }
     });
 
     stager.extendStep('game', {
@@ -63,13 +160,14 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 
             var MESSAGE = msg.data; //Datos enviados desde logic con informacion para la ronda
             var ronda = node.player.stage.round; //Ronda en curso
-            var mensajeEnviado = ['Cairn Terrier', 'Norwich Terrier', 'Irish Wolfhound', 'Scottish Deerhound'];
+            var mensajeEnviado = ['A', 'B', 'C', 'D'];
 
             node.game.puntajeAcumulado[ronda] = 0;
             node.game.indiceMensaje = 0;
             node.game.contadorComunicacion = 1;
             node.game.contadorMensajes = 0;
             node.game.check = [];
+            node.game.perrosPantalla = [];
             var selectMensajes = W.getElementById('soflow-color'); // La lista de mensajes recibidos
             var selectPerro1 = W.getElementById('select1');
             var selectPerro2 = W.getElementById('select2');
@@ -87,6 +185,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             for(var i = 1; i < 6; i++){
               var foto = 'Perro' + i;
               var ubicacion = 'carpetaPerros/' + perros[i-1];
+              node.game.perrosPantalla.push(ubicacion);
               W.getElementById(foto).src = ubicacion;
             }
 
@@ -163,6 +262,44 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 node.say('Respuesta', otroJugador, ['Incorrecto', idRecibido]);
                 recibida.style.display = "none";
                 W.getElementById(idRecibido).style.border = "";
+              }
+              if(msg == 'terminar'){
+                var choice1 = selectPerro1.selectedIndex;
+                var choice2 = selectPerro2.selectedIndex;
+                var choice3 = selectPerro3.selectedIndex;
+                var choice4 = selectPerro4.selectedIndex;
+                var choice5 = selectPerro5.selectedIndex;
+
+                if (selectPerro1.options[choice1].value == claves[perros[0]]){
+                  node.game.check.push(1);
+                } else {
+                  node.game.check.push(0);
+                }
+                if (selectPerro2.options[choice2].value == claves[perros[1]]){
+                  node.game.check.push(1);
+                } else {
+                  node.game.check.push(0);
+                }
+                if (selectPerro3.options[choice3].value == claves[perros[2]]){
+                  node.game.check.push(1);
+                } else {
+                  node.game.check.push(0);
+                }
+                if (selectPerro4.options[choice4].value == claves[perros[3]]){
+                  node.game.check.push(1);
+                } else {
+                  node.game.check.push(0);
+                }
+                if (selectPerro5.options[choice5].value == claves[perros[4]]){
+                  node.game.check.push(1);
+                } else {
+                  node.game.check.push(0);
+                }
+                console.log('puntos', node.game.check);
+                node.done();
+              }
+              if(msg == 'continuar'){
+                W.getElementById('confirmar').style.display = "none";
               }
             });
 
@@ -272,61 +409,36 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             var continuar;
             continuar = W.getElementById('continuar');
             continuar.onclick = function() {
-
-              var choice1 = selectPerro1.selectedIndex;
-              var choice2 = selectPerro2.selectedIndex;
-              var choice3 = selectPerro3.selectedIndex;
-              var choice4 = selectPerro4.selectedIndex;
-              var choice5 = selectPerro5.selectedIndex;
-
-              if (selectPerro1.options[choice1].value == claves[perros[0]]){
-                node.game.check.push(1);
-              } else {
-                node.game.check.push(0);
-              }
-              if (selectPerro2.options[choice2].value == claves[perros[1]]){
-                node.game.check.push(1);
-              } else {
-                node.game.check.push(0);
-              }
-              if (selectPerro3.options[choice3].value == claves[perros[2]]){
-                node.game.check.push(1);
-              } else {
-                node.game.check.push(0);
-              }
-              if (selectPerro4.options[choice4].value == claves[perros[3]]){
-                node.game.check.push(1);
-              } else {
-                node.game.check.push(0);
-              }
-              if (selectPerro5.options[choice5].value == claves[perros[4]]){
-                node.game.check.push(1);
-              } else {
-                node.game.check.push(0);
-              }
-              console.log('puntos', node.game.check);
-              node.done();
+              W.getElementById('confirmar').style.displau = "block";
             };
-
           });
         }
     });
+
 
     stager.extendStep('puntaje', {
       frame: 'puntaje.htm',
       cb: function(){
         for(var i = 1; i < 6; i++){
+          var foto = 'Perro' + i;
+          var ubicacion = node.game.perrosPantalla[i-1];
+          W.getElementById(foto).src = ubicacion;
+        }
+        for(var i = 1; i < 6; i++){
           if(node.game.check[i-1] == 1){
             console.log('right' + i);
-            //W.getElementById('right' + i+1).style.display = "block";
+            W.getElementById('right' + i).style.display = "block";
+            W.setInnerHTML('resultado' + i, 'Acertó!');
           } else {
             console.log('wrong' + i);
-
-            //W.getElementById('wrong' + i+1).style.display = "block";
+            W.getElementById('wrong' + i).style.display = "block";
+            W.setInnerHTML('resultado' + i, 'Falló!');
           }
         }
-        // var continuar = W.getElementById('continuar');
-        // continuar.onclick = function() { node.done(); };
+        var continuar = W.getElementById('continuar');
+        continuar.onclick = function() {
+          node.done();
+        };
       }
     });
 

@@ -13,7 +13,7 @@ module.exports = function(stager, settings) {
 
      stager
         .next('instructions')
-        //.repeat('training', settings.TRAINING)
+        .repeat('prep', settings.TRAINING)
         .repeat('trials', settings.REPEAT)
         .next('end')
         .gameover();
@@ -24,8 +24,16 @@ module.exports = function(stager, settings) {
         'puntaje'
       ]
 });
+
+    stager.extendStage('prep', {
+      steps: [
+        'training',
+        'puntaje'
+      ]
+    });
     // Modify the stager to skip one stage.
     stager.skip('instructions');
+    //stager.skip('training');
 
     return stager.getState();
 };

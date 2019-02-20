@@ -36,6 +36,13 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
         }
     });
 
+    stager.extendStep('training', {
+        cb: function() {
+            console.log('Training');
+            entrenamiento();
+        }
+    });
+
     stager.extendStep('game', {
         cb: function() {
             console.log('\n--------------------------------');
@@ -101,19 +108,19 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
       }
 
       for(var i = 1; i < 25; i++){
-        dict[as[i]] = "Cairn Terrier";
+        dict[as[i]] = "A";
       }
 
       for(var i = 1; i < 25; i++){
-        dict[bs[i]] = "Irish Wolfhound";
+        dict[bs[i]] = "B";
       }
 
       for(var i = 1; i < 25; i++){
-        dict[cs[i]] = "Norwich Terrier";
+        dict[cs[i]] = "C";
       }
 
       for(var i = 1; i < 25; i++){
-        dict[ds[i]] = "Scottish Deerhound";
+        dict[ds[i]] = "D";
       }
 
       var perros = as.concat(bs, cs, ds);
@@ -130,6 +137,65 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 
       node.say('Settings', players[0], [players[1], send, dict]);
       node.say('Settings', players[1], [players[0], send, dict]);
+    }
+
+    function entrenamiento() {
+      var players = node.game.pl.id.getAllKeys();
+
+      var as = [];
+      var bs = [];
+      var cs = [];
+      var ds = [];
+      var sendt = []
+      var sendh = []
+      var dict = {};
+
+      for (var i=1; i < 25; i++) {
+        as[i - 1] = 'A' + i + '.jpg';
+      }
+
+      for (var i=1; i < 25; i++) {
+        bs[i - 1] = 'B' + i + '.jpg';
+      }
+
+      for (var i=1; i < 25; i++) {
+        cs[i - 1] = 'C' + i + '.jpg';
+      }
+
+      for (var i=1; i < 25; i++) {
+        ds[i - 1] = 'D' + i + '.jpg';
+      }
+
+      for(var i = 1; i < 25; i++){
+        dict[as[i]] = "A";
+      }
+
+      for(var i = 1; i < 25; i++){
+        dict[bs[i]] = "B";
+      }
+
+      for(var i = 1; i < 25; i++){
+        dict[cs[i]] = "C";
+      }
+
+      for(var i = 1; i < 25; i++){
+        dict[ds[i]] = "D";
+      }
+
+      var terrier = as.concat(cs);
+      var hound = bs.concat(ds);
+
+      terrier.sort(function(a, b){return 0.5 - Math.random()});
+      hound.sort(function(a, b){return 0.5 - Math.random()});
+
+      for(var i = 1; i < 6; i++){
+        sendt.push(terrier[i]);
+        sendh.push(hound[i]);
+      }
+
+      node.say('Settings', players[0], [players[1], sendt, dict, 'terrier']);
+      node.say('Settings', players[1], [players[0], sendh, dict, 'hound']);
+
     }
 
 };
