@@ -1,21 +1,144 @@
 <!doctype html>
 <title>INSTRUCTIONS</title>
 <link rel="stylesheet" href="/lib/bootstrap/bootstrap.min.css" />
+<style>
+ 
+    div {
+      text-align: justify;
+      text-justify: inter-word;
+    }     
+    .column {
+        float: left;
+        padding: 10px;
+    }
+    .middle {
+        width: 5%;
+    }
+
+    .left, .right {
+        width: 45%;
+    }
+    button {
+      display: inline-block;
+      position: relative;
+      padding: 20px 38px;
+      top: 0;
+      font-size: 20px;
+      font-family: "Open Sans", Helvetica;
+      border-radius: 4px;
+      border-bottom: 1px solid rgba( 28, 227, 125, 0.5 );
+      background: rgba( 22, 230, 137, 1 );
+      color: #fff;
+      box-shadow: 0px 0px 0px rgba( 15, 165, 60, 0.1 );
+      -webkit-transform: translateZ(0);
+         -moz-transform: translateZ(0);
+          -ms-transform: translateZ(0);
+              transform: translateZ(0);
+      -webkit-transition: all 0.2s ease;
+         -moz-transition: all 0.2s ease;
+          -ms-transition: all 0.2s ease;
+              transition: all 0.2s ease;
+    }
+    button:hover {
+      top: -10px;
+      box-shadow: 0px 10px 10px rgba( 15, 165, 60, 0.2 );
+      -webkit-transform: rotateX(20deg);
+         -moz-transform: rotateX(20deg);
+          -ms-transform: rotateX(20deg);
+              transform: rotateX(20deg);
+    }
+    button:active {
+      top: 0px;
+      box-shadow: 0px 0px 0px rgba( 15, 165, 60, 0.0 );
+      background: rgba( 20, 224, 133, 1 );
+    }    
+</style>
 <body>
-  <div id="container" style="margin: 0 auto; max-width: 640px">
-    <h1>Instructions for DLL_2019</h1>
-    <h3>Please read them carefully</h3>
+  <div id="container" style="margin: 0 auto; max-width: 1600px; overflow: auto">
+    <h1>Instrucciones</h1>
     <div id="instructions">
-      <br>
-      This game is played by two human players (you and another person).
-      <br><br>
-      In each round, you either play as a <em>DICTATOR</em> or as an <em>OBSERVER</em>.
-      The dictator decides how to share 100 ECU (Experimental Currency). 100 ECU are equal to 0.05 USD.
-      The observer simply observes the decision by the dictator and payoff for both players realize accordingly.
-      <br><br>
-      The game is repeated a certain number of rounds, and each round roles are randomly assigned.
-      <br><br>
-    </div>
-    If you understood the instructions correctly press the "DONE" button to proceed to the game.
+        <div class="column left" style="">
+                    <h2>Por favor lea atentamente</h2>
+            Los participantes de este juego son dos jugadores humanos (usted y un compañero remoto).
+            <h3>Objetivo</h3>
+            El objetivo del juego es obtener el mayor puntaje posible clasificando correctamente los perros que
+            verá en la pantalla.
+            <h3>Clasificación de perros</h3>
+            En el centro de la pantalla principal verá cinco imágenes de perros. Bajo cada imagen verá un
+            menú desplegable que contiene cuatro categorías de clasificación: A, B, C,  D. Usted debe elegir la categoría
+            a la que cree que pertenece cada perro. <b>Todos</b> los perros pertenecen a alguna de las cuatro categorías.
+            <br>
+            <br>
+            Usted podrá modificar la clasificación tanto como desee. Una vez esté seguro de su clasificación, presione el botón
+            "Confirmar!". Al hacerlo, se desplegará un cuadro de diálogo con el mensaje "¿Está seguro de que desea terminar la ronda?"; 
+            si presiona "No", el cuadro se cerrará y podrá seguir en la ronda; si presiona el "Sí", confirmará su clasificación y terminará
+            la ronda
+            <br>
+            <br>
+            Una vez tanto usted como su compañero hayan terminado la ronda, pasará a la pantalla de retroalimentación. Allí verá 
+            sus aciertos y errores en la clasificación y su desempeño a lo largo de las últimas 20 rondas.
+        
+            <h3>Entrenamiento:</h3>
+        
+            Las primeras veinte rondas del juego son rondas de entrenamiento. En ellas usted tendrá que 
+            clasificar solo dos tipos distintos de perros. Preste atención a las diferencias entre los perros de una
+            categoría y los de la otra. Se espera que al final del entrenamiento usted pueda diferenciar fácilmente
+            entre las dos categorías. Su compañero será entrenado para distinguir perros de las otras dos categorías.
+            <br>
+            <br>
+            <b>Nota: </b> Aunque solo verá dos tipos de perros, en el menú de cada perro aparecerán las cuatro categorías.             
+        </div>
+        
+        <div class = "column middle"></div>
+        
+        <div class="column right">
+                    <h3>Interacción con su compañero:</h3>
+        
+            A partir de la ronda 21, su pantalla tendrá dos nuevos elementos: el menú de mensajes, a la izquierda de su pantalla, y el signo de interrogación, a la derecha.
+            <br>
+            <br>
+            Si usted <i>arrastra</i> una imagen hasta el signo de interrogación, el borde de la imagen que arrrastró
+            quedará resaltado y se abrirá un cuadro de diálogo con el mensaje "¿Qué mensaje desea enviarle a su comapañero?"
+            y las opciones A, B, C y D. 
+            <br>
+            <br>
+            Al escoger alguna de las opciones, el cuadro de diálogo se cerrará y su compañero verá una notificación sobre el menú de mensajes. Su compañero podrá desplegar el menú y abrir alguno de los mensajes que usted le ha enviado. Al hacerlo, el borde de la imagen que usted arrastró quedará
+            resaltado en la ventana de su compañero; él podrá responderle "sí" o "no". Si usted, por ejemplo, envió el mensaje "A"
+            y su compañero responde "sí", usted verá una notificación con el mensaje "Sí es A" sobre la imagen que usted arrastró;
+            si su compañero responde "no", usted verá una notificación con el mensaje "No es A" sobre la imagen.
+            <br>
+            <br>            
+            Si usted terminó la ronda, ya no puede enviar ni recibir mensajes.
+            Usted también verá el menú de mensajes en la parte izquierda de su pantalla; allí podrá abrir y contestar los mensajes 
+            de su compañero.
+        
+            <h3>Rondas:</h3>
+        
+            El juego consta de 60 rondas: 20 de entrenamiento + 40 con interacción.
+        
+            <h3>Pago:</h3>
+        
+            La recompensa que reciba depende de su rendimiento. Se seleccionarán al azar dos rondas con las que
+            se determinará su pago. La selección se hará a partir de la ronda 20 de la segunda fase; ninguna ronda del entrenamiento
+            o las primeras veinte rondas con interacción será elegida para determinar su recompensa.
+            anterior será seleccionada para determinar su recompensa. Las recompensas son:
+            <br>
+            <br>
+            1 perro clasificado correctamente: X UME
+            <br>
+            2 perros clasificados correctamente: X UME
+            <br>
+            3 perros clasificados correctamente: X UME
+            <br>
+            4 perros clasificados correctamente: X UME
+            <br>
+            5 perros clasificados correctamente: X UME
+            <br>
+            <br>
+            <div id = "confirmar" align="right" style="padding-left: 550px;">
+                <button class="button1" id='continuar'>Continuar</button>
+            </div>
+        </div>
+    </div>   
   </div>
 </body>

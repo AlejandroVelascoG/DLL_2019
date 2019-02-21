@@ -52,7 +52,13 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
     });
 
     stager.extendStep('instructions', {
-        frame: 'instructions.htm'
+        frame: 'instructions.htm',
+        cb: function(){
+          var continuar = W.getElementById('continuar');
+          continuar.onclick = function() {
+            node.done();
+          }
+        }
     });
 
     stager.extendStep('training', {
