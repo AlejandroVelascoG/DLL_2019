@@ -131,6 +131,9 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                   node.game.check.push(0);
                 }
                 console.log('puntos', node.game.check);
+                var sum = node.game.check.reduce(function(a, b) { return a + b; }, 0);
+                node.game.puntajeAcumulado[ronda] = sum;
+                console.log('puntos', sum);
                 node.done();
               }
               if(msg == 'seguir'){
@@ -159,7 +162,9 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             var ronda = node.player.stage.round; //Ronda en curso
             var mensajeEnviado = ['A', 'B', 'C', 'D'];
 
-            node.game.puntajeAcumulado[ronda] = 0;
+            var rondasTraining = node.game.settings.TRAINING;
+            console.log('Oops', node.game.puntajeAcumulado);
+            node.game.puntajeAcumulado[rondasTraining + ronda] = 0;
             node.game.indiceMensaje = 0;
             node.game.contadorComunicacion = 1;
             node.game.contadorMensajes = 0;
@@ -293,6 +298,9 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                   node.game.check.push(0);
                 }
                 console.log('puntos', node.game.check);
+                var sum = node.game.check.reduce(function(a, b) { return a + b; }, 0);
+                node.game.puntajeAcumulado[rondasTraining + ronda] = sum;
+                console.log('puntos', sum);
                 node.done();
               }
               if(msg == 'continuar'){
