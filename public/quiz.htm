@@ -1,0 +1,75 @@
+<!doctype html>
+<title>QUIZ</title>
+<link rel="stylesheet" href="/lib/bootstrap/bootstrap.min.css" />
+<!--<link rel="stylesheet" href="css/estilosInstrucciones.css" />-->
+<body>
+  <div style="margin: 0 auto; max-width: 800px; overflow: auto">
+<!--    <h3>Quiz</h3>-->
+
+    <div id="quiz">
+      <dl>
+
+        <dt><strong>Pregunta 1:</strong></dt>
+        <dd>
+          <span id="rounds_result" class="quiz_result"></span>
+          <form name="rounds" id="rounds">
+	    <p class="question">¿Cuál es el propósito del juego?</p>
+	    <p>
+	      <input type="radio" name="rounds" value="5"> Descifrar la clasificación del otro jugador <br>
+	      <input type="radio" name="rounds" value="10"> Coincidir con la clasificación del otro jugador <br>
+	      <input type="radio" name="rounds" value="15"> Clasificar correctamente todos los perros <br>
+	      <input type="radio" name="rounds" value="not"> No se sabe de antemano
+	    </p>
+	  </form>
+        </dd>
+
+        <dt><strong>Pregunta 2:</strong></dt>
+        <dd>
+          <span id="objetos_result" class="quiz_result"></span>
+          <form name="objetos" id="objetos">
+            <p class="question">¿Cuántas rondas de entrenamiento tiene el juego?</p>
+            <p>
+              <input type="radio" name="objetos" value="1"> No se sabe de antemano <br>
+              <input type="radio" name="objetos" value="2"> 5 <br>
+              <input type="radio" name="objetos" value="3"> 10 <br>
+              <input type="radio" name="objetos" value="4"> 20 <br>
+            </p>
+          </form>
+        </dd>
+        <dt><strong>Pregunta 3:</strong></dt>
+        <dd>
+          <span id="puntos_result" class="quiz_result"></span>
+          <form name="puntos" id="puntos">
+            <p class="question">¿Cuántas categorías de clasificación tiene el juego?</p>
+            <p>
+              <input type="radio" name="puntos" value="1"> 8 <br>
+              <input type="radio" name="puntos" value="2"> 4 <br>
+              <input type="radio" name="puntos" value="3"> 3 <br>
+              <input type="radio" name="puntos" value="4"> 2 <br>
+            </p>
+
+          </form>
+        </dd>
+
+	<dt><strong>Pregunta 4:</strong></dt>
+        <dd>
+          <span id="umbral_result" class="quiz_result"></span>
+          <form name="umbral" id="umbral">
+            <p class="question">¿Cuándo acaba una ronda de juego?</p>
+            <p>
+              <input type="radio" name="umbral" value="5"> Cuando uno de los jugadores haya terminado la clasificación <br>
+              <input type="radio" name="umbral" value="10"> Cuando hayan pasado dos minutos <br>
+              <input type="radio" name="umbral" value="30"> Cuando las clasificaciones de los dos jugadores coincidan <br>
+              <input type="radio" name="umbral" value="2"> Cuando ambos jugadores hayan terminado sus clasificaciones <br>
+            </p>
+
+          </form>
+        </dd>
+      </dl>
+      <div id="done_box">
+        <button onclick='javascript:parent.node.emit("check-quiz");' id="submitQuiz"  class="btn btn-lg btn-primary">Presione aquí para enviar sus respuestas y pasar al juego <br>Respuestas correctas <span id="answers_counter">0 / 4</span></button>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="js/quiz.js"></script>

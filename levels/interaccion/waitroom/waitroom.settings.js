@@ -33,7 +33,7 @@ module.exports = {
      *
      * The size of each group dispatched by the waiting room
      */
-    GROUP_SIZE: 1,
+    GROUP_SIZE: 2,
 
     /**
      * ## POOL_SIZE (number) Optional
@@ -44,7 +44,7 @@ module.exports = {
      *
      * Default: GROUP_SIZE
      */
-    POOL_SIZE: 1,
+    POOL_SIZE: 2,
 
     /**
      * ## N_GAMES (number) Optional
@@ -65,7 +65,7 @@ module.exports = {
      *
      * After the max waiting time expired clients are disconnected
      */
-    MAX_WAIT_TIME: 90000,
+    MAX_WAIT_TIME: 180000,
 
     /**
      * ## START_DATE (string|object) Optional
@@ -316,130 +316,5 @@ module.exports = {
      *
      * Default: false
      */
-     DISCONNECT_IF_NOT_SELECTED: false,
+    DISCONNECT_IF_NOT_SELECTED: false,
 };
-
-    /**
-     * ## PAGE_TITLE (object) Optional
-     *
-     * Sets the page title, optionally adds to page
-     *
-     * An object containing the title, and a flag if the same text should
-     * be added in a H1 element at the top of the page.
-     *
-     * Default: { title: 'Welcome!', addToBody: true }
-     */
-    // PAGE_TITLE: { title: 'Welcome!', addToBody: true },
-
-    /** ### TEXTS
-     *
-     * Collections of texts displayed when given events occurs
-     *
-     * Each item can be a string, or function returning a string; the function
-     * receives two input parameters: the instance of the widget and an object
-     * with extra information (depending on the event).
-//      *
-//      *
-//      */
-//     TEXTS: {
-//        (linea 342) @see WaitingRoom.texts
-//         /**
-//          * #### blinkTitle
-//          *
-//          * Blinks the title of the tab to signal the beginning of the game
-//          *
-//          * False will not blink.
-//          */
-//         // blinkTitle: 'Custom string: Game Starts!',
-//
-//         /**
-//          * #### disconnect
-//          *
-//          * Disconnected from waiting room
-//          */
-//         // disconnect: 'Custom string: YOU HAVE BEEN DISCONNECTED!',
-//
-//         /**
-//          * #### waitedTooLong
-//          *
-//          * The MAX_WAIT_TIME countdown expired
-//          */
-//         // waitedTooLong: 'Custom string: YOU WAITED TOO LONG!',
-//
-//         /**
-//          * #### notEnoughPlayers
-//          *
-//          * There are not enough players to start a game
-//          */
-//         // notEnoughPlayers: 'Custom string: NOT ENOUGH PLAYERS!',
-//
-//         /**
-//          * #### roomClosed
-//          *
-//          * A player tries to connect, but the waiting room has been closed
-//          */
-//         // roomClosed: 'Custom string: ROOM CLOSED! CANNOT ENTER!',
-//
-//         /**
-//          * #### tooManyPlayers
-//          *
-//          * Currently there are more players than needed by the game
-//          */
-//         // tooManyPlayers: 'Custom string: TOO MANY PLAYERS!',
-//
-//         /**
-//          * #### notSelectedClosed
-//          *
-//          * Player has not been selected, and cannot participate in other games
-//          */
-//         // notSelectedClosed: 'Custom string: NOT SELECTED CLOSED!',
-//
-//         /**
-//          * #### notSelectedOpen
-//          *
-//          * Player has not been selected, but can still participate in new games
-//          */
-//         // notSelectedOpen: 'Custom string: NOT SELECTED OPEN!',
-//
-//         /**
-//          * #### exitCode
-//          *
-//          * Player disconnected, and an exit code might have been provided
-//          */
-//         // exitCode: 'Custom string: EXIT CODE TEXT',
-//     },
-//
-//     /** ### SOUNDS
-//      *
-//      * Collections of sounds played when given events occurs
-//      *
-//      * Each item can be a string, or function returning a string; the function
-//      * receives two input parameters: the instance of the widget and an object
-//      * with extra information (depending on the event).
-//      *
-//      * @see WaitingRoom.sounds
-//      */
-//     SOUND: {
-//
-//         /**
-//          * ## dispatch
-//          *
-//          * Notifies players that a game is about to be dispatched
-//          *
-//          * If TRUE, plays default sound, if string plays the file sound
-//          * located at the specified uri
-//          *
-//          */
-//         // dispatch: false
-//     },
-//
-//     /** ### ALLOW_PLAY_WITH_BOTS
-//      *
-//      * Allows a player to request to start the game immediately with bots
-//      *
-//      * A button is added to the interface
-//      */
-//     // ALLOW_PLAY_WITH_BOTS: true
-//
-//
-// };

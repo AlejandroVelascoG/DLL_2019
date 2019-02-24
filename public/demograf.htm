@@ -1,0 +1,120 @@
+<!doctype html>
+<title>Survey</title>
+<link rel="stylesheet" href="/lib/bootstrap/bootstrap.min.css" />
+<!-- JQUERY UI STARTS -->
+<!-- <link type="text/css" href="js/jqueryui/css/ui-lightness/jquery-ui-1.8.20.custom.css" rel="Stylesheet" />
+<script src="js/jqueryui/js/jquery-1.7.2.min.js" charset="utf-8"></script>
+<script src="js/jqueryui/js/jquery-ui-1.8.20.custom.min.js" charset="utf-8"></script> -->
+<!-- JQUERY UI ENDS -->
+
+<link rel='stylesheet' href='/stylesheets/nodegame.css' />
+<!-- <link rel="stylesheet" type="text/css" href="css/iframe.css">
+<link rel="stylesheet" type="text/css" href="css/quiz.css"> -->
+<style>
+/* Add before the body, adapt to desired width */
+table#gender td
+{
+    width: 100px
+}
+table#age td
+{
+    width: 100px
+}
+table#political_party td
+{
+    width: 100px
+}
+table#carreer td
+{
+    width: 200px
+}
+table#location td
+{
+    width: 100px
+}
+table#strategy td
+{
+    width: 200px
+}
+table#orientation td
+{
+    width: 150px
+}
+.button1{
+    background-color: #e7e7e7;
+    color: black;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+button {
+  display: inline-block;
+  position: relative;
+  padding: 20px 38px;
+  top: 0;
+  font-size: 20px;
+  font-family: "Open Sans", Helvetica;
+  border-radius: 4px;
+  border-bottom: 1px solid rgba( 28, 227, 125, 0.5 );
+  background: rgba( 22, 230, 137, 1 );
+  color: #fff;
+  box-shadow: 0px 0px 0px rgba( 15, 165, 60, 0.1 );
+  -webkit-transform: translateZ(0);
+     -moz-transform: translateZ(0);
+      -ms-transform: translateZ(0);
+          transform: translateZ(0);
+  -webkit-transition: all 0.2s ease;
+     -moz-transition: all 0.2s ease;
+      -ms-transition: all 0.2s ease;
+          transition: all 0.2s ease;
+}
+button:hover {
+  top: -10px;
+  box-shadow: 0px 10px 10px rgba( 15, 165, 60, 0.2 );
+  -webkit-transform: rotateX(20deg);
+     -moz-transform: rotateX(20deg);
+      -ms-transform: rotateX(20deg);
+          transform: rotateX(20deg);
+}
+button:active {
+  top: 0px;
+  box-shadow: 0px 0px 0px rgba( 15, 165, 60, 0.0 );
+  background: rgba( 20, 224, 133, 1 );
+}
+.droptarget {
+    float: left;
+    width: 100px;
+    height: 80px;
+    margin: 15px;
+    padding: 10px;
+    border: 1px solid #aaaaaa;
+}
+</style>
+<body>
+
+  <div id="container_quiz">
+    <h1>Información adicional</h1>
+    <div id="quiz">
+
+
+    </div>
+  </div>
+  <button class="button1" id='continuar'>Continuar</button>
+</body>
+<script type="text/javascript" charset="utf-8">
+  window.onload = function() {
+    // Page cached, we do not need to do anything.
+    if ('undefined' !== typeof window.paper) {
+        console.log('Page cached. Nothing to do.');
+        return;
+    }
+    else {
+        console.log('LOADING PAGE SCRIPT');
+    }
+    var node = parent.node;
+    node.widgets.append(node.game.demo, document.getElementById('quiz'));
+  } // End window.onload
+</script>

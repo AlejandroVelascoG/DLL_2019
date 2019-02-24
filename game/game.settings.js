@@ -47,8 +47,8 @@ module.exports = {
     // # Game specific properties
 
     // Number of game rounds repetitions.
-    REPEAT: 2,
-    TRAINING: 2,
+    REPEAT: 1,
+    TRAINING: 1,
 
     // In case an incoming offer does not pass validation, which indicates
     // cheating, re-set the dictator's offer to this value.

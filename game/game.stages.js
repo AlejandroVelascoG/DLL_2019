@@ -9,31 +9,18 @@
  * ---
  */
 
-module.exports = function(stager, settings) {
+ module.exports = function(stager, settings) {
 
-     stager
-        .next('instructions')
-        .repeat('prep', settings.TRAINING)
-        .repeat('trials', settings.REPEAT)
-        .next('end')
-        .gameover();
+      stager
+         .next('bienvenida')
+         .next('instructions')
+         .next('quiz')
+         .gameover();
 
-    stager.extendStage('trials', {
-      steps: [
-        'game',
-        'puntaje'
-      ]
-});
+     // Modify the stager to skip one stage.
+     stager.skip('bienvenida');
+     stager.skip('instructions');
+     //stager.skip('quiz');
 
-    stager.extendStage('prep', {
-      steps: [
-        'training',
-        'puntaje'
-      ]
-    });
-    // Modify the stager to skip one stage.
-    //stager.skip('instructions');
-    // stager.skip('prep');
-
-    return stager.getState();
-};
+     return stager.getState();
+ };
