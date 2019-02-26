@@ -35,8 +35,8 @@
    });
 
      // Modify the stager to skip one stage.
-     stager.skip('prep');
-     stager.skip('trials');
+     // stager.skip('prep');
+     // stager.skip('trials');
      //stager.skip('demograf');
      // stager.skip('debrief');
 

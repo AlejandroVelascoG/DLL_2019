@@ -3,21 +3,13 @@
 <link rel="stylesheet" href="/lib/bootstrap/bootstrap.min.css" />
 <style>
  
-    div {
-      text-align: justify;
-      text-justify: inter-word;
-    }     
-    .column {
-        float: left;
-        padding: 10px;
+    #instructions{
+        max-width: 750px;
+        text-align: justify;
+        overflow: auto;
+        margin: 0 auto;        
     }
-    .middle {
-        width: 5%;
-    }
-
-    .left, .right {
-        width: 45%;
-    }
+    
     button {
       display: inline-block;
       position: relative;
@@ -55,73 +47,28 @@
 </style>
 <body>
   <div id="container" style="margin: 0 auto; max-width: 1600px; overflow: auto">
-    <h1>Instrucciones</h1>
-    <div id="instructions">
-        <div class="column left" style="">
-                    <h2>Por favor lea atentamente</h2>
-            Los participantes de este juego son dos jugadores humanos (usted y un compañero remoto).
-            <h3>Objetivo</h3>
-            El objetivo del juego es obtener el mayor puntaje posible clasificando correctamente los perros que
-            verá en la pantalla.
-            <h3>Clasificación de perros</h3>
-            En el centro de la pantalla principal verá cinco imágenes de perros. Bajo cada imagen verá un
-            menú desplegable que contiene cuatro categorías de clasificación: A, B, C,  D. Usted debe elegir la categoría
-            a la que cree que pertenece cada perro. <b>Todos</b> los perros pertenecen a alguna de las cuatro categorías.
-            <br>
-            <br>
-            Usted podrá modificar la clasificación tanto como desee. Una vez esté seguro de su clasificación, presione el botón
-            "Confirmar!". Al hacerlo, se desplegará un cuadro de diálogo con el mensaje "¿Está seguro de que desea terminar la ronda?"; 
-            si presiona "No", el cuadro se cerrará y podrá seguir en la ronda; si presiona el "Sí", confirmará su clasificación y terminará
-            la ronda
-            <br>
-            <br>
-            Una vez tanto usted como su compañero hayan terminado la ronda, pasará a la pantalla de retroalimentación. Allí verá 
-            sus aciertos y errores en la clasificación y su desempeño a lo largo de las últimas 20 rondas.
+    
+      <div id="instructions">
         
-            <h3>Entrenamiento:</h3>
+            <h1>Instrucciones</h1>
         
-            Las primeras veinte rondas del juego son rondas de entrenamiento. En ellas usted tendrá que 
-            clasificar solo dos tipos distintos de perros. Preste atención a las diferencias entre los perros de una
-            categoría y los de la otra. Se espera que al final del entrenamiento usted pueda diferenciar fácilmente
-            entre las dos categorías. Su compañero será entrenado para distinguir perros de las otras dos categorías.
+            <h2>Por favor lea atentamente</h2>
+        
+            Los participantes de este juego son dos jugadores humanos (usted y un compañero remoto). En cada ronda, en el centro de la pantalla principal habrá cinco imágenes de perros. Cada perro pertenece a alguna de las categorías A, B, C o D, y el objetivo del juego es clasificarlos correctamente para obtener el mayor puntaje posible. Bajo cada imagen verá un menú desplegable para elegir la categoría. Para terminar la ronda, presione el botón "Confirmar!". Una vez tanto usted como su compañero hayan terminado la ronda, ambos verán una pantalla de retroalimentación. 
+            <br>
+            <br>        
+            Durante las primeras veinte rondas, usted tendrá que clasificar solo dos tipos de perros, aunque tendrá a su disposición las cuatro
+            categorías. Su compañero clasificará los demás tipos de perros. A partir de la ronda 21, verá a la izquierda de su pantalla el menú
+            de mensajes, y a la derecha el signo de interrogación. Si sobre este signo <i>arrastra</i> alguna imagen, su borde quedará resaltado y se abrirá un cuadro de diálogo con el mensaje "¿Qué mensaje desea enviarle a su comapañero?"
+            y las opciones A, B, C y D.   Al escoger alguna de las opciones, el cuadro de diálogo se cerrará y su compañero verá una notificación sobre el menú de mensajes. 
             <br>
             <br>
-            <b>Nota: </b> Aunque solo verá dos tipos de perros, en el menú de cada perro aparecerán las cuatro categorías.             
-        </div>
-        
-        <div class = "column middle"></div>
-        
-        <div class="column right">
-                    <h3>Interacción con su compañero:</h3>
-        
-            A partir de la ronda 21, su pantalla tendrá dos nuevos elementos: el menú de mensajes, a la izquierda de su pantalla, y el signo de interrogación, a la derecha.
+            A su vez, cuando usted reciba un mensaje, verá una notificación sobre su menú de mensajes. En este menú verá los mensajes que su compañero 
+            le ha enviado; si abre uno de los mensajes, el borde de alguna de las imágenes quedará resaltado y se abrirá un cuadro de diálogo con el mensaje que su compañero le envió y las opciones "Sí" y "No".
             <br>
             <br>
-            Si usted <i>arrastra</i> una imagen hasta el signo de interrogación, el borde de la imagen que arrrastró
-            quedará resaltado y se abrirá un cuadro de diálogo con el mensaje "¿Qué mensaje desea enviarle a su comapañero?"
-            y las opciones A, B, C y D. 
-            <br>
-            <br>
-            Al escoger alguna de las opciones, el cuadro de diálogo se cerrará y su compañero verá una notificación sobre el menú de mensajes. Su compañero podrá desplegar el menú y abrir alguno de los mensajes que usted le ha enviado. Al hacerlo, el borde de la imagen que usted arrastró quedará
-            resaltado en la ventana de su compañero; él podrá responderle "sí" o "no". Si usted, por ejemplo, envió el mensaje "A"
-            y su compañero responde "sí", usted verá una notificación con el mensaje "Sí es A" sobre la imagen que usted arrastró;
-            si su compañero responde "no", usted verá una notificación con el mensaje "No es A" sobre la imagen.
-            <br>
-            <br>            
-            Si usted terminó la ronda, ya no puede enviar ni recibir mensajes.
-            Usted también verá el menú de mensajes en la parte izquierda de su pantalla; allí podrá abrir y contestar los mensajes 
-            de su compañero.
         
-            <h3>Rondas:</h3>
-        
-            El juego consta de 60 rondas: 20 de entrenamiento + 40 con interacción.
-        
-            <h3>Pago:</h3>
-        
-            La recompensa que reciba depende de su rendimiento. Se seleccionarán al azar dos rondas con las que
-            se determinará su pago. La selección se hará a partir de la ronda 20 de la segunda fase; ninguna ronda del entrenamiento
-            o las primeras veinte rondas con interacción será elegida para determinar su recompensa.
-            anterior será seleccionada para determinar su recompensa. Las recompensas son:
+            El juego consta de 60 rondas. La recompensa que reciba al final del juego depende de su rendimiento en las últimas 40 rondas. Se seleccionarán <i>al azar</i> dos rondas con las que se determinará su pago de la siguiente manera:
             <br>
             <br>
             1 perro clasificado correctamente: X UME
@@ -138,7 +85,6 @@
             <div id = "confirmar" align="right" style="padding-left: 550px;">
                 <button class="button1" id='continuar'>Continuar</button>
             </div>
-        </div>
     </div>   
   </div>
 </body>

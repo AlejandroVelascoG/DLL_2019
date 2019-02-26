@@ -18,8 +18,8 @@
          .gameover();
 
      // Modify the stager to skip one stage.
-     stager.skip('bienvenida');
-     stager.skip('instructions');
+     // stager.skip('bienvenida');
+     // stager.skip('instructions');
      //stager.skip('quiz');
 
      return stager.getState();
