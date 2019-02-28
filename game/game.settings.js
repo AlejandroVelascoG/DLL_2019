@@ -41,7 +41,9 @@ module.exports = {
      * used to initialize the game timer for the step.
      */
     TIMER: {
-        instructions: 60000
+        // // instructions: 60000,
+        // training: 40000,
+        // puntaje: 20000
     },
 
     // # Game specific properties

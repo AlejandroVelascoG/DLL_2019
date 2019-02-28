@@ -246,7 +246,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 enviar.style.display = "none";
                 W.getElementById(idPerro).style.border = "";
                 W.getElementById('botonSolicitud').style.opacity = "1";
-                node.set({Comunicacion: [mensajeEnviado[0], node.game.contadorComunicacion]});
+                node.set({Comunicacion: [mensajeEnviado[0], idPerro, node.game.contadorComunicacion]});
                 node.game.contadorComunicacion += 1;
               }
               if (msg == 'B'){
@@ -254,7 +254,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 enviar.style.display = "none";
                 W.getElementById(idPerro).style.border = "";
                 W.getElementById('botonSolicitud').style.opacity = "1";
-                node.set({Comunicacion: [mensajeEnviado[1], node.game.contadorComunicacion]});
+                node.set({Comunicacion: [mensajeEnviado[1], idPerro, node.game.contadorComunicacion]});
                 node.game.contadorComunicacion += 1;
               }
               if (msg == 'C'){
@@ -262,7 +262,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 enviar.style.display = "none";
                 W.getElementById(idPerro).style.border = "";
                 W.getElementById('botonSolicitud').style.opacity = "1";
-                node.set({Comunicacion: [mensajeEnviado[2], node.game.contadorComunicacion]});
+                node.set({Comunicacion: [mensajeEnviado[2], idPerro, node.game.contadorComunicacion]});
                 node.game.contadorComunicacion += 1;
               }
               if (msg == 'D'){
@@ -270,20 +270,20 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 enviar.style.display = "none";
                 W.getElementById(idPerro).style.border = "";
                 W.getElementById('botonSolicitud').style.opacity = "1";
-                node.set({Comunicacion: [mensajeEnviado[3], node.game.contadorComunicacion]});
+                node.set({Comunicacion: [mensajeEnviado[3], idPerro, node.game.contadorComunicacion]});
                 node.game.contadorComunicacion += 1;
               }
               if(msg == 'Correcto'){
                 node.say('Respuesta', otroJugador, ['Correcto', idRecibido]);
                 recibida.style.display = "none";
                 W.getElementById(idRecibido).style.border = "";
-                node.set({Respuesta: [respuestas[0], node.game.indiceMensaje]});
+                node.set({Respuesta: [respuestas[0], idRecibido, node.game.indiceMensaje]});
               }
               if(msg == 'Incorrecto'){
                 node.say('Respuesta', otroJugador, ['Incorrecto', idRecibido]);
                 recibida.style.display = "none";
                 W.getElementById(idRecibido).style.border = "";
-                node.set({Respuesta: [respuestas[1], node.game.indiceMensaje]});
+                node.set({Respuesta: [respuestas[1], idRecibido, node.game.indiceMensaje]});
               }
               if(msg == 'terminar'){
                 var choice1 = selectPerro1.selectedIndex;

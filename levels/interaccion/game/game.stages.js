@@ -20,19 +20,19 @@
          .next('end')
          .gameover();
 
-       stager.extendStage('trials', {
+      stager.extendStage('prep', {
+           steps: [
+             'training',
+             'puntaje'
+           ]
+      });
+
+      stager.extendStage('trials', {
          steps: [
            'game',
            'puntaje'
          ]
-   });
-
-       stager.extendStage('prep', {
-         steps: [
-           'training',
-           'puntaje'
-         ]
-   });
+      });
 
      // Modify the stager to skip one stage.
      // stager.skip('prep');

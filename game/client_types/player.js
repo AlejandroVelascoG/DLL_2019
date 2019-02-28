@@ -52,6 +52,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
     });
 
     stager.extendStep('bienvenida', {
+        donebutton: false,
         frame: 'bienvenida.htm',
         cb: function(){
           var numUsuario = node.player.id;
@@ -65,6 +66,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
     });
 
     stager.extendStep('instructions', {
+        donebutton: false,
         frame: 'instructions.htm',
         cb: function(){
           var continuar = W.getElementById('continuar');
