@@ -632,6 +632,86 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
         donebutton: false,
         frame: 'end.htm',
         cb: function() {
+
+        	var rand1 = Math.floor(Math.random()*4)+1;
+        	var rand2 = Math.floor(Math.random()*4)+1;
+        	if(rand1 == rand2){
+        		if (rand2 != 1){
+        			rand2 -= 1;	
+        		} else {
+        			rand2 += 1;
+        		}        		
+        	}
+
+        	// var rand1 = Math.floor(Math.random()*40)+21;
+        	// var rand2 = Math.floor(Math.random()*40)+21;
+        	// if(rand1 == rand2){
+        	// 	if (rand2 != 21){
+        	// 		rand2 -= 1;	
+        	// 	} else {
+        	// 		rand2 += 1;
+        	// 	}        		
+        	// }
+
+        	var punt1 = node.game.puntajeAcumulado[rand1];
+        	var punt2 = node.game.puntajeAcumulado[rand2];
+
+        	W.setInnerHTML('randRonda1', rand1);
+        	W.setInnerHTML('randRonda2', rand2);
+
+        	W.setInnerHTML('correctPerros1', punt1);
+        	W.setInnerHTML('correctPerros2', punt2);
+
+        	var tot = 0;
+
+			if (punt1 == 0){
+    			W.setInnerHTML('recompensa1', 0);
+    		}        
+    		if (punt1 == 1){
+    			W.setInnerHTML('recompensa1', 1);
+    			tot += 1;
+    		}
+    		if (punt1 == 2){
+    			W.setInnerHTML('recompensa1', 2);
+    			tot += 2;
+    		}
+    		if (punt1 == 3){
+    			W.setInnerHTML('recompensa1', 4);
+    			tot += 4;
+    		}
+    		if (punt1 == 4){
+    			W.setInnerHTML('recompensa1', 7);
+    			tot += 7;
+    		}
+    		if (punt1 == 5){
+    			W.setInnerHTML('recompensa1', 10);
+    			tot += 10;
+    		}
+
+    		if (punt2 == 1){
+    			W.setInnerHTML('recompensa2', 1);
+    			tot += 1;
+    		}
+    		if (punt2 == 2){
+    			W.setInnerHTML('recompensa2', 2);
+    			tot += 2;
+    		}
+    		if (punt2 == 3){
+    			W.setInnerHTML('recompensa2', 4);
+    			tot += 4;
+    		}
+    		if (punt2 == 4){
+    			W.setInnerHTML('recompensa2', 7);
+    			tot += 7;
+    		}
+    		if (punt2 == 5){
+    			W.setInnerHTML('recompensa2', 10);
+    			tot += 10;
+    		}
+        	
+
+        	W.setInnerHTML('recompensaTotal', tot+10);
+
             node.game.visualTimer.setToZero();
         }
     });
