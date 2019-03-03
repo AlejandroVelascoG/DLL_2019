@@ -36,7 +36,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
         this.visualRound = node.widgets.append('VisualRound', header);
         this.visualTimer = node.widgets.append('VisualTimer', header);
 
-        this.doneButton = node.widgets.append('DoneButton', header);
+        // this.doneButton = node.widgets.append('DoneButton', header);
 
         this.contadorComunicacion = 1;
         this.contadorComunicacionMensajes = 1;
@@ -633,24 +633,24 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
         frame: 'end.htm',
         cb: function() {
 
-        	var rand1 = Math.floor(Math.random()*4)+1;
-        	var rand2 = Math.floor(Math.random()*4)+1;
+        	var rand1 = Math.floor(Math.random()*4)+2;
+        	var rand2 = Math.floor(Math.random()*4)+2;
         	if(rand1 == rand2){
-        		if (rand2 != 1){
-        			rand2 -= 1;	
+        		if (rand2 == 5){
+        			rand2 -= 1;
         		} else {
         			rand2 += 1;
-        		}        		
+        		}
         	}
 
         	// var rand1 = Math.floor(Math.random()*40)+21;
         	// var rand2 = Math.floor(Math.random()*40)+21;
         	// if(rand1 == rand2){
-        	// 	if (rand2 != 21){
-        	// 		rand2 -= 1;	
+        	// 	if (rand2 == 60){
+        	// 		rand2 -= 1;
         	// 	} else {
         	// 		rand2 += 1;
-        	// 	}        		
+        	// 	}
         	// }
 
         	var punt1 = node.game.puntajeAcumulado[rand1];
@@ -666,7 +666,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 
 			if (punt1 == 0){
     			W.setInnerHTML('recompensa1', 0);
-    		}        
+    		}
     		if (punt1 == 1){
     			W.setInnerHTML('recompensa1', 1);
     			tot += 1;
@@ -708,7 +708,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
     			W.setInnerHTML('recompensa2', 10);
     			tot += 10;
     		}
-        	
+
 
         	W.setInnerHTML('recompensaTotal', tot+10);
 

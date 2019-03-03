@@ -36,7 +36,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
         this.visualRound = node.widgets.append('VisualRound', header);
         this.visualTimer = node.widgets.append('VisualTimer', header);
 
-        this.doneButton = node.widgets.append('DoneButton', header);
+        // this.doneButton = node.widgets.append('DoneButton', header);
 
         this.contadorComunicacion = 1;
         this.contadorComunicacionMensajes = 1;
