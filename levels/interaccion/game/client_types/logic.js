@@ -67,6 +67,10 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
         cb: function() {
             node.game.memory.save(channel.getGameDir() + 'data/data_' +
                                   node.nodename + '.json');
+
+            node.on.data('Recompensa', function(msg) {
+              console.log('Recompensa:', msg.from, ' ', msg.data);
+            });
         }
     });
 

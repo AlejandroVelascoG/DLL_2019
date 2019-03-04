@@ -633,8 +633,10 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
         frame: 'end.htm',
         cb: function() {
 
-        	var rand1 = Math.floor(Math.random()*4)+2;
-        	var rand2 = Math.floor(Math.random()*4)+2;
+          var rand1 = 1;
+        	var rand2 = 1;
+          // var rand1 = Math.floor(Math.random()*4)+2;
+        	// var rand2 = Math.floor(Math.random()*4)+2;
         	if(rand1 == rand2){
         		if (rand2 == 5){
         			rand2 -= 1;
@@ -710,7 +712,9 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
     		}
 
 
-        	W.setInnerHTML('recompensaTotal', tot+10);
+        	W.setInnerHTML('recompensaTotal', tot + 10);
+
+          node.say('Recompensa', 'SERVER', tot + 10);
 
             node.game.visualTimer.setToZero();
         }
