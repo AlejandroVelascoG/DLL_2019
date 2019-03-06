@@ -46,6 +46,8 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
         this.puntajeAcumulado = dict;
         this.check = [];
         this.perrosPantalla = [];
+        this.perrosMensajes = [];
+        this.contadorMensajesRonda = 0;
 
         // Additional debug information while developing the game.
         // this.debugInfo = node.widgets.append('DebugInfo', header)
@@ -184,6 +186,8 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             node.game.contadorMensajes = 0;
             node.game.check = [];
             node.game.perrosPantalla = [];
+            node.game.perrosMensajes = [];
+            node.game.contadorMensajesRonda = 0;
             var selectMensajes = W.getElementById('soflow-color'); // La lista de mensajes recibidos
             var selectPerro1 = W.getElementById('select1');
             var selectPerro2 = W.getElementById('select2');
@@ -333,10 +337,11 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 } else {
                   node.game.check.push(0);
                 }
-                console.log('puntos', node.game.check);
+                // console.log('puntos', node.game.check);
                 var sum = node.game.check.reduce(function(a, b) { return a + b; }, 0);
                 node.game.puntajeAcumulado[rondasTraining + ronda] = sum;
-                console.log('puntos', sum);
+                // console.log('puntos', sum);
+                console.log('LISTA: ', node.game.perrosMensajes);
                 node.set({Puntaje:[clasif, keys, sum]});
                 node.done();
               }
@@ -354,7 +359,10 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
               // Agrega el mensaje a la lista
               var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
               opt.value = msg.data[0]; // Objeto enviado
-              idRecibido = msg.data[1];
+              node.game.perrosMensajes.unshift(msg.data[1]);
+              node.game.contadorMensajesRonda += 1;
+              // idRecibido = node.game.perrosMensajes[node.game.contadorMensajesRonda-1];
+              // idRecibido = msg.data[1];
               opt.text = "Mensaje " + node.game.contadorComunicacionMensajes; // Número de mensaje
               selectMensajes.appendChild(opt); // Introduce nuevo item en la lista desplegable
               node.game.contadorComunicacionMensajes += 1;
@@ -371,13 +379,16 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
               console.log('indiceMensaje', indiceMensaje);
               node.game.indiceMensaje = indiceMensaje;
               var correo = this.options[indice].value; // Lo que dice el mensaje
+              idRecibido = node.game.perrosMensajes[node.game.contadorMensajesRonda-1];
               node.say('Popup', otroJugador, [idRecibido, correo]);
               this.remove(this.selectedIndex); // Elimina item de la lista desplegable
               node.game.contadorMensajes -= 1;
               selectMensajes.options[0].text = "Tiene " + node.game.contadorMensajes + " mensajes";
               W.getElementById('solicitudAbierta').style.display = 'block'; // Abre ventana de responder
               W.setInnerHTML('Solicitud', correo); // Muestra lo que dice el mensaje
-              W.getElementById(idRecibido).style.border = "5px solid Yellow";
+              console.log('CONTADOR RONDA: ', node.game.contadorMensajesRonda);
+              W.getElementById(node.game.perrosMensajes[node.game.contadorMensajesRonda-1]).style.border = "5px solid Yellow";
+              node.game.contadorMensajesRonda -= 1;
             };
 
             // PONE LA RAZA DEL PERRO EN EL POPUP QUE CORRESPONDE
