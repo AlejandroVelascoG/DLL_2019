@@ -582,7 +582,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                       }),
                       w.get('ChoiceTable', {
                           id: 'messages',
-                          mainText: 'Hacia el final del juego, usé fluídamente los mensajes',
+                          mainText: 'Hacia el final del juego, usé fluídamente los mensajes (puede escoger varias opciones):',
                           choices: [
                               '"A"',
                               '"B"',
@@ -599,7 +599,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                         }),
                       w.get('ChoiceTable', {
                           id: 'recognition',
-                          mainText: 'Al finalizar el juego podía reconocer las categorías',
+                          mainText: 'Al finalizar el juego podía reconocer las categorías (puede escoger varias opciones):',
                           choices: [
                               'A',
                               'B',
@@ -658,27 +658,27 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
         frame: 'end.htm',
         cb: function() {
 
-          // var rand1 = 1;
-        	// var rand2 = 1;
-          // var rand1 = Math.floor(Math.random()*4)+2;
-        	// var rand2 = Math.floor(Math.random()*4)+2;
-        	// if(rand1 == rand2){
-        	// 	if (rand2 == 5){
-        	// 		rand2 -= 1;
-        	// 	} else {
-        	// 		rand2 += 1;
-        	// 	}
-        	// }
-
-        	var rand1 = Math.floor(Math.random()*30) + 21;
-        	var rand2 = Math.floor(Math.random()*30) + 21;
+          var rand1 = 1;
+        	var rand2 = 1;
+          var rand1 = Math.floor(Math.random()*4)+2;
+        	var rand2 = Math.floor(Math.random()*4)+2;
         	if(rand1 == rand2){
-        		if (rand2 == 50){
+        		if (rand2 == 5){
         			rand2 -= 1;
         		} else {
         			rand2 += 1;
         		}
         	}
+
+        	// var rand1 = Math.floor(Math.random()*30) + 21;
+        	// var rand2 = Math.floor(Math.random()*30) + 21;
+        	// if(rand1 == rand2){
+        	// 	if (rand2 == 50){
+        	// 		rand2 -= 1;
+        	// 	} else {
+        	// 		rand2 += 1;
+        	// 	}
+        	// }
 
         	var punt1 = node.game.puntajeAcumulado[rand1];
         	var punt2 = node.game.puntajeAcumulado[rand2];
