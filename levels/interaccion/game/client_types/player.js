@@ -85,14 +85,14 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
               var ubicacion = 'carpetaPerros/' + perros[i-1];
               node.game.perrosPantalla.push(ubicacion);
               W.getElementById(foto).src = ubicacion;
-              // if(raza == 'terrier'){
-              //   W.getElementById('opB'+i).style.display = "none";
-              //   W.getElementById('opD'+i).style.display = "none";
-              // }
-              // if(raza == 'hound'){
-              //   W.getElementById('opA'+i).style.display = "none";
-              //   W.getElementById('opC'+i).style.display = "none";
-              // }
+              if(raza == 'terrier'){
+                W.getElementById('opB'+i).style.display = "none";
+                W.getElementById('opD'+i).style.display = "none";
+              }
+              if(raza == 'hound'){
+                W.getElementById('opA'+i).style.display = "none";
+                W.getElementById('opC'+i).style.display = "none";
+              }
             }
 
             node.on('Solicitud', function(msg){
@@ -358,7 +358,8 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 
               // Agrega el mensaje a la lista
               var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
-              opt.value = msg.data[0]; // Objeto enviado
+              opt.value = msg.data; // Objeto enviado
+              console.log('Mensaje en lista ', opt.value);
               node.game.perrosMensajes.unshift(msg.data[1]);
               node.game.contadorMensajesRonda += 1;
               // idRecibido = node.game.perrosMensajes[node.game.contadorMensajesRonda-1];
@@ -378,8 +379,13 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
               indiceMensaje = indiceMensaje.replace('Mensaje ', ''); // Obtengo el número
               console.log('indiceMensaje', indiceMensaje);
               node.game.indiceMensaje = indiceMensaje;
-              var correo = this.options[indice].value; // Lo que dice el mensaje
-              idRecibido = node.game.perrosMensajes[node.game.contadorMensajesRonda-1];
+              var listaCorreo = this.options[indice].value.split(',');
+              console.log('listaCorreo', listaCorreo);
+              var correo = listaCorreo[0]; // Lo que dice el mensaje
+              console.log('correo', correo);
+              idRecibido = listaCorreo[1]; // El perro del mensaje
+              console.log('idRecibido', idRecibido);
+              // idRecibido = node.game.perrosMensajes[node.game.contadorMensajesRonda-1];
               node.say('Popup', otroJugador, [idRecibido, correo]);
               this.remove(this.selectedIndex); // Elimina item de la lista desplegable
               node.game.contadorMensajes -= 1;
@@ -387,7 +393,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
               W.getElementById('solicitudAbierta').style.display = 'block'; // Abre ventana de responder
               W.setInnerHTML('Solicitud', correo); // Muestra lo que dice el mensaje
               console.log('CONTADOR RONDA: ', node.game.contadorMensajesRonda);
-              W.getElementById(node.game.perrosMensajes[node.game.contadorMensajesRonda-1]).style.border = "5px solid Yellow";
+              W.getElementById(idRecibido).style.border = "5px solid Yellow";
               node.game.contadorMensajesRonda -= 1;
             };
 
@@ -572,27 +578,35 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                               '"B"',
                               '"C"',
                               '"D"',
+                              '"A y C"',
+                              '"B y D"',
                               'Ninguno',
                               'Todos',
                               'Prefiero no decirlo'
                           ],
-                          selectMultiple: true,
+                          // selectMultiple: true,
                           shuffleChoices: false,
                           title: false,
                           requiredChoice: true
                         }),
                       w.get('ChoiceTable', {
                           id: 'recognition',
-                          mainText: 'Al finalizar el juego podía reconocer',
+                          mainText: 'Al finalizar el juego podía reconocer las categorías',
                           choices: [
-                              'Perros A',
-                              'Perros B',
-                              'Perros C',
-                              'Perros D',
-                              'Ninguno',
+                              // 'A',
+                              // 'B',
+                              // 'C',
+                              // 'D',
+                              'A y C',
+                              'B y D',
+                              'A, C, y B',
+                              'A, C y D',
+                              'B, D y A',
+                              'B, D y C',
+                              'Todas',
                               'Prefiero no decirlo'
                           ],
-                          selectMultiple: true,
+                          // selectMultiple: true,
                           shuffleChoices: false,
                           title: false,
                           requiredChoice: true
