@@ -49,7 +49,7 @@ module.exports = {
     // # Game specific properties
 
     // Number of game rounds repetitions.
-    REPEAT: 5,
+    REPEAT: 1,
     TRAINING: 1,
 
     // In case an incoming offer does not pass validation, which indicates

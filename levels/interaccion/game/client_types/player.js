@@ -576,7 +576,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                               'Todos',
                               'Prefiero no decirlo'
                           ],
-                          // selectMultiple: true,
+                          selectMultiple: true,
                           shuffleChoices: false,
                           title: false,
                           requiredChoice: true
@@ -592,7 +592,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                               'Ninguno',
                               'Prefiero no decirlo'
                           ],
-                          // selectMultiple: true,
+                          selectMultiple: true,
                           shuffleChoices: false,
                           title: false,
                           requiredChoice: true
