@@ -78,6 +78,69 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             var claves = MESSAGE[2];
             var raza = MESSAGE[3];
 
+			var revision;
+
+			revision = function(){
+				var choice1 = selectPerro1.selectedIndex;
+	            var choice2 = selectPerro2.selectedIndex;
+	            var choice3 = selectPerro3.selectedIndex;
+	            var choice4 = selectPerro4.selectedIndex;
+	            var choice5 = selectPerro5.selectedIndex;
+
+	            var ans1 = selectPerro1.options[choice1].value;
+	            var ans2 = selectPerro2.options[choice2].value;
+	            var ans3 = selectPerro3.options[choice3].value;
+	            var ans4 = selectPerro4.options[choice4].value;
+	            var ans5 = selectPerro5.options[choice5].value;
+
+	            var clasif = [ans1, ans2, ans3, ans4, ans5];
+
+	            var key1 = claves[perros[0]];
+	            var key2 = claves[perros[1]];
+	            var key3 = claves[perros[2]];
+	            var key4 = claves[perros[3]];
+	            var key5 = claves[perros[4]];
+
+	            var keys = [key1, key3, key3, key4, key5];
+
+	            if (ans1 == key1){
+	              node.game.check.push(1);
+	            } else {
+	              node.game.check.push(0);
+	            }
+	            if (ans2 == key2){
+	              node.game.check.push(1);
+	            } else {
+	              node.game.check.push(0);
+	            }
+	            if (ans3 == key3){
+	              node.game.check.push(1);
+	            } else {
+	              node.game.check.push(0);
+	            }
+	            if (ans4 == key4){
+	              node.game.check.push(1);
+	            } else {
+	              node.game.check.push(0);
+	            }
+	            if (ans5 == key5){
+	              node.game.check.push(1);
+	            } else {
+	              node.game.check.push(0);
+	            }
+	            // console.log('puntos', node.game.check);
+	            var sum = node.game.check.reduce(function(a, b) { return a + b; }, 0);
+	            node.game.puntajeAcumulado[ronda] = sum;
+	            // console.log('puntos', sum);
+	            // console.log('LISTA: ', node.game.perrosMensajes);
+	            node.set({Puntaje:[clasif, keys, sum]});
+			};
+
+            var crono = node.game.timer;
+            var act = crono.hooks;
+            act.push(revision);
+            crono.update = 46000;
+
                   // carga las imágenes de los cinco perros
 
             for(var i = 1; i < 6; i++){
@@ -97,58 +160,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 
             node.on('Solicitud', function(msg){
               if(msg == 'terminar'){
-                var choice1 = selectPerro1.selectedIndex;
-                var choice2 = selectPerro2.selectedIndex;
-                var choice3 = selectPerro3.selectedIndex;
-                var choice4 = selectPerro4.selectedIndex;
-                var choice5 = selectPerro5.selectedIndex;
-
-                var ans1 = selectPerro1.options[choice1].value;
-                var ans2 = selectPerro2.options[choice2].value;
-                var ans3 = selectPerro3.options[choice3].value;
-                var ans4 = selectPerro4.options[choice4].value;
-                var ans5 = selectPerro5.options[choice5].value;
-
-                var clasif = [ans1, ans2, ans3, ans4, ans5];
-
-                var key1 = claves[perros[0]];
-                var key2 = claves[perros[1]];
-                var key3 = claves[perros[2]];
-                var key4 = claves[perros[3]];
-                var key5 = claves[perros[4]];
-
-                var keys = [key1, key3, key3, key4, key5];
-
-                if (ans1 == key1){
-                  node.game.check.push(1);
-                } else {
-                  node.game.check.push(0);
-                }
-                if (ans2 == key2){
-                  node.game.check.push(1);
-                } else {
-                  node.game.check.push(0);
-                }
-                if (ans3 == key3){
-                  node.game.check.push(1);
-                } else {
-                  node.game.check.push(0);
-                }
-                if (ans4 == key4){
-                  node.game.check.push(1);
-                } else {
-                  node.game.check.push(0);
-                }
-                if (ans5 == key5){
-                  node.game.check.push(1);
-                } else {
-                  node.game.check.push(0);
-                }
-                console.log('puntos', node.game.check);
-                var sum = node.game.check.reduce(function(a, b) { return a + b; }, 0);
-                node.game.puntajeAcumulado[ronda] = sum;
-                console.log('puntos', sum);
-                node.set({Puntaje:[clasif, keys, sum]});
+              	revision();
                 node.done();
               }
               if(msg == 'seguir'){
@@ -169,61 +181,6 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
     stager.extendStep('game', {
         donebutton: false,
         frame: 'game.htm',
-        done: function() {
-            var choice1 = selectPerro1.selectedIndex;
-            var choice2 = selectPerro2.selectedIndex;
-            var choice3 = selectPerro3.selectedIndex;
-            var choice4 = selectPerro4.selectedIndex;
-            var choice5 = selectPerro5.selectedIndex;
-
-            var ans1 = selectPerro1.options[choice1].value;
-            var ans2 = selectPerro2.options[choice2].value;
-            var ans3 = selectPerro3.options[choice3].value;
-            var ans4 = selectPerro4.options[choice4].value;
-            var ans5 = selectPerro5.options[choice5].value;
-
-            var clasif = [ans1, ans2, ans3, ans4, ans5];
-
-            var key1 = claves[perros[0]];
-            var key2 = claves[perros[1]];
-            var key3 = claves[perros[2]];
-            var key4 = claves[perros[3]];
-            var key5 = claves[perros[4]];
-
-            var keys = [key1, key3, key3, key4, key5];
-
-            if (ans1 == key1){
-              node.game.check.push(1);
-            } else {
-              node.game.check.push(0);
-            }
-            if (ans2 == key2){
-              node.game.check.push(1);
-            } else {
-              node.game.check.push(0);
-            }
-            if (ans3 == key3){
-              node.game.check.push(1);
-            } else {
-              node.game.check.push(0);
-            }
-            if (ans4 == key4){
-              node.game.check.push(1);
-            } else {
-              node.game.check.push(0);
-            }
-            if (ans5 == key5){
-              node.game.check.push(1);
-            } else {
-              node.game.check.push(0);
-            }
-            // console.log('puntos', node.game.check);
-            var sum = node.game.check.reduce(function(a, b) { return a + b; }, 0);
-            node.game.puntajeAcumulado[rondasTraining + ronda] = sum;
-            // console.log('puntos', sum);
-            // console.log('LISTA: ', node.game.perrosMensajes);
-            node.set({Puntaje:[clasif, keys, sum]});
-        },
         cb: function(){
 
           node.on.data('Settings', function(msg) {
@@ -255,6 +212,71 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             var perros = MESSAGE[1];
             var claves = MESSAGE[2];
 
+            var partner_done = true;
+
+            var revision;
+
+			revision = function(){
+				var choice1 = selectPerro1.selectedIndex;
+	            var choice2 = selectPerro2.selectedIndex;
+	            var choice3 = selectPerro3.selectedIndex;
+	            var choice4 = selectPerro4.selectedIndex;
+	            var choice5 = selectPerro5.selectedIndex;
+
+	            var ans1 = selectPerro1.options[choice1].value;
+	            var ans2 = selectPerro2.options[choice2].value;
+	            var ans3 = selectPerro3.options[choice3].value;
+	            var ans4 = selectPerro4.options[choice4].value;
+	            var ans5 = selectPerro5.options[choice5].value;
+
+	            var clasif = [ans1, ans2, ans3, ans4, ans5];
+
+	            var key1 = claves[perros[0]];
+	            var key2 = claves[perros[1]];
+	            var key3 = claves[perros[2]];
+	            var key4 = claves[perros[3]];
+	            var key5 = claves[perros[4]];
+
+	            var keys = [key1, key3, key3, key4, key5];
+
+	            if (ans1 == key1){
+	              node.game.check.push(1);
+	            } else {
+	              node.game.check.push(0);
+	            }
+	            if (ans2 == key2){
+	              node.game.check.push(1);
+	            } else {
+	              node.game.check.push(0);
+	            }
+	            if (ans3 == key3){
+	              node.game.check.push(1);
+	            } else {
+	              node.game.check.push(0);
+	            }
+	            if (ans4 == key4){
+	              node.game.check.push(1);
+	            } else {
+	              node.game.check.push(0);
+	            }
+	            if (ans5 == key5){
+	              node.game.check.push(1);
+	            } else {
+	              node.game.check.push(0);
+	            }
+	            // console.log('puntos', node.game.check);
+	            var sum = node.game.check.reduce(function(a, b) { return a + b; }, 0);
+	            node.game.puntajeAcumulado[rondasTraining + ronda] = sum;
+	            // console.log('puntos', sum);
+	            // console.log('LISTA: ', node.game.perrosMensajes);
+	            node.set({Puntaje:[clasif, keys, sum]});
+			};
+
+            var crono = node.game.timer;
+            var act = crono.hooks;
+            act.push(revision);
+            crono.update = 46000;
+
                   // carga las imágenes de los cinco perros
 
             for(var i = 1; i < 6; i++){
@@ -280,7 +302,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             var idRecibido = '';
 
             node.on('Arrastrar', function(msg){
-              if(enviar.style.display == "none"){
+              if(enviar.style.display == "none" && partner_done == true){
                 if (msg[1] == 'droptarget'){
                   enviar.style.display = "block";
                   idPerro = msg[0];
@@ -305,8 +327,10 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 enviar.style.display = "none";
                 W.getElementById(idPerro).style.border = "";
                 W.getElementById('botonSolicitud').style.opacity = "1";
-                var choiceIndex = 'select'.concat(idPerro).selectedIndex;
-                var suposicion = 'select'.concat(idPerro).options[choiceIndex].value;
+                var num = idPerro[5];
+                var aux = 'select'.concat(num);
+                var choiceIndex = W.getElementById(aux).selectedIndex;
+                var suposicion =  W.getElementById(aux).options[choiceIndex].value;
                 node.set({Comunicacion: [mensajeEnviado[0], idPerro, suposicion, node.game.contadorComunicacion]});
                 node.game.contadorComunicacion += 1;
               }
@@ -315,8 +339,10 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 enviar.style.display = "none";
                 W.getElementById(idPerro).style.border = "";
                 W.getElementById('botonSolicitud').style.opacity = "1";
-                var choiceIndex = 'select'.concat(idPerro).selectedIndex;
-                var suposicion = 'select'.concat(idPerro).options[choiceIndex].value;
+				var num = idPerro[5];
+                var aux = 'select'.concat(num);
+                var choiceIndex = W.getElementById(aux).selectedIndex;
+                var suposicion =  W.getElementById(aux).options[choiceIndex].value;
                 node.set({Comunicacion: [mensajeEnviado[1], idPerro, suposicion, node.game.contadorComunicacion]});
                 node.game.contadorComunicacion += 1;
               }
@@ -325,8 +351,10 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 enviar.style.display = "none";
                 W.getElementById(idPerro).style.border = "";
                 W.getElementById('botonSolicitud').style.opacity = "1";
-                var choiceIndex = 'select'.concat(idPerro).selectedIndex;
-                var suposicion = 'select'.concat(idPerro).options[choiceIndex].value;
+                var num = idPerro[5];
+                var aux = 'select'.concat(num);
+                var choiceIndex = W.getElementById(aux).selectedIndex;
+                var suposicion =  W.getElementById(aux).options[choiceIndex].value;
                 node.set({Comunicacion: [mensajeEnviado[2], idPerro, suposicion, node.game.contadorComunicacion]});
                 node.game.contadorComunicacion += 1;
               }
@@ -335,8 +363,10 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 enviar.style.display = "none";
                 W.getElementById(idPerro).style.border = "";
                 W.getElementById('botonSolicitud').style.opacity = "1";
-                var choiceIndex = 'select'.concat(idPerro).selectedIndex;
-                var suposicion = 'select'.concat(idPerro).options[choiceIndex].value;
+                var num = idPerro[5];
+                var aux = 'select'.concat(num);
+                var choiceIndex = W.getElementById(aux).selectedIndex;
+                var suposicion =  W.getElementById(aux).options[choiceIndex].value;
                 node.set({Comunicacion: [mensajeEnviado[3], idPerro, suposicion, node.game.contadorComunicacion]});
                 node.game.contadorComunicacion += 1;
               }
@@ -353,12 +383,28 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 node.set({Respuesta: [respuestas[1], idRecibido, node.game.indiceMensaje]});
               }
               if(msg == 'terminar'){
+				node.say('Final', otroJugador, 'acabó');
+              	revision();
                 node.done();
               }
               if(msg == 'continuar'){
                 W.getElementById('confirmarRonda').style.display = "none";
               }
-            });
+              if(msg == 'bloquear'){
+              	W.getElementById('companero').style.display = "none";
+              	W.getElementById('soflow-color').disabled = true;
+              	W.getElementById('soflow-color').style.opacity = "0.5";
+              	W.getElementById('botonSolicitud').style.opacity = "0.5";
+              	W.getElementById('dummy').style.display = "block";
+              	partner_done = false;
+              }
+            });		
+
+					// NOTIFICACIÓN DE CONFIRMACIÓN
+
+			node.on.data('Final', function(msg){
+				W.getElementById('companero').style.display = "block";
+			});
 
                     // NOTIFICACIÓN DE NUEVA SOLICITUD
 
@@ -384,27 +430,29 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                           // ABRIR SOLICITUDES
 
             selectMensajes.onchange = function() {
-              var indice = this.selectedIndex; // El indice del mensaje seleccionado
-              var indiceMensaje = this.options[indice].text; // El texto con el numero de mensaje
-              indiceMensaje = indiceMensaje.replace('Mensaje ', ''); // Obtengo el número
-              console.log('indiceMensaje', indiceMensaje);
-              node.game.indiceMensaje = indiceMensaje;
-              var listaCorreo = this.options[indice].value.split(',');
-              console.log('listaCorreo', listaCorreo);
-              var correo = listaCorreo[0]; // Lo que dice el mensaje
-              console.log('correo', correo);
-              idRecibido = listaCorreo[1]; // El perro del mensaje
-              console.log('idRecibido', idRecibido);
-              // idRecibido = node.game.perrosMensajes[node.game.contadorMensajesRonda-1];
-              node.say('Popup', otroJugador, [idRecibido, correo]);
-              this.remove(this.selectedIndex); // Elimina item de la lista desplegable
-              node.game.contadorMensajes -= 1;
-              selectMensajes.options[0].text = "Tiene " + node.game.contadorMensajes + " mensajes";
-              W.getElementById('solicitudAbierta').style.display = 'block'; // Abre ventana de responder
-              W.setInnerHTML('Solicitud', correo); // Muestra lo que dice el mensaje
-              // console.log('CONTADOR RONDA: ', node.game.contadorMensajesRonda);
-              W.getElementById(idRecibido).style.border = "5px solid Yellow";
-              // node.game.contadorMensajesRonda -= 1;
+              if(partner_done == true){
+				  var indice = this.selectedIndex; // El indice del mensaje seleccionado
+	              var indiceMensaje = this.options[indice].text; // El texto con el numero de mensaje
+	              indiceMensaje = indiceMensaje.replace('Mensaje ', ''); // Obtengo el número
+	              console.log('indiceMensaje', indiceMensaje);
+	              node.game.indiceMensaje = indiceMensaje;
+	              var listaCorreo = this.options[indice].value.split(',');
+	              console.log('listaCorreo', listaCorreo);
+	              var correo = listaCorreo[0]; // Lo que dice el mensaje
+	              console.log('correo', correo);
+	              idRecibido = listaCorreo[1]; // El perro del mensaje
+	              console.log('idRecibido', idRecibido);
+	              // idRecibido = node.game.perrosMensajes[node.game.contadorMensajesRonda-1];
+	              node.say('Popup', otroJugador, [idRecibido, correo]);
+	              this.remove(this.selectedIndex); // Elimina item de la lista desplegable
+	              node.game.contadorMensajes -= 1;
+	              selectMensajes.options[0].text = "Tiene " + node.game.contadorMensajes + " mensajes";
+	              W.getElementById('solicitudAbierta').style.display = 'block'; // Abre ventana de responder
+	              W.setInnerHTML('Solicitud', correo); // Muestra lo que dice el mensaje
+	              // console.log('CONTADOR RONDA: ', node.game.contadorMensajesRonda);
+	              W.getElementById(idRecibido).style.border = "5px solid Yellow";
+	              // node.game.contadorMensajesRonda -= 1;              	
+              }
             };
 
             // PONE LA RAZA DEL PERRO EN EL POPUP QUE CORRESPONDE

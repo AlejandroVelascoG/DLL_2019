@@ -132,6 +132,7 @@
           <option>Tiene <span id ="numSol"></span> mensajes sin leer</option>
       </select>
         </div>
+        <div id="dummy" style="display: none"></div>
     </div>
     
     <div class="column middle" style="padding-left: 150px; padding-top: 50px;">
@@ -274,7 +275,7 @@
         // When the draggable p element enters the droptarget, change the DIVS's border style
         document.addEventListener("dragenter", function(event) {
             if ( event.target.className == "droptarget" ) { 
-                if ( document.getElementById('enviarSolicitud').style.display == "none" ){
+                if ( document.getElementById('enviarSolicitud').style.display == "none" && document.getElementById('dummy').style.display == "none"){
                     event.target.style.border = "3px dotted red";
                 }                
             }
@@ -318,6 +319,9 @@
               node.emit('Solicitud', 'cerrar');    
           }
           if (event.target.className == "button1"){
+              if(event.target.id == "partnerdone"){
+                  node.emit('Solicitud', 'bloquear');
+              }
               if(event.target.id == "botonA"){
                   node.emit('Solicitud', 'A');
               }
@@ -340,8 +344,7 @@
                   node.emit('Solicitud', 'terminar');
               }if(event.target.id == "quedar"){
                   node.emit('Solicitud', 'continuar');    
-              }              
-              node.emit('Solicitud', 'cerrar');    
+              }               
           }    
         }); 
 

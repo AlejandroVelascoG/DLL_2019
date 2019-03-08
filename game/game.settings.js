@@ -42,6 +42,7 @@ module.exports = {
      */
     TIMER: {
         instructions: 60000,
+        game: 45000,
         training: 45000,
         puntaje: 20000
     },
