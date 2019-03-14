@@ -398,7 +398,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
               	W.getElementById('dummy').style.display = "block";
               	partner_done = false;
               }
-            });		
+            });
 
 					// NOTIFICACIÓN DE CONFIRMACIÓN
 
@@ -431,7 +431,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 
             selectMensajes.onchange = function() {
               if(partner_done == true){
-				  var indice = this.selectedIndex; // El indice del mensaje seleccionado
+				        var indice = this.selectedIndex; // El indice del mensaje seleccionado
 	              var indiceMensaje = this.options[indice].text; // El texto con el numero de mensaje
 	              indiceMensaje = indiceMensaje.replace('Mensaje ', ''); // Obtengo el número
 	              console.log('indiceMensaje', indiceMensaje);
@@ -451,7 +451,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 	              W.setInnerHTML('Solicitud', correo); // Muestra lo que dice el mensaje
 	              // console.log('CONTADOR RONDA: ', node.game.contadorMensajesRonda);
 	              W.getElementById(idRecibido).style.border = "5px solid Yellow";
-	              // node.game.contadorMensajesRonda -= 1;              	
+	              // node.game.contadorMensajesRonda -= 1;
               }
             };
 
@@ -600,15 +600,15 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                     }),
                     w.get('ChoiceTable', {
                         id: 'carreer',
-                        mainText: '¿Cuál es su área de estudio?',
+                        mainText: 'Seleccione su unidad académica (si es de doble programa, escoja solo la unidad académica de su programa base):',
                         choices: [
-                            'Matemáticas y Ciencias de la Computación',
-                            'Ciencias Naturales',
-                            'Ciencias Humanas',
-                            'Ciencia Política',
-                            'Gestión y Desarrollo Urbano',
-                            'Economía o Finanzas',
-                            'Jurisprudencia',
+                            'Facultad de Ciencias Naturales y Matemáticas',
+                            'Escuela de Medicina Ciencias de la Salud',
+                            'Escuela de Ciencias Humanas',
+                            'Escuela de Administración',
+                            'Facultad de Ciencia Política, Gobierno y Relaciones Internacionales',
+                            'Facultad de Economía',
+                            'Facultad de Jurisprudencia',
                             'Prefiero no decirlo'
                         ],
                         shuffleChoices: false,
@@ -617,7 +617,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                     }),
                     w.get('ChoiceTable', {
                         id: 'strategy',
-                        mainText: 'Durante el juego,',
+                        mainText: 'A continuación, eliga la opción que mejor describe su estrategia durante el juego' + '\n' + 'Durante el juego,',
                         choices: [
                             'me basé totalmente en la clasificación de mi compañero',
                             'apendí a clasificar algunos perros y confié en mi compañero para clasificar otros',
@@ -636,8 +636,6 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                               '"B"',
                               '"C"',
                               '"D"',
-                              'Ninguno',
-                              'Todos',
                               'Prefiero no decirlo'
                           ],
                           selectMultiple: true,
@@ -647,14 +645,12 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                         }),
                       w.get('ChoiceTable', {
                           id: 'recognition',
-                          mainText: 'Al finalizar el juego podía reconocer las categorías (puede escoger varias opciones):',
+                          mainText: 'Al finalizar el juego podía reconocer los perros de las categorías (puede escoger varias opciones):',
                           choices: [
                               'A',
                               'B',
                               'C',
                               'D',
-                              'Ninguno',
-                              'Todas',
                               'Prefiero no decirlo'
                           ],
                           selectMultiple: true,
@@ -705,92 +701,75 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
         donebutton: false,
         frame: 'end.htm',
         cb: function() {
+          node.on.data('Rondas', function(msg){
+            var rand1 = msg.data[0];
+            var rand2 = msg.data[1];
+            var punt1 = node.game.puntajeAcumulado[rand1];
+            var punt2 = node.game.puntajeAcumulado[rand2];
 
-          var rand1 = 1;
-        	var rand2 = 1;
-          var rand1 = Math.floor(Math.random()*4)+2;
-        	var rand2 = Math.floor(Math.random()*4)+2;
-        	if(rand1 == rand2){
-        		if (rand2 == 5){
-        			rand2 -= 1;
-        		} else {
-        			rand2 += 1;
-        		}
-        	}
+            W.setInnerHTML('randRonda1', rand1);
+            W.setInnerHTML('r1', rand1);
+            W.setInnerHTML('randRonda2', rand2);
+            W.setInnerHTML('r2', rand2);
 
-        	// var rand1 = Math.floor(Math.random()*30) + 21;
-        	// var rand2 = Math.floor(Math.random()*30) + 21;
-        	// if(rand1 == rand2){
-        	// 	if (rand2 == 50){
-        	// 		rand2 -= 1;
-        	// 	} else {
-        	// 		rand2 += 1;
-        	// 	}
-        	// }
+            W.setInnerHTML('correctPerros1', punt1);
+            W.setInnerHTML('correctPerros2', punt2);
 
-        	var punt1 = node.game.puntajeAcumulado[rand1];
-        	var punt2 = node.game.puntajeAcumulado[rand2];
+            var tot = 0;
 
-        	W.setInnerHTML('randRonda1', rand1);
-        	W.setInnerHTML('randRonda2', rand2);
+            if (punt1 == 0){
+                W.setInnerHTML('recompensa1', 0);
+              }
+              if (punt1 == 1){
+                W.setInnerHTML('recompensa1', 1);
+                tot += 1;
+              }
+              if (punt1 == 2){
+                W.setInnerHTML('recompensa1', 2);
+                tot += 2;
+              }
+              if (punt1 == 3){
+                W.setInnerHTML('recompensa1', 4);
+                tot += 4;
+              }
+              if (punt1 == 4){
+                W.setInnerHTML('recompensa1', 7);
+                tot += 7;
+              }
+              if (punt1 == 5){
+                W.setInnerHTML('recompensa1', 10);
+                tot += 10;
+              }
 
-        	W.setInnerHTML('correctPerros1', punt1);
-        	W.setInnerHTML('correctPerros2', punt2);
-
-        	var tot = 0;
-
-			if (punt1 == 0){
-    			W.setInnerHTML('recompensa1', 0);
-    		}
-    		if (punt1 == 1){
-    			W.setInnerHTML('recompensa1', 1);
-    			tot += 1;
-    		}
-    		if (punt1 == 2){
-    			W.setInnerHTML('recompensa1', 2);
-    			tot += 2;
-    		}
-    		if (punt1 == 3){
-    			W.setInnerHTML('recompensa1', 4);
-    			tot += 4;
-    		}
-    		if (punt1 == 4){
-    			W.setInnerHTML('recompensa1', 7);
-    			tot += 7;
-    		}
-    		if (punt1 == 5){
-    			W.setInnerHTML('recompensa1', 10);
-    			tot += 10;
-    		}
-
-    		if (punt2 == 1){
-    			W.setInnerHTML('recompensa2', 1);
-    			tot += 1;
-    		}
-    		if (punt2 == 2){
-    			W.setInnerHTML('recompensa2', 2);
-    			tot += 2;
-    		}
-    		if (punt2 == 3){
-    			W.setInnerHTML('recompensa2', 4);
-    			tot += 4;
-    		}
-    		if (punt2 == 4){
-    			W.setInnerHTML('recompensa2', 7);
-    			tot += 7;
-    		}
-    		if (punt2 == 5){
-    			W.setInnerHTML('recompensa2', 10);
-    			tot += 10;
-    		}
+              if (punt2 == 1){
+                W.setInnerHTML('recompensa2', 1);
+                tot += 1;
+              }
+              if (punt2 == 2){
+                W.setInnerHTML('recompensa2', 2);
+                tot += 2;
+              }
+              if (punt2 == 3){
+                W.setInnerHTML('recompensa2', 4);
+                tot += 4;
+              }
+              if (punt2 == 4){
+                W.setInnerHTML('recompensa2', 7);
+                tot += 7;
+              }
+              if (punt2 == 5){
+                W.setInnerHTML('recompensa2', 10);
+                tot += 10;
+              }
 
 
-        	W.setInnerHTML('recompensaTotal', tot + 10);
+                W.setInnerHTML('recompensaTotal', tot + 10);
 
-          node.say('Recompensa', 'SERVER', tot + 10);
+                node.say('Recompensa', 'SERVER', tot + 10);
 
-            node.game.visualTimer.setToZero();
-        }
+                  node.game.visualTimer.setToZero();
+            });
+          }
     });
 
     game = setup;

@@ -65,6 +65,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 
     stager.extendStep('end', {
         cb: function() {
+            rands();
             node.game.memory.save(channel.getGameDir() + 'data/data_' +
                                   node.nodename + '.json');
 
@@ -87,6 +88,35 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
         plot: stager.getState(),
 
     };
+
+    function rands(){
+
+      var players = node.game.pl.id.getAllKeys();
+      
+      var rand1 = 1;
+      var rand2 = 1;
+      var rand1 = Math.floor(Math.random()*4)+2;
+      var rand2 = Math.floor(Math.random()*4)+2;
+      if(rand1 == rand2){
+        if (rand2 == 5){
+          rand2 -= 1;
+        } else {
+          rand2 += 1;
+        }
+      }
+
+      // var rand1 = Math.floor(Math.random()*30) + 21;
+      // var rand2 = Math.floor(Math.random()*30) + 21;
+      // if(rand1 == rand2){
+      // 	if (rand2 == 50){
+      // 		rand2 -= 1;
+      // 	} else {
+      // 		rand2 += 1;
+      // 	}
+      // }
+      node.say('Rondas', players[0], [rand1, rand2]);
+      node.say('Rondas', players[1], [rand1, rand2]);
+    }
 
     function perros(){
 

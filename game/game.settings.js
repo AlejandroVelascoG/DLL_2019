@@ -41,17 +41,16 @@ module.exports = {
      * used to initialize the game timer for the step.
      */
     TIMER: {
-        instructions: 180000,
-        game: 45000,
-        training: 45000,
-        puntaje: 15000
+        training: 60000,
+        game: 80000,
+        puntaje: 20000
     },
 
     // # Game specific properties
 
     // Number of game rounds repetitions.
     REPEAT: 5,
-    TRAINING: 2,
+    TRAINING: 1,
 
     // In case an incoming offer does not pass validation, which indicates
     // cheating, re-set the dictator's offer to this value.

@@ -23,7 +23,21 @@
 
             if (correct) {
                 W.highlight(a, 'ERR');
-                document.getElementById(a.id + '_result').innerHTML = 'Incorrecto. Intente de nuevo.';
+                switch(a.id){
+                  case 'rounds':
+                    document.getElementById(a.id + '_result').innerHTML = 'Incorrecto. El juego consiste en clasificar correctamente los perros';
+                    break;
+                  case 'objetos':
+                    document.getElementById(a.id + '_result').innerHTML = 'Incorrecto. El juego tiene 20 rondas de entrenamiento';
+                    break;
+                  case 'puntos':
+                    document.getElementById(a.id + '_result').innerHTML = 'Incorrecto. Hay 4 categorías de clasificación';
+                    break;
+                  case 'umbral':
+                    document.getElementById(a.id + '_result').innerHTML = 'Incorrecto. Una ronda acaba cuando ambos jugadores han confirmado sus clasificaciones';
+                    break;
+                }
+                // document.getElementById(a.id + '_result').innerHTML = 'Incorrecto. Intente de nuevo.';
                 results[a.name].push(0);
             }
             else {

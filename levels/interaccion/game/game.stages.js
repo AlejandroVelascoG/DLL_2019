@@ -38,7 +38,8 @@
      // stager.skip('prep');
      // stager.skip('trials');
      // stager.skip('demograf');
-     // stager.skip('debrief');
+     stager.skip('debrief');
+     // stager.skip('end');
 
      return stager.getState();
  };
