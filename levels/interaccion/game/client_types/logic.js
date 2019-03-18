@@ -92,11 +92,11 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
     function rands(){
 
       var players = node.game.pl.id.getAllKeys();
-      
+
       var rand1 = 1;
-      var rand2 = 1;
-      var rand1 = Math.floor(Math.random()*4)+2;
-      var rand2 = Math.floor(Math.random()*4)+2;
+      var rand2 = 2;
+      // var rand1 = Math.floor(Math.random()*4)+2;
+      // var rand2 = Math.floor(Math.random()*4)+2;
       if(rand1 == rand2){
         if (rand2 == 5){
           rand2 -= 1;

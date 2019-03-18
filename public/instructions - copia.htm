@@ -1,0 +1,88 @@
+<!doctype html>
+<title>INSTRUCTIONS</title>
+<link rel="stylesheet" href="/lib/bootstrap/bootstrap.min.css" />
+<style>
+ 
+    #instructions{
+        max-width: 600px;
+        text-align: justify;
+        overflow: auto;
+        margin: 0 auto;        
+        font-size: 20px;
+    }
+    
+    button {
+      display: inline-block;
+      position: relative;
+      padding: 20px 38px;
+      top: 0;
+      font-size: 20px;
+      font-family: "Open Sans", Helvetica;
+      border-radius: 4px;
+      border-bottom: 1px solid rgba( 28, 227, 125, 0.5 );
+      background: rgba( 22, 230, 137, 1 );
+      color: #fff;
+      box-shadow: 0px 0px 0px rgba( 15, 165, 60, 0.1 );
+      -webkit-transform: translateZ(0);
+         -moz-transform: translateZ(0);
+          -ms-transform: translateZ(0);
+              transform: translateZ(0);
+      -webkit-transition: all 0.2s ease;
+         -moz-transition: all 0.2s ease;
+          -ms-transition: all 0.2s ease;
+              transition: all 0.2s ease;
+    }
+    button:hover {
+      top: -10px;
+      box-shadow: 0px 10px 10px rgba( 15, 165, 60, 0.2 );
+      -webkit-transform: rotateX(20deg);
+         -moz-transform: rotateX(20deg);
+          -ms-transform: rotateX(20deg);
+              transform: rotateX(20deg);
+    }
+    button:active {
+      top: 0px;
+      box-shadow: 0px 0px 0px rgba( 15, 165, 60, 0.0 );
+      background: rgba( 20, 224, 133, 1 );
+    }    
+</style>
+<body>
+  <div id="container">
+    
+      <div id="instructions">
+        
+            <h1>Instrucciones</h1>
+        
+            <h2>Por favor lea atentamente</h2>
+        
+            Los participantes de este juego son usted y un compañero remoto. 
+            En cada ronda usted verá cinco perros, cada uno perteneciente a una de estas cuatro categorías: A, B, C, D. Su tarea será clasificar los perros correctamente usando el menú desplegable debajo de cada imagen. En cualquier momento usted podrá terminar la ronda presionando el botón "Confirmar!". Una vez tanto usted como su compañero hayan terminado la ronda, ambos verán una pantalla de retroalimentación. 
+            <br>
+            <br>        
+            Durante las primeras 20 rondas usted clasificará perros tomados de solo dos categorías, mientras que su compañero clasificará perros de las otras dos categorías. A partir de la ronda 21, los perros serán tomados de las cinco categorías y usted y su compañero verán los mismos perros. También verán un menú de mensajes a la izquierda de la pantalla y un signo de interrogación a la derecha. Si <i>arrastra</i> alguna imagen hasta ese signo, el borde de la imagen arrastrada quedará resaltado y se abrirá un cuadro de diálogo para interactuar con su compañero. 
+            <br>
+            <br>
+            Cuando usted reciba un mensaje, verá una notificación sobre su menú de mensajes. Si despliega este menú y abre un mensaje, el borde de alguna de las imágenes quedará resaltado y se abrirá un cuadro de diálogo con el mensaje que su compañero le envió.
+            <br>
+            <br>
+        
+            El juego consta de 45 rondas. Por su participación hasta el final del experimento usted recibirá 10 UMEs, y podrá ganar hasta 20 UMEs más. La suma total que reciba depende exclusivamente de <i>sus</i> decisiones. Al final del juego, el computador seleccionará <i>aleatoriamente</i> dos de las últimas 25 rondas, y revisará cuántos perros clasificó correctamente. La suma adicional se determinará de la siguiente manera:
+            <br>
+            <br>
+            1 perro clasificado correctamente: 1 UMEs
+            <br>
+            2 perros clasificados correctamente: 2 UMEs
+            <br>
+            3 perros clasificados correctamente: 4 UMEs
+            <br>
+            4 perros clasificados correctamente: 7 UMEs
+            <br>
+            5 perros clasificados correctamente: 10 UMEs
+            <br>
+            <br>
+            <div id = "confirmar" align="right">
+                <button class="button1" id='continuar'>Continuar</button>
+            </div>
+    </div>   
+  </div>
+</body>

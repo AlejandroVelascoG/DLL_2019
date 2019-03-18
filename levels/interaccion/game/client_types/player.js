@@ -129,7 +129,11 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 	              node.game.check.push(0);
 	            }
 	            // console.log('puntos', node.game.check);
-	            var sum = node.game.check.reduce(function(a, b) { return a + b; }, 0);
+              var sum = 0;
+              for (var i=0; i < node.game.check.length; i++) {
+                sum += node.game.check[i];
+              }
+	            // var sum = node.game.check.reduce(function(a, b) { return a + b; }, 0);
 	            node.game.puntajeAcumulado[ronda] = sum;
 	            // console.log('puntos', sum);
 	            // console.log('LISTA: ', node.game.perrosMensajes);
@@ -265,10 +269,14 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 	              node.game.check.push(0);
 	            }
 	            // console.log('puntos', node.game.check);
-	            var sum = node.game.check.reduce(function(a, b) { return a + b; }, 0);
+              var sum = 0;
+              for (var i=0; i < node.game.check.length; i++) {
+                sum += node.game.check[i];
+              }
+	            // var sum = node.game.check.reduce(function(a, b) { return a + b; }, 0); // PILAS QUE PUEDE ESTAR ERRADO
 	            node.game.puntajeAcumulado[rondasTraining + ronda] = sum;
-	            // console.log('puntos', sum);
-	            // console.log('LISTA: ', node.game.perrosMensajes);
+	            console.log('puntos', sum);
+	            console.log('LISTA: ', node.game.perrosMensajes);
 	            node.set({Puntaje:[clasif, keys, sum]});
 			};
 
@@ -563,8 +571,8 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
         init: function() {
             var w;
             w = node.widgets;
-            this.demo = w.get('ChoiceManager', {
-                id: 'demo',
+            this.demo1 = w.get('ChoiceManager', {
+                id: 'demo1',
                 title: false,
                 shuffleForms: false,
                 forms: [
@@ -614,51 +622,58 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                         shuffleChoices: false,
                         title: false,
                         requiredChoice: true
-                    }),
-                    w.get('ChoiceTable', {
-                        id: 'strategy',
-                        mainText: 'A continuación, eliga la opción que mejor describe su estrategia durante el juego' + '\n' + 'Durante el juego,',
-                        choices: [
-                            'me basé totalmente en la clasificación de mi compañero',
-                            'apendí a clasificar algunos perros y confié en mi compañero para clasificar otros',
-                            'aprendía clasificar todos los perros',
-                            'Prefiero no decirlo'
-                        ],
-                        shuffleChoices: false,
-                        title: false,
-                        requiredChoice: true
-                      }),
-                      w.get('ChoiceTable', {
-                          id: 'messages',
-                          mainText: 'Hacia el final del juego, usé fluídamente los mensajes (puede escoger varias opciones):',
-                          choices: [
-                              '"A"',
-                              '"B"',
-                              '"C"',
-                              '"D"',
-                              'Prefiero no decirlo'
-                          ],
-                          selectMultiple: true,
-                          shuffleChoices: false,
-                          title: false,
-                          requiredChoice: true
-                        }),
-                      w.get('ChoiceTable', {
-                          id: 'recognition',
-                          mainText: 'Al finalizar el juego podía reconocer los perros de las categorías (puede escoger varias opciones):',
-                          choices: [
-                              'A',
-                              'B',
-                              'C',
-                              'D',
-                              'Prefiero no decirlo'
-                          ],
-                          selectMultiple: true,
-                          shuffleChoices: false,
-                          title: false,
-                          requiredChoice: true
                     })
-                ]
+                  ]
+                });
+                this.demo2 = w.get('ChoiceManager', {
+                      id: 'demo2',
+                      title: false,
+                      shuffleForms: false,
+                      forms: [
+                          w.get('ChoiceTable', {
+                              id: 'strategy',
+                              mainText: 'Durante el juego,',
+                              choices: [
+                                  'me basé totalmente en la clasificación de mi compañero',
+                                  'apendí a clasificar algunos perros y confié en mi compañero para clasificar otros',
+                                  'aprendía clasificar todos los perros',
+                                  'Prefiero no decirlo'
+                              ],
+                              shuffleChoices: false,
+                              title: false,
+                              requiredChoice: true
+                            }),
+                            w.get('ChoiceTable', {
+                                id: 'messages',
+                                mainText: 'Hacia el final del juego, usé fluídamente los mensajes (puede escoger varias opciones):',
+                                choices: [
+                                    '"A"',
+                                    '"B"',
+                                    '"C"',
+                                    '"D"',
+                                    'Prefiero no decirlo'
+                                ],
+                                selectMultiple: true,
+                                shuffleChoices: false,
+                                title: false,
+                                requiredChoice: false
+                              }),
+                            w.get('ChoiceTable', {
+                                id: 'recognition',
+                                mainText: 'Al finalizar el juego podía reconocer los perros de las categorías (puede escoger varias opciones):',
+                                choices: [
+                                    'A',
+                                    'B',
+                                    'C',
+                                    'D',
+                                    'Prefiero no decirlo'
+                                ],
+                                selectMultiple: true,
+                                shuffleChoices: false,
+                                title: false,
+                                requiredChoice: false
+                          })
+                      ]
             });
         },
         donebutton: false,
@@ -670,16 +685,20 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             }
         },
         done: function() {
-            var values, isTimeup;
-            values = this.demo.getValues({ highlight: true });
-            console.log(values);
+            var values1, values2, isTimeup;
+            values1 = this.demo1.getValues({ highlight: true });
+            values2 = this.demo2.getValues({ highlight: true });
+            console.log(values1);
+            console.log(values2);
             // In case you have a timer running, block done procedure
             // if something is missing in the form and it is not a timeup yet.
             isTimeup = node.game.timer.isTimeup();
-            if (values.missValues.length && !isTimeup) return false;
+            if (values1.missValues.length && !isTimeup) return false;
+            // if (values2.missValues.length && !isTimeup) return false;
             // Adds it to the done message sent to server.
             return {
-                valores: values
+              valores_demogra: values1,
+              valores_strat: values2,
             };
         }
     });
@@ -707,10 +726,10 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             var punt1 = node.game.puntajeAcumulado[rand1];
             var punt2 = node.game.puntajeAcumulado[rand2];
 
-            W.setInnerHTML('randRonda1', rand1);
-            W.setInnerHTML('r1', rand1);
-            W.setInnerHTML('randRonda2', rand2);
-            W.setInnerHTML('r2', rand2);
+            W.setInnerHTML('randRonda1', rand1 - 20);
+            W.setInnerHTML('r1', rand1 - 20);
+            W.setInnerHTML('randRonda2', rand2 - 20);
+            W.setInnerHTML('r2', rand2 - 20);
 
             W.setInnerHTML('correctPerros1', punt1);
             W.setInnerHTML('correctPerros2', punt2);
@@ -740,7 +759,9 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 W.setInnerHTML('recompensa1', 10);
                 tot += 10;
               }
-
+              if (punt2 == 0){
+                  W.setInnerHTML('recompensa2', 0);
+                }
               if (punt2 == 1){
                 W.setInnerHTML('recompensa2', 1);
                 tot += 1;

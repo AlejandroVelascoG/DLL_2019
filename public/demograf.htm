@@ -97,10 +97,14 @@ button:active {
 
   <div id="container_quiz">
     <h1>Información adicional</h1>
-    <div id="quiz">
-
-
-    </div>
+    <div id="quiz1"></div>
+      <br>
+      <br>
+      <h1>
+      A continuación, eliga la opción que mejor describe su estrategia durante el juego
+      </h1>
+      <br>
+    <div id="quiz2"></div>
   </div>
   <button class="button1" id='continuar'>Continuar</button>
 </body>
@@ -115,6 +119,7 @@ button:active {
         console.log('LOADING PAGE SCRIPT');
     }
     var node = parent.node;
-    node.widgets.append(node.game.demo, document.getElementById('quiz'));
+    node.widgets.append(node.game.demo1, document.getElementById('quiz1'));
+    node.widgets.append(node.game.demo2, document.getElementById('quiz2'));
   } // End window.onload
 </script>
