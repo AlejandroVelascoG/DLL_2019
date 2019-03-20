@@ -12,8 +12,8 @@
  module.exports = function(stager, settings) {
 
       stager
-         .next('bienvenida')
-         .next('instructions')
+         // .next('bienvenida')
+         // .next('instructions')
          .next('quiz')
          .gameover();
 
