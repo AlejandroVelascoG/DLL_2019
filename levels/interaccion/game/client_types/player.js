@@ -101,6 +101,10 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 	            var key4 = claves[perros[3]];
 	            var key5 = claves[perros[4]];
 
+              for (var i = 0; i < 5; i++) {
+                node.set({ParaK: [perros[i], clasif[i]]});
+              }
+
 	            var keys = [key1, key3, key3, key4, key5];
 
 	            if (ans1 == key1){
@@ -645,12 +649,12 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                             }),
                             w.get('ChoiceTable', {
                                 id: 'messages',
-                                mainText: 'Hacia el final del juego, usé fluídamente los mensajes (puede escoger varias opciones):',
+                                mainText: 'Hacia el final del juego, pregunté sobre la(s) categoría(s) (puede escoger varias opciones):',
                                 choices: [
-                                    '"A"',
-                                    '"B"',
-                                    '"C"',
-                                    '"D"',
+                                    'A',
+                                    'B',
+                                    'C',
+                                    'D',
                                     'Prefiero no decirlo'
                                 ],
                                 selectMultiple: true,

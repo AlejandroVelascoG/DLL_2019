@@ -12,14 +12,14 @@
  module.exports = function(stager, settings) {
 
       stager
-         // .next('bienvenida')
-         // .next('instructions')
+         .next('bienvenida')
+         .next('instructions')
          .next('quiz')
          .gameover();
 
      // Modify the stager to skip one stage.
-     // stager.skip('bienvenida');
-     // stager.skip('instructions');
+     stager.skip('bienvenida');
+     stager.skip('instructions');
      //stager.skip('quiz');
 
      return stager.getState();
