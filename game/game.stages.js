@@ -13,9 +13,17 @@
 
       stager
          .next('bienvenida')
-         .next('instructions')
+         // .next('instructions')
+         .next('tutorial')
          .next('quiz')
          .gameover();
+
+     stager.extendStage('tutorial', {
+       steps: [
+         'tutorialTraining',
+         'tutorialGame'
+       ]
+     });
 
      // Modify the stager to skip one stage.
      stager.skip('bienvenida');

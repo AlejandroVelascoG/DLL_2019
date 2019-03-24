@@ -147,7 +147,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             var crono = node.game.timer;
             var act = crono.hooks;
             act.push(revision);
-            crono.update = 46000;
+            crono.update = 60000;
 
                   // carga las imágenes de los cinco perros
 
@@ -287,7 +287,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             var crono = node.game.timer;
             var act = crono.hooks;
             act.push(revision);
-            crono.update = 46000;
+            crono.update = 80000;
 
                   // carga las imágenes de los cinco perros
 
