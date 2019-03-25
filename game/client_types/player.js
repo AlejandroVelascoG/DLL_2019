@@ -47,6 +47,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
         this.check = [];
         this.perrosPantalla = [];
         this.conteoInstrucciones = 0;
+        this.idymensaje = [];
 
         // Additional debug information while developing the game.
         // this.debugInfo = node.widgets.append('DebugInfo', header)
@@ -233,6 +234,8 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             node.game.conteoInstrucciones = 0;
             node.game.check = [];
             node.game.perrosPantalla = [];
+            node.game.idymensaje = [];
+
             // node.game.perrosMensajes = [];
             // node.game.contadorMensajesRonda = 0;
             var selectMensajes = W.getElementById('soflow-color'); // La lista de mensajes recibidos
@@ -335,27 +338,20 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             var idRecibido = '';
 
             node.on('Arrastrar', function(msg){
-              if(node.game.conteoInstrucciones < 2){
-                if(enviar.style.display == "none" && partner_done == true){
-                  if (msg[1] == 'droptarget'){
-                    enviar.style.display = "block";
-                    idPerro = msg[0];
-                    if(idPerro == 'Perro1' && node.game.conteoInstrucciones != 0){
-                      W.setInnerHTML('Error. Arrastre el perro resaltado en rojo!');
-                    }
-                    if(idPerro == 'Perro1' && node.game.conteoInstrucciones == 0){
-                      node.game.conteoInstrucciones += 1;
-                      W.setInnerHTML('Bien! Ahora puede preguntar a su compañero por la categoría del perro resaltado en amarillo. Seleccione algún mensaje\n. (Note que mientras el cuadro de diálogo esté abierto, no podrá arrastrar más perros hacia el signo de interrogación)');
-                    }
-                    if(idPerro == 'Perro2' && node.game.conteoInstrucciones == 1){
-                      node.game.conteoInstrucciones += 1;
-                      W.setInnerHTML('Bien! Inténtelo nuevamente con el perro que ahora está resaltado en rojo');
-                    }
-                    }
-                    W.getElementById(idPerro).style.border = "5px solid Yellow";
-                    W.getElementById('botonSolicitud').style.opacity = "0.5";
-                  }
-              }
+	            if(enviar.style.display == "none" && partner_done == true){
+	              if (msg[1] == 'droptarget'){
+	                enviar.style.display = "block";
+	                idPerro = msg[0];
+	                if(node.game.conteoInstrucciones == 0){
+	                	node.game.idymensaje.push(idPerro);
+	                	W.setInnerHTML('inst', 'Bien! Ahora pulse alguno de los botones para preguntar por alguna categoría. (Preste atención a la categoría que escoja!) ');
+	                }              
+	                node.game.conteoInstrucciones += 1;
+	                }
+
+	                W.getElementById(idPerro).style.border = "5px solid Yellow";
+	                W.getElementById('botonSolicitud').style.opacity = "0.5";
+	              }              
             });
 
             var recibida = W.getElementById('solicitudAbierta');
@@ -376,6 +372,38 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 var aux = 'select'.concat(num);
                 var choiceIndex = W.getElementById(aux).selectedIndex;
                 var suposicion =  W.getElementById(aux).options[choiceIndex].value;
+                if(node.game.conteoInstrucciones == 1){
+                	node.game.idymensaje.push('A');
+                	W.setInnerHTML('inst', 'Bien! Inténtelo de nuevo con otro perro');
+                }
+                if(node.game.conteoInstrucciones == 2){
+                	W.setInnerHTML('inst', 'Bien! Acaba de ver la respuesta al primer mensaje que envió. Note que no necesariamente van a responder todos sus mensajes. En este caso, su segundo mensaje no fue respondido');
+		            if(node.game.idymensaje[0] == 'Perro1'){
+		                  W.setInnerHTML('confirm1', '<br> SI es ' + node.game.idymensaje[1]);
+		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  node.emit('Muestra_Pop1');
+		              }
+		              if(node.game.idymensaje[0] == 'Perro2'){
+		                  W.setInnerHTML('confirm2', '<br> SI es ' + node.game.idymensaje[1]);
+ 		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  node.emit('Muestra_Pop2');
+		              }
+		              if(node.game.idymensaje[0] == 'Perro3'){
+		                  W.setInnerHTML('confirm3', '<br> SI es ' + node.game.idymensaje[1]);
+		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  node.emit('Muestra_Pop3');
+		              }
+		              if(node.game.idymensaje[0] == 'Perro4'){
+		                  W.setInnerHTML('confirm4', '<br> SI es ' + node.game.idymensaje[1]);
+		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  node.emit('Muestra_Pop4');
+		              }		              
+		              if(node.game.idymensaje[0] == 'Perro5'){
+		                  W.setInnerHTML('confirm5', '<br> SI es ' + node.game.idymensaje[1]);
+		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  node.emit('Muestra_Pop5');
+		                }
+		              }
               }
               if (msg == 'B'){
                 enviar.style.display = "none";
@@ -385,6 +413,39 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 var aux = 'select'.concat(num);
                 var choiceIndex = W.getElementById(aux).selectedIndex;
                 var suposicion =  W.getElementById(aux).options[choiceIndex].value;
+                if(node.game.conteoInstrucciones == 1){
+                	node.game.idymensaje.push('B');
+                	W.setInnerHTML('inst', 'Bien! Inténtelo de nuevo con otro perro');
+                }
+                if(node.game.conteoInstrucciones == 2){
+                	node.game.idymensaje.push('B');
+                	W.setInnerHTML('inst', 'Bien! Ahora verá la respuesta al primer mensaje que envió');
+		            if(node.game.idymensaje[0] == 'Perro1'){
+		                  W.setInnerHTML('confirm1', '<br> SI es ' + node.game.idymensaje[1]);
+		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  node.emit('Muestra_Pop1');
+		              }
+		              if(node.game.idymensaje[0] == 'Perro2'){
+		                  W.setInnerHTML('confirm2', '<br> SI es ' + node.game.idymensaje[1]);
+		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  node.emit('Muestra_Pop2');
+		              }
+		              if(node.game.idymensaje[0] == 'Perro3'){
+		                  W.setInnerHTML('confirm3', '<br> SI es ' + node.game.idymensaje[1]);
+		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  node.emit('Muestra_Pop3');
+		              }
+		              if(node.game.idymensaje[0] == 'Perro4'){
+		                  W.setInnerHTML('confirm4', '<br> SI es ' + node.game.idymensaje[1]);
+		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  node.emit('Muestra_Pop4');
+		              }		              
+		              if(node.game.idymensaje[0] == 'Perro5'){
+		                  W.setInnerHTML('confirm5', '<br> SI es ' + node.game.idymensaje[1]);
+		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  node.emit('Muestra_Pop5');
+		                }
+		              }
               }
               if (msg == 'C'){
                 enviar.style.display = "none";
@@ -394,6 +455,39 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 var aux = 'select'.concat(num);
                 var choiceIndex = W.getElementById(aux).selectedIndex;
                 var suposicion =  W.getElementById(aux).options[choiceIndex].value;
+                if(node.game.conteoInstrucciones == 1){
+                	node.game.idymensaje.push('C');
+                	W.setInnerHTML('inst', 'Bien! Inténtelo de nuevo con otro perro');
+                }
+                if(node.game.conteoInstrucciones == 2){
+                	node.game.idymensaje.push('C');
+                	W.setInnerHTML('inst', 'Bien! Ahora verá la respuesta al primer mensaje que envió');
+		            if(node.game.idymensaje[0] == 'Perro1'){
+		                  W.setInnerHTML('confirm1', '<br> SI es ' + node.game.idymensaje[1]);
+  		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  node.emit('Muestra_Pop1');
+		              }
+		              if(node.game.idymensaje[0] == 'Perro2'){
+		                  W.setInnerHTML('confirm2', '<br> SI es ' + node.game.idymensaje[1]);
+		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  node.emit('Muestra_Pop2');
+		              }
+		              if(node.game.idymensaje[0] == 'Perro3'){
+		                  W.setInnerHTML('confirm3', '<br> SI es ' + node.game.idymensaje[1]);
+		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  node.emit('Muestra_Pop3');
+		              }
+		              if(node.game.idymensaje[0] == 'Perro4'){
+		                  W.setInnerHTML('confirm4', '<br> SI es ' + node.game.idymensaje[1]);
+		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  node.emit('Muestra_Pop4');
+		              }		              
+		              if(node.game.idymensaje[0] == 'Perro5'){
+		                  W.setInnerHTML('confirm5', '<br> SI es ' + node.game.idymensaje[1]);
+		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  node.emit('Muestra_Pop5');
+		                }
+		              }
               }
               if (msg == 'D'){
                 enviar.style.display = "none";
@@ -403,6 +497,39 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 var aux = 'select'.concat(num);
                 var choiceIndex = W.getElementById(aux).selectedIndex;
                 var suposicion =  W.getElementById(aux).options[choiceIndex].value;
+                if(node.game.conteoInstrucciones == 1){
+                	node.game.idymensaje.push('D');
+                	W.setInnerHTML('inst', 'Bien! Inténtelo de nuevo con otro perro');
+                }
+                if(node.game.conteoInstrucciones == 2){
+                	node.game.idymensaje.push('D');
+                	W.setInnerHTML('inst', 'Bien! Ahora verá la respuesta al primer mensaje que envió');
+		            if(node.game.idymensaje[0] == 'Perro1'){
+		                  W.setInnerHTML('confirm1', '<br> SI es ' + node.game.idymensaje[1]);
+		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  node.emit('Muestra_Pop1');
+		              }
+		              if(node.game.idymensaje[0] == 'Perro2'){
+		                  W.setInnerHTML('confirm2', '<br> SI es ' + node.game.idymensaje[1]);
+		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  node.emit('Muestra_Pop2');
+		              }
+		              if(node.game.idymensaje[0] == 'Perro3'){
+		                  W.setInnerHTML('confirm3', '<br> SI es ' + node.game.idymensaje[1]);
+		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  node.emit('Muestra_Pop3');
+		              }
+		              if(node.game.idymensaje[0] == 'Perro4'){
+		                  W.setInnerHTML('confirm4', '<br> SI es ' + node.game.idymensaje[1]);
+		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  node.emit('Muestra_Pop4');
+		              }		              
+		              if(node.game.idymensaje[0] == 'Perro5'){
+		                  W.setInnerHTML('confirm5', '<br> SI es ' + node.game.idymensaje[1]);
+		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  node.emit('Muestra_Pop5');
+		                }
+		              }
               }
               if(msg == 'Correcto'){
                 W.getElementById(idRecibido).style.border = "";
@@ -417,8 +544,6 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
               }
               if(msg == 'cerrarTut2'){
                 W.getElementById('Tutorial2').style.display = "none";
-                W.getElementById('Perro1').style.border = "5px solid Red";
-                // W.getElementById('inst1').style.display = "block";
               }
               if(msg == 'continuar'){
                 W.getElementById('confirmarRonda').style.display = "none";
