@@ -106,7 +106,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
       var revision;
 
       revision = function(){
-        var choice1 = selectPerro1.selectedIndex;
+              var choice1 = selectPerro1.selectedIndex;
               var choice2 = selectPerro2.selectedIndex;
               var choice3 = selectPerro3.selectedIndex;
               var choice4 = selectPerro4.selectedIndex;
@@ -165,13 +165,6 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
               // console.log('LISTA: ', node.game.perrosMensajes);
       };
 
-            var crono = node.game.timer;
-            var act = crono.hooks;
-            act.push(revision);
-            crono.update = 60000;
-            // act.push(blockmessages);
-            // cronoupdate += 15000;
-
                   // carga las imágenes de los cinco perros
 
             for(var i = 1; i < 6; i++){
@@ -205,7 +198,25 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             var continuar;
             continuar = W.getElementById('continuar');
             continuar.onclick = function() {
-              W.getElementById('confirmarRonda').style.display = "block";
+
+              var choice1 = selectPerro1.selectedIndex;
+              var choice2 = selectPerro2.selectedIndex;
+              var choice3 = selectPerro3.selectedIndex;
+              var choice4 = selectPerro4.selectedIndex;
+              var choice5 = selectPerro5.selectedIndex;
+
+              var inds = [choice1, choice2, choice3, choice4, choice5];
+              var j = 0;
+              for(var i = 0; i<inds.length; i++){
+                if(inds[i] != 0){
+                  j++;
+                }
+              }
+              if(j == 5){
+                W.setInnerHTML('inst', 'Bien! Ahora puede presionar el botón "Confirmar" para pasar a la segunda parte del tutorial. Se abrirá un cuadro de diálogo en el que podrá confirmar si ya terminó su clasificación o si desea permanecer en la ronda');
+                W.getElementById('confirmarRonda').style.display = "block";
+              }
+
             };
 
           });
@@ -343,18 +354,20 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 	                enviar.style.display = "block";
 	                idPerro = msg[0];
 	                if(node.game.conteoInstrucciones == 0){
-	                	node.game.idymensaje.push(idPerro);
-	                	W.setInnerHTML('inst', 'Bien! Ahora pulse alguno de los botones para preguntar por alguna categoría. (Preste atención a la categoría que escoja!) ');
-	                }              
+                      node.game.idymensaje.push(idPerro);
+                      W.setInnerHTML('inst', 'Bien! Ahora pulse alguno de los botones para preguntar por alguna categoría. (Preste atención a la categoría que escoja!)');
+
+	                }
 	                node.game.conteoInstrucciones += 1;
 	                }
 
 	                W.getElementById(idPerro).style.border = "5px solid Yellow";
 	                W.getElementById('botonSolicitud').style.opacity = "0.5";
-	              }              
+	              }
             });
 
             var recibida = W.getElementById('solicitudAbierta');
+
 
                             // HACER Y RESPONDER SOLICITUD
 
@@ -377,31 +390,61 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 	W.setInnerHTML('inst', 'Bien! Inténtelo de nuevo con otro perro');
                 }
                 if(node.game.conteoInstrucciones == 2){
-                	W.setInnerHTML('inst', 'Bien! Acaba de ver la respuesta al primer mensaje que envió. Note que no necesariamente van a responder todos sus mensajes. En este caso, su segundo mensaje no fue respondido');
-		            if(node.game.idymensaje[0] == 'Perro1'){
+                  W.setInnerHTML('inst', 'Bien! En unos segundos verá la respuesta al <i>primer</i> mensaje que envió. Unos segundos más tarde, recibirá un mensaje de su compañero.<br> Despliegue el menú de mensajes y abra el mensaje que le envió su compañero');
+    	            if(node.game.idymensaje[0] == 'Perro1'){
 		                  W.setInnerHTML('confirm1', '<br> SI es ' + node.game.idymensaje[1]);
-		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
-		                  node.emit('Muestra_Pop1');
+		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
+                      node.emit('Muestra_Pop1');
+                      var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
+                      opt.value = 'A'; // Objeto enviado
+                      opt.text = "Mensaje 1"; // Número de mensaje
+                      selectMensajes.appendChild(opt); // Introduce nuevo item en la lista desplegable
+                      // selectMensajes.options[0].text = "Tiene 1 solicitudes sin leer";
 		              }
 		              if(node.game.idymensaje[0] == 'Perro2'){
 		                  W.setInnerHTML('confirm2', '<br> SI es ' + node.game.idymensaje[1]);
- 		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+ 		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop2');
+                      var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
+                      opt.value = 'A'; // Objeto enviado
+                      opt.text = "Mensaje 1"; // Número de mensaje
+                      selectMensajes.appendChild(opt); // Introduce nuevo item en la lista desplegable
+                      // selectMensajes.options[0].text = "Tiene 1 solicitudes sin leer";
 		              }
 		              if(node.game.idymensaje[0] == 'Perro3'){
 		                  W.setInnerHTML('confirm3', '<br> SI es ' + node.game.idymensaje[1]);
-		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop3');
+                      var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
+                      opt.value = 'A'; // Objeto enviado
+                      opt.text = "Mensaje 1"; // Número de mensaje
+                      selectMensajes.appendChild(opt); // Introduce nuevo item en la lista desplegable
+                      // selectMensajes.options[0].text = "Tiene 1 solicitudes sin leer";
 		              }
 		              if(node.game.idymensaje[0] == 'Perro4'){
 		                  W.setInnerHTML('confirm4', '<br> SI es ' + node.game.idymensaje[1]);
-		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop4');
-		              }		              
+                      var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
+                      opt.value = 'A'; // Objeto enviado
+                      opt.text = "Mensaje 1"; // Número de mensaje
+                      selectMensajes.appendChild(opt); // Introduce nuevo item en la lista desplegable
+                      // selectMensajes.options[0].text = "Tiene 1 solicitudes sin leer";
+		              }
 		              if(node.game.idymensaje[0] == 'Perro5'){
 		                  W.setInnerHTML('confirm5', '<br> SI es ' + node.game.idymensaje[1]);
-		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop5');
+                      var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
+                      opt.value = 'A'; // Objeto enviado
+                      opt.text = "Mensaje 1"; // Número de mensaje
+                      selectMensajes.appendChild(opt); // Introduce nuevo item en la lista desplegable
+                      // selectMensajes.options[0].text = "Tiene 1 solicitudes sin leer";
 		                }
 		              }
               }
@@ -419,31 +462,60 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 }
                 if(node.game.conteoInstrucciones == 2){
                 	node.game.idymensaje.push('B');
-                	W.setInnerHTML('inst', 'Bien! Ahora verá la respuesta al primer mensaje que envió');
-		            if(node.game.idymensaje[0] == 'Perro1'){
+                  W.setInnerHTML('inst', 'Bien! En unos segundos verá la respuesta al <i>primer</i> mensaje que envió. Unos segundos más tarde, recibirá un mensaje de su compañero.<br> Despliegue el menú de mensajes y abra el mensaje que le envió su compañero');		            if(node.game.idymensaje[0] == 'Perro1'){
 		                  W.setInnerHTML('confirm1', '<br> SI es ' + node.game.idymensaje[1]);
-		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop1');
+                      var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
+                      opt.value = 'C'; // Objeto enviado
+                      opt.text = "Mensaje 1"; // Número de mensaje
+                      selectMensajes.appendChild(opt); // Introduce nuevo item en la lista desplegable
+                      // selectMensajes.options[0].text = "Tiene 1 solicitudes sin leer";
 		              }
 		              if(node.game.idymensaje[0] == 'Perro2'){
 		                  W.setInnerHTML('confirm2', '<br> SI es ' + node.game.idymensaje[1]);
-		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop2');
+                      var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
+                      opt.value = 'C'; // Objeto enviado
+                      opt.text = "Mensaje 1"; // Número de mensaje
+                      selectMensajes.appendChild(opt); // Introduce nuevo item en la lista desplegable
+                      // selectMensajes.options[0].text = "Tiene 1 solicitudes sin leer";
 		              }
 		              if(node.game.idymensaje[0] == 'Perro3'){
 		                  W.setInnerHTML('confirm3', '<br> SI es ' + node.game.idymensaje[1]);
-		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop3');
+                      var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
+                      opt.value = 'C'; // Objeto enviado
+                      opt.text = "Mensaje 1"; // Número de mensaje
+                      selectMensajes.appendChild(opt); // Introduce nuevo item en la lista desplegable
+                      // selectMensajes.options[0].text = "Tiene 1 solicitudes sin leer";
 		              }
 		              if(node.game.idymensaje[0] == 'Perro4'){
 		                  W.setInnerHTML('confirm4', '<br> SI es ' + node.game.idymensaje[1]);
-		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop4');
-		              }		              
+                      var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
+                      opt.value = 'C'; // Objeto enviado
+                      opt.text = "Mensaje 1"; // Número de mensaje
+                      selectMensajes.appendChild(opt); // Introduce nuevo item en la lista desplegable
+                      // selectMensajes.options[0].text = "Tiene 1 solicitudes sin leer";
+		              }
 		              if(node.game.idymensaje[0] == 'Perro5'){
 		                  W.setInnerHTML('confirm5', '<br> SI es ' + node.game.idymensaje[1]);
-		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop5');
+                      var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
+                      opt.value = 'C'; // Objeto enviado
+                      opt.text = "Mensaje 1"; // Número de mensaje
+                      selectMensajes.appendChild(opt); // Introduce nuevo item en la lista desplegable
+                      // selectMensajes.options[0].text = "Tiene 1 solicitudes sin leer";
 		                }
 		              }
               }
@@ -461,31 +533,60 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 }
                 if(node.game.conteoInstrucciones == 2){
                 	node.game.idymensaje.push('C');
-                	W.setInnerHTML('inst', 'Bien! Ahora verá la respuesta al primer mensaje que envió');
-		            if(node.game.idymensaje[0] == 'Perro1'){
+                  W.setInnerHTML('inst', 'Bien! En unos segundos verá la respuesta al <i>primer</i> mensaje que envió. Unos segundos más tarde, recibirá un mensaje de su compañero.<br> Despliegue el menú de mensajes y abra el mensaje que le envió su compañero');		            if(node.game.idymensaje[0] == 'Perro1'){
 		                  W.setInnerHTML('confirm1', '<br> SI es ' + node.game.idymensaje[1]);
-  		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+  		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+                        W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop1');
+                      var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
+                      opt.value = 'D'; // Objeto enviado
+                      opt.text = "Mensaje 1"; // Número de mensaje
+                      selectMensajes.appendChild(opt); // Introduce nuevo item en la lista desplegable
+                      // selectMensajes.options[0].text = "Tiene 1 solicitudes sin leer";
 		              }
 		              if(node.game.idymensaje[0] == 'Perro2'){
 		                  W.setInnerHTML('confirm2', '<br> SI es ' + node.game.idymensaje[1]);
-		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop2');
+                      var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
+                      opt.value = 'D'; // Objeto enviado
+                      opt.text = "Mensaje 1"; // Número de mensaje
+                      selectMensajes.appendChild(opt); // Introduce nuevo item en la lista desplegable
+                      // selectMensajes.options[0].text = "Tiene 1 solicitudes sin leer";
 		              }
 		              if(node.game.idymensaje[0] == 'Perro3'){
 		                  W.setInnerHTML('confirm3', '<br> SI es ' + node.game.idymensaje[1]);
-		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop3');
+                      var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
+                      opt.value = 'D'; // Objeto enviado
+                      opt.text = "Mensaje 1"; // Número de mensaje
+                      selectMensajes.appendChild(opt); // Introduce nuevo item en la lista desplegable
+                      // selectMensajes.options[0].text = "Tiene 1 solicitudes sin leer";
 		              }
 		              if(node.game.idymensaje[0] == 'Perro4'){
 		                  W.setInnerHTML('confirm4', '<br> SI es ' + node.game.idymensaje[1]);
-		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop4');
-		              }		              
+                      var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
+                      opt.value = 'D'; // Objeto enviado
+                      opt.text = "Mensaje 1"; // Número de mensaje
+                      selectMensajes.appendChild(opt); // Introduce nuevo item en la lista desplegable
+                      // selectMensajes.options[0].text = "Tiene 1 solicitudes sin leer";
+		              }
 		              if(node.game.idymensaje[0] == 'Perro5'){
 		                  W.setInnerHTML('confirm5', '<br> SI es ' + node.game.idymensaje[1]);
-		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop5');
+                      var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
+                      opt.value = 'D'; // Objeto enviado
+                      opt.text = "Mensaje 1"; // Número de mensaje
+                      selectMensajes.appendChild(opt); // Introduce nuevo item en la lista desplegable
+                      // selectMensajes.options[0].text = "Tiene 1 solicitudes sin leer";
 		                }
 		              }
               }
@@ -503,40 +604,76 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 }
                 if(node.game.conteoInstrucciones == 2){
                 	node.game.idymensaje.push('D');
-                	W.setInnerHTML('inst', 'Bien! Ahora verá la respuesta al primer mensaje que envió');
-		            if(node.game.idymensaje[0] == 'Perro1'){
+                  W.setInnerHTML('inst', 'Bien! En unos segundos verá la respuesta al <i>primer</i> mensaje que envió. Unos segundos más tarde, recibirá un mensaje de su compañero.<br> Despliegue el menú de mensajes y abra el mensaje que le envió su compañero');		            if(node.game.idymensaje[0] == 'Perro1'){
 		                  W.setInnerHTML('confirm1', '<br> SI es ' + node.game.idymensaje[1]);
-		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop1');
+                      var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
+                      opt.value = 'B'; // Objeto enviado
+                      opt.text = "Mensaje 1"; // Número de mensaje
+                      selectMensajes.appendChild(opt); // Introduce nuevo item en la lista desplegable
+                      // selectMensajes.options[0].text = "Tiene 1 solicitudes sin leer";
 		              }
 		              if(node.game.idymensaje[0] == 'Perro2'){
 		                  W.setInnerHTML('confirm2', '<br> SI es ' + node.game.idymensaje[1]);
-		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop2');
+                      var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
+                      opt.value = 'B'; // Objeto enviado
+                      opt.text = "Mensaje 1"; // Número de mensaje
+                      selectMensajes.appendChild(opt); // Introduce nuevo item en la lista desplegable
+                      // selectMensajes.options[0].text = "Tiene 1 solicitudes sin leer";
 		              }
 		              if(node.game.idymensaje[0] == 'Perro3'){
 		                  W.setInnerHTML('confirm3', '<br> SI es ' + node.game.idymensaje[1]);
-		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop3');
+                      var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
+                      opt.value = 'B'; // Objeto enviado
+                      opt.text = "Mensaje 1"; // Número de mensaje
+                      selectMensajes.appendChild(opt); // Introduce nuevo item en la lista desplegable
+                      // selectMensajes.options[0].text = "Tiene 1 solicitudes sin leer";
 		              }
 		              if(node.game.idymensaje[0] == 'Perro4'){
 		                  W.setInnerHTML('confirm4', '<br> SI es ' + node.game.idymensaje[1]);
-		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop4');
-		              }		              
+                      var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
+                      opt.value = 'B'; // Objeto enviado
+                      opt.text = "Mensaje 1"; // Número de mensaje
+                      selectMensajes.appendChild(opt); // Introduce nuevo item en la lista desplegable
+                      // selectMensajes.options[0].text = "Tiene 1 solicitudes sin leer";
+		              }
 		              if(node.game.idymensaje[0] == 'Perro5'){
 		                  W.setInnerHTML('confirm5', '<br> SI es ' + node.game.idymensaje[1]);
-		                  alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
+                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop5');
+                      var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
+                      opt.value = 'B'; // Objeto enviado
+                      opt.text = "Mensaje 1"; // Número de mensaje
+                      selectMensajes.appendChild(opt); // Introduce nuevo item en la lista desplegable
+                      // selectMensajes.options[0].text = "Tiene 1 solicitudes sin leer";
 		                }
 		              }
               }
               if(msg == 'Correcto'){
-                W.getElementById(idRecibido).style.border = "";
+                recibida.style.display = "none";
+                W.getElementById('Perro4').style.border = "";
+                W.setInnerHTML('inst', 'Bien! Acaba de contestar el mensaje de su compañero. Clasifique los perros y presione el botón "Confirmar!" para terminar este tutorial');
+                W.getElementById('confirmar').style.display = "block";
+                W.getElementById('continuar').style.display = "block";
               }
               if(msg == 'Incorrecto'){
                 recibida.style.display = "none";
-                W.getElementById(idRecibido).style.border = "";
+                W.getElementById('Perro4').style.border = "";
+                W.setInnerHTML('inst', 'Bien! Acaba de contestar el mensaje de su compañero. Clasifique los perros y presione el botón "Confirmar!" para terminar este tutorial');
+                W.getElementById('confirmar').style.display = "block";
+                W.getElementById('continuar').style.display = "block";
               }
               if(msg == 'terminar'){
                 revision();
@@ -560,6 +697,17 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 
           // NOTIFICACIÓN DE CONFIRMACIÓN
 
+          var  swap;
+          swap = function(){
+            W.setInnerHTML('numSol', 'Tiene 1 mensaje');
+          }
+
+          node.on('cambio', function(msg){
+            console.log('CAMBIO');
+            setTimeout(swap, 6900);
+          }
+        );
+
       node.on.data('Final', function(msg){
         W.getElementById('companero').style.display = "block";
       });
@@ -582,7 +730,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
               selectMensajes.appendChild(opt); // Introduce nuevo item en la lista desplegable
               node.game.contadorComunicacionMensajes += 1;
               node.game.contadorMensajes += 1;
-              selectMensajes.options[0].text = "Tiene " + node.game.contadorMensajes + " solicitudes sin leer";
+              selectMensajes.options[0].text = "Tiene " + node.game.contadorMensajes + " solicitudes";
             }); // End node.on.data('Comunicacion'
 
                           // ABRIR SOLICITUDES
@@ -599,9 +747,11 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 this.remove(this.selectedIndex); // Elimina item de la lista desplegable
                 selectMensajes.options[0].text = "Tiene 1 mensaje";
                 W.getElementById('solicitudAbierta').style.display = 'block'; // Abre ventana de responder
+                W.setInnerHTML('inst', 'Acaba de abrir un mensaje de su compañero. Responda si cree que el perro señalado pertenece o no a la categoría A');
+                W.setInnerHTML('numSol', 'Tiene 0 mensajes');
                 W.setInnerHTML('Solicitud', correo); // Muestra lo que dice el mensaje
                 // console.log('CONTADOR RONDA: ', node.game.contadorMensajesRonda);
-                W.getElementById('Perro3').style.border = "5px solid Yellow";
+                W.getElementById('Perro4').style.border = "5px solid Yellow";
                 // node.game.contadorMensajesRonda -= 1;
               }
             };

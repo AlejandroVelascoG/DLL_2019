@@ -26,7 +26,7 @@
             <h2>Tutorial 1/2</h2>
             Bienvenido al tutorial de las rondas de <i>entrenamiento</i>. Su tarea es
             clasificar los perros que ve en la pantalla en una de las dos categorías 
-            que verá al desplegar los menús debajo de cada imagen. Cuando haya terminado de clasificar los perros, presione el botón "Confirmar!" para terminar la ronda.<br>
+            que verá al desplegar los menús debajo de cada imagen. Por favor preste atención al cuadro de instrucciones en la parte inferior izquierda de su pantalla para avanzar en el tutorial<br>
                 <button class="button1" id="cerrarTut1">OK</button>             
         </div> 
     </div> 
@@ -107,7 +107,10 @@
     </div>
 
 
-    <div class="column left" style="padding-top: 100px; display:none">
+    <div class="column left" style="padding-top: 100px; display: block">
+        <div id="cuadroinst" style="border: 5px solid Black; display: block; text-align: center">
+            <p><span id="inst">Durante las rondas de entrenamiento, usted debe clasificar perros de dos tipos. Si despliega alguno de los menús desplegables bajo los perros, verá que aparecen dos categorías. Trate de reconocer las diferencias entre los perros para clasificarlos.<br> Debe clasificar todos los perros para activar el botón "Confirmar". Sin embargo, durante el juego usted podrá utilizar el botón confirmar en cualquier momento</span></p>
+        </div>
     </div>
     
     <div class="column middle" style="">  
@@ -119,7 +122,7 @@
           <p style="font-size: 13px"><b>Presione aquí para confirmar su clasificación y terminar la ronda</b></p><br>
       </div>
         <div style="text-align: center">
-            <button class="button" id='continuar' style="top:-10px">Confirmar!</button>
+            <button class="button" id='continuar' style="top:-10px;">Confirmar!</button>
         </div>             
         
     </div>
