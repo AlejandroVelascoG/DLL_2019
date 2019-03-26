@@ -387,7 +387,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 var suposicion =  W.getElementById(aux).options[choiceIndex].value;
                 if(node.game.conteoInstrucciones == 1){
                 	node.game.idymensaje.push('A');
-                	W.setInnerHTML('inst', 'Bien! Inténtelo de nuevo con otro perro');
+                	W.setInnerHTML('inst', 'Bien! Durante el juego, usted podrá enviar tantos mensajes como desee, aunque su compañero decidirá si los contesta o los ignora. Inténtelo de nuevo con otro perro!');
                 }
                 if(node.game.conteoInstrucciones == 2){
                   W.setInnerHTML('inst', 'Bien! En unos segundos verá la respuesta al <i>primer</i> mensaje que envió. Unos segundos más tarde, recibirá un mensaje de su compañero.<br> Despliegue el menú de mensajes y abra el mensaje que le envió su compañero');
@@ -458,7 +458,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 var suposicion =  W.getElementById(aux).options[choiceIndex].value;
                 if(node.game.conteoInstrucciones == 1){
                 	node.game.idymensaje.push('B');
-                	W.setInnerHTML('inst', 'Bien! Inténtelo de nuevo con otro perro');
+                	W.setInnerHTML('inst', 'Bien! Durante el juego, usted podrá enviar tantos mensajes como desee, aunque su compañero decidirá si los contesta o los ignora. Inténtelo de nuevo con otro perro!');
                 }
                 if(node.game.conteoInstrucciones == 2){
                 	node.game.idymensaje.push('B');
@@ -529,7 +529,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 var suposicion =  W.getElementById(aux).options[choiceIndex].value;
                 if(node.game.conteoInstrucciones == 1){
                 	node.game.idymensaje.push('C');
-                	W.setInnerHTML('inst', 'Bien! Inténtelo de nuevo con otro perro');
+                	W.setInnerHTML('inst', 'Bien! Durante el juego, usted podrá enviar tantos mensajes como desee, aunque su compañero decidirá si los contesta o los ignora. Inténtelo de nuevo con otro perro!');
                 }
                 if(node.game.conteoInstrucciones == 2){
                 	node.game.idymensaje.push('C');
@@ -600,7 +600,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 var suposicion =  W.getElementById(aux).options[choiceIndex].value;
                 if(node.game.conteoInstrucciones == 1){
                 	node.game.idymensaje.push('D');
-                	W.setInnerHTML('inst', 'Bien! Inténtelo de nuevo con otro perro');
+                	W.setInnerHTML('inst', 'Bien! Durante el juego, usted podrá enviar tantos mensajes como desee, aunque su compañero decidirá si los contesta o los ignora. Inténtelo de nuevo con otro perro!');
                 }
                 if(node.game.conteoInstrucciones == 2){
                 	node.game.idymensaje.push('D');
@@ -831,6 +831,58 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             };
           });
         }
+    });
+
+    stager.extendStep('puntaje_training', {
+      frame: 'puntaje_training.htm',
+      cb: function(){
+        for(var i = 1; i < 6; i++){
+          var foto = 'Perro' + i;
+          var ubicacion = node.game.perrosPantalla[i-1];
+          W.getElementById(foto).src = ubicacion;
+        }
+        // for(var i = 1; i < 6; i++){
+        //   if(node.game.check[i-1] == 1){
+        //     console.log('right' + i);
+        //     W.getElementById('right' + i).style.display = "block";
+        //     W.setInnerHTML('resultado' + i, 'Acertó!');
+        //   } else {
+        //     console.log('wrong' + i);
+        //     W.getElementById('wrong' + i).style.display = "block";
+        //     W.setInnerHTML('resultado' + i, 'Falló!');
+        //   }
+        // }
+        var continuar = W.getElementById('continuar');
+        continuar.onclick = function() {
+          node.done();
+        };
+      }
+    });
+
+    stager.extendStep('puntaje_game', {
+      frame: 'puntaje_game.htm',
+      cb: function(){
+        for(var i = 1; i < 6; i++){
+          var foto = 'Perro' + i;
+          var ubicacion = node.game.perrosPantalla[i-1];
+          W.getElementById(foto).src = ubicacion;
+        }
+        // for(var i = 1; i < 6; i++){
+        //   if(node.game.check[i-1] == 1){
+        //     console.log('right' + i);
+        //     W.getElementById('right' + i).style.display = "block";
+        //     W.setInnerHTML('resultado' + i, 'Acertó!');
+        //   } else {
+        //     console.log('wrong' + i);
+        //     W.getElementById('wrong' + i).style.display = "block";
+        //     W.setInnerHTML('resultado' + i, 'Falló!');
+        //   }
+        // }
+        var continuar = W.getElementById('continuar');
+        continuar.onclick = function() {
+          node.done();
+        };
+      }
     });
 
     stager.extendStep('quiz', {

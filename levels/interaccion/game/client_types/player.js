@@ -331,6 +331,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             node.on('Solicitud', function(msg){
               if (msg == 'cerrar'){
                 enviar.style.display = "none";
+                //recibida.style.display="none";
                 W.getElementById('botonSolicitud').style.opacity = "1";
                 W.getElementById(idPerro).style.border = "";
               }
