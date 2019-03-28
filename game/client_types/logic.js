@@ -44,11 +44,11 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
         }
     });
 
-    // stager.extendStep('instructions', {
-    //     cb: function() {
-    //         console.log('Instructions.');
-    //     }
-    // });
+    stager.extendStep('instructions', {
+        cb: function() {
+            console.log('Instructions.');
+        }
+    });
 
     stager.extendStep('tutorialTraining', {
         cb: function() {

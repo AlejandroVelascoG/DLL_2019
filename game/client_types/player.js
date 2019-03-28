@@ -66,17 +66,17 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
           }
         }
     });
-    //
-    // stager.extendStep('instructions', {
-    //     donebutton: false,
-    //     frame: 'instructions.htm',
-    //     cb: function(){
-    //       var continuar = W.getElementById('continuar');
-    //       continuar.onclick = function() {
-    //         node.done();
-    //       }
-    //     }
-    // });
+    
+    stager.extendStep('instructions', {
+        donebutton: false,
+        frame: 'instructions.htm',
+        cb: function(){
+          var continuar = W.getElementById('continuar');
+          continuar.onclick = function() {
+            node.done();
+          }
+        }
+    });
 
     stager.extendStep('tutorialTraining', {
         donebutton: false,
