@@ -29,7 +29,8 @@
      stager.extendStage('tutorial_game', {
        steps: [
          'tutorialGame',
-         'puntaje_game'
+         'puntaje_game',
+         'recompensa'
        ]
      });
 

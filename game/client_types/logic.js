@@ -63,6 +63,13 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             perros();
         }
     });
+
+    stager.extendStep('recompensa', {
+    cb: function() {
+        console.log('recompensa');
+        }
+    });
+
     stager.extendStep('quiz', {
         cb: function() {
             console.log('Quiz');

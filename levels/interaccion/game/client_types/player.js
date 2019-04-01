@@ -196,7 +196,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             var MESSAGE = msg.data; //Datos enviados desde logic con informacion para la ronda
             var ronda = node.player.stage.round; //Ronda en curso
             var mensajeEnviado = ['A', 'B', 'C', 'D'];
-            var respuestas = ['Sí', 'No'];
+            var respuestas = ['Sí', 'No', 'No sé'];
 
             var rondasTraining = node.game.settings.TRAINING;
             console.log('Oops', node.game.puntajeAcumulado);
@@ -395,6 +395,12 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 W.getElementById(idRecibido).style.border = "";
                 node.set({Respuesta: [respuestas[1], idRecibido, node.game.indiceMensaje]});
               }
+              if(msg == 'nose'){
+                node.say('Respuesta', otroJugador, ['nose', idRecibido]);
+                recibida.style.display = "none";
+                W.getElementById(idRecibido).style.border = "";
+                node.set({Respuesta: [respuestas[2], idRecibido, node.game.indiceMensaje]});
+              }
               if(msg == 'terminar'){
 				node.say('Final', otroJugador, 'acabó');
               	revision();
@@ -492,8 +498,11 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 if(msg.data[0] == 'Correcto'){
                   W.setInnerHTML('confirm1', '<br> SI es ');
                   node.emit('Muestra_Pop1');
-                } else {
+                } else if (msg.data[0] == 'Incorrecto'){
                   W.setInnerHTML('confirm1', '<br> NO es ');
+                  node.emit('Muestra_Pop1');
+                } else{
+                  W.setInnerHTML('confirm1', '<br> No sé si es ');
                   node.emit('Muestra_Pop1');
                 }
               }
@@ -501,8 +510,11 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 if(msg.data[0] == 'Correcto'){
                   W.setInnerHTML('confirm2', '<br> SI es ');
                   node.emit('Muestra_Pop2');
-                } else {
+                } else if (msg.data[0] == 'Incorrecto'){
                   W.setInnerHTML('confirm2', '<br> NO es ');
+                  node.emit('Muestra_Pop2');
+                } else{
+                  W.setInnerHTML('confirm2', '<br> No sé si es ');
                   node.emit('Muestra_Pop2');
                 }
               }
@@ -510,8 +522,11 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 if(msg.data[0] == 'Correcto'){
                   W.setInnerHTML('confirm3', '<br> SI es ');
                   node.emit('Muestra_Pop3');
-                } else {
+                } else if (msg.data[0] == 'Incorrecto'){
                   W.setInnerHTML('confirm3', '<br> NO es ');
+                  node.emit('Muestra_Pop3');
+                } else{
+                  W.setInnerHTML('confirm3', '<br> No sé si es ');
                   node.emit('Muestra_Pop3');
                 }
               }
@@ -519,8 +534,11 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 if(msg.data[0] == 'Correcto'){
                   W.setInnerHTML('confirm4', '<br> SI es ');
                   node.emit('Muestra_Pop4');
-                } else {
+                } else if (msg.data[0] == 'Incorrecto'){
                   W.setInnerHTML('confirm4', '<br> NO es ');
+                  node.emit('Muestra_Pop4');
+                } else{
+                  W.setInnerHTML('confirm4', '<br> No sé si es ');
                   node.emit('Muestra_Pop4');
                 }
               }
@@ -528,8 +546,11 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 if(msg.data[0] == 'Correcto'){
                   W.setInnerHTML('confirm5', '<br> SI es ');
                   node.emit('Muestra_Pop5');
-                } else {
+                } else if (msg.data[0] == 'Incorrecto'){
                   W.setInnerHTML('confirm5', '<br> NO es ');
+                  node.emit('Muestra_Pop5');
+                } else{
+                  W.setInnerHTML('confirm5', '<br> No sé si es ');
                   node.emit('Muestra_Pop5');
                 }
               }

@@ -23,6 +23,7 @@
             <h2>Su compañero dice: <span id="Solicitud"></span></h2>
                 <button class="button1" id='correcto'>Sí</button>
                 <button class="button1" id='incorrecto'>No</button>             
+                <button class="button1" id='nose'>No sé</button>  
             </div>           
         </div>  
 
@@ -340,6 +341,9 @@
               }
               if(event.target.id == "incorrecto"){
                   node.emit('Solicitud', 'Incorrecto');
+              }
+              if(event.target.id == "nose"){
+                  node.emit('Solicitud', 'nose');
               }
               if(event.target.id == "salir"){
                   node.emit('Solicitud', 'terminar');

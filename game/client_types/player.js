@@ -48,6 +48,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
         this.perrosPantalla = [];
         this.conteoInstrucciones = 0;
         this.idymensaje = [];
+        this.countperros = 0;
 
         // Additional debug information while developing the game.
         // this.debugInfo = node.widgets.append('DebugInfo', header)
@@ -167,20 +168,22 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 
                   // carga las imágenes de los cinco perros
 
-            for(var i = 1; i < 6; i++){
-              var foto = 'Perro' + i;
-              var ubicacion = 'carpetaPerros/' + perros[i-1];
-              node.game.perrosPantalla.push(ubicacion);
-              W.getElementById(foto).src = ubicacion;
-              if(raza == 'terrier'){
-                W.getElementById('opB'+i).style.display = "none";
-                W.getElementById('opD'+i).style.display = "none";
-              }
-              if(raza == 'hound'){
-                W.getElementById('opA'+i).style.display = "none";
-                W.getElementById('opC'+i).style.display = "none";
-              }
-            }
+            var foto1 = 'Perro1';
+            var foto2 = 'Perro2'; 
+            var foto3 = 'Perro3';
+            var foto4 = 'Perro4'; 
+            var foto5 = 'Perro5';
+
+            W.getElementById(foto1).src = 'carpetaTut/T1.jpg';
+            W.getElementById(foto2).src = 'carpetaTut/T2.jpg';
+            W.getElementById(foto3).src = 'carpetaTut/T3.jpg';
+            W.getElementById(foto4).src = 'carpetaTut/T4.jpg';
+            W.getElementById(foto5).src = 'carpetaTut/T5.jpg';
+
+            for(var i =1; i<6; i++){
+            	W.getElementById('opB'+i).style.display = "none";
+            	W.getElementById('opD'+i).style.display = "none";	
+            }   
 
             node.on('Solicitud', function(msg){
               if(msg == 'terminar'){
@@ -246,6 +249,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             node.game.check = [];
             node.game.perrosPantalla = [];
             node.game.idymensaje = [];
+            node.game.boolperros = false;
 
             // node.game.perrosMensajes = [];
             // node.game.contadorMensajesRonda = 0;
@@ -326,12 +330,17 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 
                   // carga las imágenes de los cinco perros
 
-            for(var i = 1; i < 6; i++){
-              var foto = 'Perro' + i;
-              var ubicacion = 'carpetaPerros/' + perros[i-1];
-              node.game.perrosPantalla.push(ubicacion);
-              W.getElementById(foto).src = ubicacion;
-            }
+            var foto1 = 'Perro1';
+            var foto2 = 'Perro2'; 
+            var foto3 = 'Perro3';
+            var foto4 = 'Perro4'; 
+            var foto5 = 'Perro5';
+
+            W.getElementById(foto1).src = 'carpetaTut/T4.jpg';
+            W.getElementById(foto2).src = 'carpetaTut/T7.jpg';
+            W.getElementById(foto3).src = 'carpetaTut/T6.jpg';
+            W.getElementById(foto4).src = 'carpetaTut/T8.jpg';
+            W.getElementById(foto5).src = 'carpetaTut/T2.jpg';
 
             var ok = W.getElementById('correcto');
             var nok = W.getElementById('incorrecto');
@@ -675,6 +684,15 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 W.getElementById('confirmar').style.display = "block";
                 W.getElementById('continuar').style.display = "block";
               }
+              if(msg == 'nose'){
+                recibida.style.display = "none";
+                W.getElementById('Perro4').style.border = "";
+                W.setInnerHTML('inst', 'Bien! Acaba de contestar el mensaje de su compañero. Clasifique los perros y presione el botón "Confirmar!" para terminar este tutorial');
+                W.getElementById('confirmar').style.display = "block";
+                W.getElementById('continuar').style.display = "block";
+              }
+
+
               if(msg == 'terminar'){
                 revision();
                 node.done();
@@ -836,22 +854,19 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
     stager.extendStep('puntaje_training', {
       frame: 'puntaje_training.htm',
       cb: function(){
-        for(var i = 1; i < 6; i++){
-          var foto = 'Perro' + i;
-          var ubicacion = node.game.perrosPantalla[i-1];
-          W.getElementById(foto).src = ubicacion;
-        }
-        // for(var i = 1; i < 6; i++){
-        //   if(node.game.check[i-1] == 1){
-        //     console.log('right' + i);
-        //     W.getElementById('right' + i).style.display = "block";
-        //     W.setInnerHTML('resultado' + i, 'Acertó!');
-        //   } else {
-        //     console.log('wrong' + i);
-        //     W.getElementById('wrong' + i).style.display = "block";
-        //     W.setInnerHTML('resultado' + i, 'Falló!');
-        //   }
-        // }
+
+		var foto1 = 'Perro1';
+	    var foto2 = 'Perro2'; 
+	    var foto3 = 'Perro3';
+	    var foto4 = 'Perro4'; 
+	    var foto5 = 'Perro5';
+
+	    W.getElementById(foto1).src = 'carpetaTut/T1.jpg';
+	    W.getElementById(foto2).src = 'carpetaTut/T2.jpg';
+	    W.getElementById(foto3).src = 'carpetaTut/T3.jpg';
+	    W.getElementById(foto4).src = 'carpetaTut/T4.jpg';
+	    W.getElementById(foto5).src = 'carpetaTut/T5.jpg';
+
         var continuar = W.getElementById('continuar');
         continuar.onclick = function() {
           node.done();
@@ -862,28 +877,35 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
     stager.extendStep('puntaje_game', {
       frame: 'puntaje_game.htm',
       cb: function(){
-        for(var i = 1; i < 6; i++){
-          var foto = 'Perro' + i;
-          var ubicacion = node.game.perrosPantalla[i-1];
-          W.getElementById(foto).src = ubicacion;
-        }
-        // for(var i = 1; i < 6; i++){
-        //   if(node.game.check[i-1] == 1){
-        //     console.log('right' + i);
-        //     W.getElementById('right' + i).style.display = "block";
-        //     W.setInnerHTML('resultado' + i, 'Acertó!');
-        //   } else {
-        //     console.log('wrong' + i);
-        //     W.getElementById('wrong' + i).style.display = "block";
-        //     W.setInnerHTML('resultado' + i, 'Falló!');
-        //   }
-        // }
+            var foto1 = 'Perro1';
+            var foto2 = 'Perro2'; 
+            var foto3 = 'Perro3';
+            var foto4 = 'Perro4'; 
+            var foto5 = 'Perro5';
+
+            W.getElementById(foto1).src = 'carpetaTut/T4.jpg';
+            W.getElementById(foto2).src = 'carpetaTut/T7.jpg';
+            W.getElementById(foto3).src = 'carpetaTut/T6.jpg';
+            W.getElementById(foto4).src = 'carpetaTut/T8.jpg';
+            W.getElementById(foto5).src = 'carpetaTut/T2.jpg';
+            
         var continuar = W.getElementById('continuar');
         continuar.onclick = function() {
           node.done();
         };
       }
     });
+
+    stager.extendStep('recompensa', {
+    donebutton: false,
+    frame: 'recompensa.htm',
+    cb: function(){
+      var continuar = W.getElementById('continuar');
+      continuar.onclick = function() {
+        node.done();
+      }
+    }
+    });	
 
     stager.extendStep('quiz', {
       donebutton: false,
