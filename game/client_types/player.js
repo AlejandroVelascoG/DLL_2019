@@ -67,7 +67,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
           }
         }
     });
-    
+
     stager.extendStep('instructions', {
         donebutton: false,
         frame: 'instructions.htm',
@@ -169,9 +169,9 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                   // carga las imágenes de los cinco perros
 
             var foto1 = 'Perro1';
-            var foto2 = 'Perro2'; 
+            var foto2 = 'Perro2';
             var foto3 = 'Perro3';
-            var foto4 = 'Perro4'; 
+            var foto4 = 'Perro4';
             var foto5 = 'Perro5';
 
             W.getElementById(foto1).src = 'carpetaTut/T1.jpg';
@@ -182,8 +182,8 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 
             for(var i =1; i<6; i++){
             	W.getElementById('opB'+i).style.display = "none";
-            	W.getElementById('opD'+i).style.display = "none";	
-            }   
+            	W.getElementById('opD'+i).style.display = "none";
+            }
 
             node.on('Solicitud', function(msg){
               if(msg == 'terminar'){
@@ -331,9 +331,9 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                   // carga las imágenes de los cinco perros
 
             var foto1 = 'Perro1';
-            var foto2 = 'Perro2'; 
+            var foto2 = 'Perro2';
             var foto3 = 'Perro3';
-            var foto4 = 'Perro4'; 
+            var foto4 = 'Perro4';
             var foto5 = 'Perro5';
 
             W.getElementById(foto1).src = 'carpetaTut/T4.jpg';
@@ -364,7 +364,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 	                idPerro = msg[0];
 	                if(node.game.conteoInstrucciones == 0){
                       node.game.idymensaje.push(idPerro);
-                      W.setInnerHTML('inst', 'Bien! Ahora pulse alguno de los botones para preguntar por alguna categoría. (Preste atención a la categoría que escoja!)');
+                      W.setInnerHTML('inst', 'Bien! Ahora pulse alguno de los botones para preguntar por alguna categoría.');
 
 	                }
 	                node.game.conteoInstrucciones += 1;
@@ -856,9 +856,9 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
       cb: function(){
 
 		var foto1 = 'Perro1';
-	    var foto2 = 'Perro2'; 
+	    var foto2 = 'Perro2';
 	    var foto3 = 'Perro3';
-	    var foto4 = 'Perro4'; 
+	    var foto4 = 'Perro4';
 	    var foto5 = 'Perro5';
 
 	    W.getElementById(foto1).src = 'carpetaTut/T1.jpg';
@@ -878,9 +878,9 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
       frame: 'puntaje_game.htm',
       cb: function(){
             var foto1 = 'Perro1';
-            var foto2 = 'Perro2'; 
+            var foto2 = 'Perro2';
             var foto3 = 'Perro3';
-            var foto4 = 'Perro4'; 
+            var foto4 = 'Perro4';
             var foto5 = 'Perro5';
 
             W.getElementById(foto1).src = 'carpetaTut/T4.jpg';
@@ -888,7 +888,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             W.getElementById(foto3).src = 'carpetaTut/T6.jpg';
             W.getElementById(foto4).src = 'carpetaTut/T8.jpg';
             W.getElementById(foto5).src = 'carpetaTut/T2.jpg';
-            
+
         var continuar = W.getElementById('continuar');
         continuar.onclick = function() {
           node.done();
@@ -905,7 +905,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
         node.done();
       }
     }
-    });	
+    });
 
     stager.extendStep('quiz', {
       donebutton: false,
