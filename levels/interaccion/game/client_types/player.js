@@ -46,6 +46,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
         this.puntajeAcumulado = dict;
         this.check = [];
         this.perrosPantalla = [];
+        this.respuestasRonda = [];
         // this.perrosMensajes = [];
         // this.contadorMensajesRonda = 0;
 
@@ -67,6 +68,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             // node.game.contadorComunicacion = 1;
             node.game.check = [];
             node.game.perrosPantalla = [];
+            node.game.respuestasRonda = [];
             var selectPerro1 = W.getElementById('select1');
             var selectPerro2 = W.getElementById('select2');
             var selectPerro3 = W.getElementById('select3');
@@ -94,6 +96,8 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 	            var ans5 = selectPerro5.options[choice5].value;
 
 	            var clasif = [ans1, ans2, ans3, ans4, ans5];
+              node.game.respuestasRonda = clasif;
+              console.log('Respuestas en game', node.game.respuestasRonda);
 
 	            var key1 = claves[perros[0]];
 	            var key2 = claves[perros[1]];
@@ -196,16 +200,18 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             var MESSAGE = msg.data; //Datos enviados desde logic con informacion para la ronda
             var ronda = node.player.stage.round; //Ronda en curso
             var mensajeEnviado = ['A', 'B', 'C', 'D'];
-            var respuestas = ['Sí', 'No', 'No sé'];
+            var respuestas = ['Si', 'No', 'No se'];
 
             var rondasTraining = node.game.settings.TRAINING;
             console.log('Oops', node.game.puntajeAcumulado);
             node.game.puntajeAcumulado[rondasTraining + ronda] = 0;
             node.game.indiceMensaje = 0;
             node.game.contadorComunicacion = 1;
+            node.game.contadorComunicacionMensajes = 1;
             node.game.contadorMensajes = 0;
             node.game.check = [];
             node.game.perrosPantalla = [];
+            node.game.respuestasRonda = [];
             // node.game.perrosMensajes = [];
             // node.game.contadorMensajesRonda = 0;
             var selectMensajes = W.getElementById('soflow-color'); // La lista de mensajes recibidos
@@ -225,7 +231,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             var revision;
 
 			revision = function(){
-				var choice1 = selectPerro1.selectedIndex;
+				      var choice1 = selectPerro1.selectedIndex;
 	            var choice2 = selectPerro2.selectedIndex;
 	            var choice3 = selectPerro3.selectedIndex;
 	            var choice4 = selectPerro4.selectedIndex;
@@ -238,6 +244,8 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 	            var ans5 = selectPerro5.options[choice5].value;
 
 	            var clasif = [ans1, ans2, ans3, ans4, ans5];
+              node.game.respuestasRonda = clasif;
+              console.log('Respuestas en game', node.game.respuestasRonda);
 
 	            var key1 = claves[perros[0]];
 	            var key2 = claves[perros[1]];
@@ -570,6 +578,13 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
     stager.extendStep('puntaje', {
       frame: 'puntaje.htm',
       cb: function(){
+        W.getElementById('select1').options[0].innerHTML = node.game.respuestasRonda[0];
+        W.getElementById('select2').options[0].innerHTML = node.game.respuestasRonda[1];
+        W.getElementById('select3').options[0].innerHTML = node.game.respuestasRonda[2];
+        W.getElementById('select4').options[0].innerHTML = node.game.respuestasRonda[3];
+        W.getElementById('select5').options[0].innerHTML = node.game.respuestasRonda[4];
+        // W.getElementById('select1').options[0].innerHTML = "I'm a genius!";
+        console.log('Respuestas en puntaje', node.game.respuestasRonda[i-1]);
         for(var i = 1; i < 6; i++){
           var foto = 'Perro' + i;
           var ubicacion = node.game.perrosPantalla[i-1];

@@ -673,21 +673,21 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
               if(msg == 'Correcto'){
                 recibida.style.display = "none";
                 W.getElementById('Perro4').style.border = "";
-                W.setInnerHTML('inst', 'Bien! Acaba de contestar el mensaje de su compañero. Clasifique los perros y presione el botón "Confirmar!" para terminar este tutorial');
+                W.setInnerHTML('inst', 'Bien! Acaba de contestar el mensaje de su compañero. Presione el botón "Confirmar!" para terminar este tutorial');
                 W.getElementById('confirmar').style.display = "block";
                 W.getElementById('continuar').style.display = "block";
               }
               if(msg == 'Incorrecto'){
                 recibida.style.display = "none";
                 W.getElementById('Perro4').style.border = "";
-                W.setInnerHTML('inst', 'Bien! Acaba de contestar el mensaje de su compañero. Clasifique los perros y presione el botón "Confirmar!" para terminar este tutorial');
+                W.setInnerHTML('inst', 'Bien! Acaba de contestar el mensaje de su compañero. Presione el botón "Confirmar!" para terminar este tutorial');
                 W.getElementById('confirmar').style.display = "block";
                 W.getElementById('continuar').style.display = "block";
               }
               if(msg == 'nose'){
                 recibida.style.display = "none";
                 W.getElementById('Perro4').style.border = "";
-                W.setInnerHTML('inst', 'Bien! Acaba de contestar el mensaje de su compañero. Clasifique los perros y presione el botón "Confirmar!" para terminar este tutorial');
+                W.setInnerHTML('inst', 'Bien! Acaba de contestar el mensaje de su compañero. Presione el botón "Confirmar!" para terminar este tutorial');
                 W.getElementById('confirmar').style.display = "block";
                 W.getElementById('continuar').style.display = "block";
               }
