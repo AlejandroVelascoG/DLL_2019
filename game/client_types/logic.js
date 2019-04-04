@@ -64,6 +64,12 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
         }
     });
 
+    stager.extendStep('tiempo', {
+    cb: function() {
+        console.log('tiempo');
+        }
+    });
+
     stager.extendStep('recompensa', {
     cb: function() {
         console.log('recompensa');

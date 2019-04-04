@@ -25,16 +25,16 @@
                 W.highlight(a, 'ERR');
                 switch(a.id){
                   case 'rounds':
-                    document.getElementById(a.id + '_result').innerHTML = 'Incorrecto. El juego consiste en clasificar correctamente los perros';
+                    document.getElementById(a.id + '_result').innerHTML = 'Incorrecto! El juego consiste en clasificar correctamente los perros';
                     break;
                   case 'objetos':
-                    document.getElementById(a.id + '_result').innerHTML = 'Incorrecto. El juego tiene 20 rondas de entrenamiento';
+                    document.getElementById(a.id + '_result').innerHTML = 'Incorrecto! El juego tiene <b>20 rondas</b> de entrenamiento';
                     break;
                   case 'puntos':
-                    document.getElementById(a.id + '_result').innerHTML = 'Incorrecto. Hay 4 categorías de clasificación';
+                    document.getElementById(a.id + '_result').innerHTML = 'Incorrecto! Hay <b>4 categorías</b> de clasificación';
                     break;
                   case 'umbral':
-                    document.getElementById(a.id + '_result').innerHTML = 'Incorrecto. Una ronda acaba cuando ambos jugadores han confirmado sus clasificaciones';
+                    document.getElementById(a.id + '_result').innerHTML = 'Incorrecto! Son <b>60 segundos</b> para las rondas de entrenamiento y <b>80 segundos</b> en las rondas de juego';
                     break;
                 }
                 // document.getElementById(a.id + '_result').innerHTML = 'Incorrecto. Intente de nuevo.';

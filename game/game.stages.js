@@ -30,6 +30,7 @@
        steps: [
          'tutorialGame',
          'puntaje_game',
+         'tiempo',
          'recompensa'
        ]
      });

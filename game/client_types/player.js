@@ -907,6 +907,18 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
     }
     });
 
+
+    stager.extendStep('tiempo', {
+    donebutton: false,
+    frame: 'tiempo.htm',
+    cb: function(){
+      var continuar = W.getElementById('continuar');
+      continuar.onclick = function() {
+        node.done();
+      }
+    }
+    });
+
     stager.extendStep('quiz', {
       donebutton: false,
       frame: 'quiz.htm',
