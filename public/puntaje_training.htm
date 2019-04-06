@@ -85,6 +85,30 @@ button:active {
   box-shadow: 0px 0px 0px rgba( 15, 165, 60, 0.0 );
   background: rgba( 20, 224, 133, 1 );
 }
+
+.modal1 {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 250px; /* Location of the box */
+  left: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.3); /* Black w/ opacity */
+
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 15px;
+    border: 1px solid #888;
+    width: 30%;
+    overflow: auto;
+}
+
 .droptarget {
     float: left;
     width: 100px;
@@ -123,6 +147,16 @@ div.desc {
 </style>
   <div style="overflow: auto">
   <div id="container">
+
+	<div class="modal1" id="aviso1" style="display: block">
+		<div class="modal-content" id="punt">
+			Esta es la pantalla de retroalimentción. La verá cada vez que termine una ronda. Aquí verá si sus elecciones fueron
+			acertadas o erradas, y verá una gráfica que representa su desempeño durante las últimas 20 rondas.
+		<div class="button"><b>OK</b></div>
+		</div>
+
+	</div>
+
     <h1>Puntaje acumulado</h1>     
     
         <div class="gallery">
