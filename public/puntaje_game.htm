@@ -51,6 +51,28 @@ div.checks img{
     display: inline-block;
     font-size: 16px;
 }
+.modal1 {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 250px; /* Location of the box */
+  left: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.3); /* Black w/ opacity */
+
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 15px;
+    border: 1px solid #888;
+    width: 30%;
+    overflow: auto;
+}
 button {
   display: inline-block;
   position: relative;
@@ -123,12 +145,24 @@ div.desc {
 </style>
   <div style="overflow: auto">
   <div id="container">
+      
+      	<div class="modal1" id="aviso1" style="display: block">
+		<div class="modal-content" id="punt" style="text-align: center">
+			Al igual que en las rondas de entrenamiento, al final de cada ronda de juego verá la pantalla de retroalimentación con sus elecciones, sus aciertos, sus errores y su desempeño de las últimas 20 rondas. <b>No</b> habrá retroalimentación sobre los mensajes que intercambie con su compañero. <br>
+            <div><br></div>
+		<button class="button1" id="listo">OK</button>
+		</div>
+	</div>      
+      
     <h1>Puntaje acumulado</h1>     
     
         <div class="gallery">
           <img id="Perro1" src="">
             <div class ="desc"><span id="resultado1">Falló!</span></div>
              <div class="checks">
+                <select text-align="center" id="select1" disabled>
+                     <option value="Nada">A</option>
+                </select>
                 <img id="wrong1" src="wrong.jpg" style="display: block; width: 50px; height: 50px; margin-left: auto; margin-right: auto">
                 <img id="right1" src="check.jpg" style="display: none; width: 50px; height: 50px; margin-left: auto; margin-right: auto">
              </div>
@@ -138,6 +172,9 @@ div.desc {
          <img id="Perro2" src="">
           <div class ="desc"><span id="resultado2">Falló!</span></div>
              <div class="checks">
+                <select text-align="center" id="select2" disabled>
+                     <option value="Nada">A</option>
+                </select>
                 <img id="wrong2" src="wrong.jpg" style="display: block; width: 50px; height: 50px; margin-left: auto; margin-right: auto">
                 <img id="right2" src="check.jpg" style="display: none; width: 50px; height: 50px; margin-left: auto; margin-right: auto">
              </div>
@@ -147,6 +184,9 @@ div.desc {
          <img id="Perro3" src="">
           <div class ="desc"><span id="resultado3">Acertó!</span></div>
              <div class="checks">
+                <select text-align="center" id="select3" disabled>
+                     <option value="Nada">A</option>
+                </select>
                 <img id="wrong3" src="wrong.jpg" style="display: none; width: 50px; height: 50px; margin-left: auto; margin-right: auto">
                 <img id="right3" src="check.jpg" style="display: block; width: 50px; height: 50px; margin-left: auto; margin-right: auto">
              </div>
@@ -156,6 +196,9 @@ div.desc {
          <img id="Perro4" src="">
           <div class ="desc"><span id="resultado4">Acertó!</span></div>
              <div class="checks">
+                <select text-align="center" id="select4" disabled>
+                     <option value="Nada">A</option>
+                </select>
                 <img id="wrong4" src="wrong.jpg" style="display: none; width: 50px; height: 50px; margin-left: auto; margin-right: auto">
                 <img id="right4" src="check.jpg" style="display: block; width: 50px; height: 50px; margin-left: auto; margin-right: auto">
              </div>
@@ -165,6 +208,9 @@ div.desc {
          <img id="Perro5" src="">
           <div class ="desc"><span id="resultado5">Falló!</span></div>
              <div class="checks">
+                <select text-align="center" id="select5" disabled>
+                     <option value="Nada">A</option>
+                </select>
                 <img id="wrong5" src="wrong.jpg" style="display: block; width: 50px; height: 50px; margin-left: auto; margin-right: auto" >
                 <img id="right5" src="check.jpg" style="display: none; width: 50px; height: 50px; margin-left: auto; margin-right: auto">
              </div>

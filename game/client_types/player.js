@@ -49,6 +49,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
         this.conteoInstrucciones = 0;
         this.idymensaje = [];
         this.countperros = 0;
+        this.respuestasRonda = [];
 
         // Additional debug information while developing the game.
         // this.debugInfo = node.widgets.append('DebugInfo', header)
@@ -93,6 +94,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             // node.game.contadorComunicacion = 1;
             node.game.check = [];
             node.game.perrosPantalla = [];
+            node.game.respuestasRonda = [];
             var selectPerro1 = W.getElementById('select1');
             var selectPerro2 = W.getElementById('select2');
             var selectPerro3 = W.getElementById('select3');
@@ -120,6 +122,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
               var ans5 = selectPerro5.options[choice5].value;
 
               var clasif = [ans1, ans2, ans3, ans4, ans5];
+              node.game.respuestasRonda = clasif;
 
               var key1 = claves[perros[0]];
               var key2 = claves[perros[1]];
@@ -250,6 +253,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             node.game.perrosPantalla = [];
             node.game.idymensaje = [];
             node.game.boolperros = false;
+            node.game.respuestasRonda = [];
 
             // node.game.perrosMensajes = [];
             // node.game.contadorMensajesRonda = 0;
@@ -283,6 +287,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
               var ans5 = selectPerro5.options[choice5].value;
 
               var clasif = [ans1, ans2, ans3, ans4, ans5];
+              node.game.respuestasRonda = clasif;
 
               var key1 = claves[perros[0]];
               var key2 = claves[perros[1]];
@@ -855,7 +860,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
       frame: 'puntaje_training.htm',
       cb: function(){
 
-		var foto1 = 'Perro1';
+		  var foto1 = 'Perro1';
 	    var foto2 = 'Perro2';
 	    var foto3 = 'Perro3';
 	    var foto4 = 'Perro4';
@@ -866,6 +871,17 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 	    W.getElementById(foto3).src = 'carpetaTut/T3.jpg';
 	    W.getElementById(foto4).src = 'carpetaTut/T4.jpg';
 	    W.getElementById(foto5).src = 'carpetaTut/T5.jpg';
+
+      W.getElementById('select1').options[0].innerHTML = node.game.respuestasRonda[0];
+      W.getElementById('select2').options[0].innerHTML = node.game.respuestasRonda[1];
+      W.getElementById('select3').options[0].innerHTML = node.game.respuestasRonda[2];
+      W.getElementById('select4').options[0].innerHTML = node.game.respuestasRonda[3];
+      W.getElementById('select5').options[0].innerHTML = node.game.respuestasRonda[4];
+
+      var listo = W.getElementById('listo');
+      listo.onclick = function() {
+        W.getElementById('aviso1').style.display = "none";
+      };
 
         var continuar = W.getElementById('continuar');
         continuar.onclick = function() {
@@ -888,6 +904,18 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             W.getElementById(foto3).src = 'carpetaTut/T6.jpg';
             W.getElementById(foto4).src = 'carpetaTut/T8.jpg';
             W.getElementById(foto5).src = 'carpetaTut/T2.jpg';
+
+            W.getElementById('select1').options[0].innerHTML = node.game.respuestasRonda[0];
+            W.getElementById('select2').options[0].innerHTML = node.game.respuestasRonda[1];
+            W.getElementById('select3').options[0].innerHTML = node.game.respuestasRonda[2];
+            W.getElementById('select4').options[0].innerHTML = node.game.respuestasRonda[3];
+            W.getElementById('select5').options[0].innerHTML = node.game.respuestasRonda[4];
+
+
+        var listo = W.getElementById('listo');
+        listo.onclick = function() {
+          W.getElementById('aviso1').style.display = "none";
+        };
 
         var continuar = W.getElementById('continuar');
         continuar.onclick = function() {
