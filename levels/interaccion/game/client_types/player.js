@@ -253,6 +253,10 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 	            var key4 = claves[perros[3]];
 	            var key5 = claves[perros[4]];
 
+              for (var i = 0; i < 5; i++) {
+                node.set({ParaK: [perros[i], clasif[i]]});
+              }
+
 	            var keys = [key1, key3, key3, key4, key5];
 
 	            if (ans1 == key1){
