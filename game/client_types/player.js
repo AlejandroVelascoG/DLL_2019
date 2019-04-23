@@ -219,7 +219,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 }
               }
               if(j == 5){
-                W.setInnerHTML('inst', 'Bien! Ahora puede presionar el botón "Confirmar" para pasar a la segunda parte del tutorial. Se abrirá un cuadro de diálogo en el que podrá confirmar si ya terminó su clasificación o si desea permanecer en la ronda');
+                W.setInnerHTML('inst', '¡Bien! Ahora puede presionar el botón "Confirmar" para pasar a la segunda parte del tutorial. Se abrirá un cuadro de diálogo en el que podrá confirmar si ya terminó su clasificación o si desea permanecer en la ronda.');
                 W.getElementById('confirmarRonda').style.display = "block";
               }
 
@@ -369,7 +369,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 	                idPerro = msg[0];
 	                if(node.game.conteoInstrucciones == 0){
                       node.game.idymensaje.push(idPerro);
-                      W.setInnerHTML('inst', 'Bien! Ahora pulse alguno de los botones para preguntar por alguna categoría.');
+                      W.setInnerHTML('inst', '¡Bien! Ahora observe que los botones en la ventana de comunicación representan categorías. Pulse alguno de ellos para preguntar a su compañero si el perro seleccionado pertenece a esa categoría.');
 
 	                }
 	                node.game.conteoInstrucciones += 1;
@@ -401,10 +401,10 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 var suposicion =  W.getElementById(aux).options[choiceIndex].value;
                 if(node.game.conteoInstrucciones == 1){
                 	node.game.idymensaje.push('A');
-                	W.setInnerHTML('inst', 'Bien! Durante el juego, usted podrá enviar tantos mensajes como desee, aunque su compañero decidirá si los contesta o los ignora. Inténtelo de nuevo con otro perro!');
+                	W.setInnerHTML('inst', '¡Bien! Durante el juego, usted podrá enviar tantos mensajes como desee, aunque su compañero decidirá si los contesta o los ignora. ¡Inténtelo de nuevo con otro perro!');
                 }
                 if(node.game.conteoInstrucciones == 2){
-                  W.setInnerHTML('inst', 'Bien! En unos segundos verá la respuesta al <i>primer</i> mensaje que envió. Unos segundos más tarde, recibirá un mensaje de su compañero.<br> Despliegue el menú de mensajes y abra el mensaje que le envió su compañero');
+                  W.setInnerHTML('inst', '¡Bien! En unos segundos verá la respuesta al <i>primer</i> mensaje que envió. Unos segundos más tarde, recibirá un mensaje de su compañero.<br> Despliegue el menú de mensajes y abra el mensaje que le envió su compañero.');
     	            if(node.game.idymensaje[0] == 'Perro1'){
 		                  W.setInnerHTML('confirm1', '<br> SI es ' + node.game.idymensaje[1]);
 		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
@@ -419,7 +419,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 		              if(node.game.idymensaje[0] == 'Perro2'){
 		                  W.setInnerHTML('confirm2', '<br> SI es ' + node.game.idymensaje[1]);
  		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
-                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
+                      W.setInnerHTML('notif', '<br> ¡Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop2');
                       var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
                       opt.value = 'A'; // Objeto enviado
@@ -441,7 +441,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 		              if(node.game.idymensaje[0] == 'Perro4'){
 		                  W.setInnerHTML('confirm4', '<br> SI es ' + node.game.idymensaje[1]);
 		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
-                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
+                      W.setInnerHTML('notif', '<br> ¡Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop4');
                       var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
                       opt.value = 'A'; // Objeto enviado
@@ -452,7 +452,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 		              if(node.game.idymensaje[0] == 'Perro5'){
 		                  W.setInnerHTML('confirm5', '<br> SI es ' + node.game.idymensaje[1]);
 		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
-                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
+                      W.setInnerHTML('notif', '<br> ¡Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop5');
                       var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
                       opt.value = 'A'; // Objeto enviado
@@ -472,14 +472,14 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 var suposicion =  W.getElementById(aux).options[choiceIndex].value;
                 if(node.game.conteoInstrucciones == 1){
                 	node.game.idymensaje.push('B');
-                	W.setInnerHTML('inst', 'Bien! Durante el juego, usted podrá enviar tantos mensajes como desee, aunque su compañero decidirá si los contesta o los ignora. Inténtelo de nuevo con otro perro!');
+                	W.setInnerHTML('inst', '¡Bien! Durante el juego, usted podrá enviar tantos mensajes como desee, aunque su compañero decidirá si los contesta o los ignora. ¡Inténtelo de nuevo con otro perro!');
                 }
                 if(node.game.conteoInstrucciones == 2){
                 	node.game.idymensaje.push('B');
-                  W.setInnerHTML('inst', 'Bien! En unos segundos verá la respuesta al <i>primer</i> mensaje que envió. Unos segundos más tarde, recibirá un mensaje de su compañero.<br> Despliegue el menú de mensajes y abra el mensaje que le envió su compañero');		            if(node.game.idymensaje[0] == 'Perro1'){
+                  W.setInnerHTML('inst', '¡Bien! En unos segundos verá la respuesta al <i>primer</i> mensaje que envió. Unos segundos más tarde, recibirá un mensaje de su compañero.<br> Despliegue el menú de mensajes y abra el mensaje que le envió su compañero.');		            if(node.game.idymensaje[0] == 'Perro1'){
 		                  W.setInnerHTML('confirm1', '<br> SI es ' + node.game.idymensaje[1]);
 		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
-                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
+                      W.setInnerHTML('notif', '<br> ¡Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop1');
                       var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
                       opt.value = 'C'; // Objeto enviado
@@ -490,7 +490,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 		              if(node.game.idymensaje[0] == 'Perro2'){
 		                  W.setInnerHTML('confirm2', '<br> SI es ' + node.game.idymensaje[1]);
 		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
-                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
+                      W.setInnerHTML('notif', '<br> ¡Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop2');
                       var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
                       opt.value = 'C'; // Objeto enviado
@@ -501,7 +501,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 		              if(node.game.idymensaje[0] == 'Perro3'){
 		                  W.setInnerHTML('confirm3', '<br> SI es ' + node.game.idymensaje[1]);
 		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
-                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
+                      W.setInnerHTML('notif', '<br> ¡Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop3');
                       var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
                       opt.value = 'C'; // Objeto enviado
@@ -512,7 +512,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 		              if(node.game.idymensaje[0] == 'Perro4'){
 		                  W.setInnerHTML('confirm4', '<br> SI es ' + node.game.idymensaje[1]);
 		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
-                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
+                      W.setInnerHTML('notif', '<br> ¡Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop4');
                       var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
                       opt.value = 'C'; // Objeto enviado
@@ -523,7 +523,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 		              if(node.game.idymensaje[0] == 'Perro5'){
 		                  W.setInnerHTML('confirm5', '<br> SI es ' + node.game.idymensaje[1]);
 		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
-                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
+                      W.setInnerHTML('notif', '<br> ¡Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop5');
                       var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
                       opt.value = 'C'; // Objeto enviado
@@ -543,14 +543,14 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 var suposicion =  W.getElementById(aux).options[choiceIndex].value;
                 if(node.game.conteoInstrucciones == 1){
                 	node.game.idymensaje.push('C');
-                	W.setInnerHTML('inst', 'Bien! Durante el juego, usted podrá enviar tantos mensajes como desee, aunque su compañero decidirá si los contesta o los ignora. Inténtelo de nuevo con otro perro!');
+                	W.setInnerHTML('inst', '¡Bien! Durante el juego, usted podrá enviar tantos mensajes como desee, aunque su compañero decidirá si los contesta o los ignora. ¡Inténtelo de nuevo con otro perro!');
                 }
                 if(node.game.conteoInstrucciones == 2){
                 	node.game.idymensaje.push('C');
-                  W.setInnerHTML('inst', 'Bien! En unos segundos verá la respuesta al <i>primer</i> mensaje que envió. Unos segundos más tarde, recibirá un mensaje de su compañero.<br> Despliegue el menú de mensajes y abra el mensaje que le envió su compañero');		            if(node.game.idymensaje[0] == 'Perro1'){
+                  W.setInnerHTML('inst', '¡Bien! En unos segundos verá la respuesta al <i>primer</i> mensaje que envió. Unos segundos más tarde, recibirá un mensaje de su compañero.<br> Despliegue el menú de mensajes y abra el mensaje que le envió su compañero.');		            if(node.game.idymensaje[0] == 'Perro1'){
 		                  W.setInnerHTML('confirm1', '<br> SI es ' + node.game.idymensaje[1]);
   		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
-                        W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
+                        W.setInnerHTML('notif', '<br> ¡Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop1');
                       var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
                       opt.value = 'D'; // Objeto enviado
@@ -561,7 +561,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 		              if(node.game.idymensaje[0] == 'Perro2'){
 		                  W.setInnerHTML('confirm2', '<br> SI es ' + node.game.idymensaje[1]);
 		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
-                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
+                      W.setInnerHTML('notif', '<br> ¡Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop2');
                       var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
                       opt.value = 'D'; // Objeto enviado
@@ -572,7 +572,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 		              if(node.game.idymensaje[0] == 'Perro3'){
 		                  W.setInnerHTML('confirm3', '<br> SI es ' + node.game.idymensaje[1]);
 		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
-                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
+                      W.setInnerHTML('notif', '<br> ¡Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop3');
                       var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
                       opt.value = 'D'; // Objeto enviado
@@ -583,7 +583,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 		              if(node.game.idymensaje[0] == 'Perro4'){
 		                  W.setInnerHTML('confirm4', '<br> SI es ' + node.game.idymensaje[1]);
 		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
-                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
+                      W.setInnerHTML('notif', '<br> ¡Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop4');
                       var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
                       opt.value = 'D'; // Objeto enviado
@@ -594,7 +594,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 		              if(node.game.idymensaje[0] == 'Perro5'){
 		                  W.setInnerHTML('confirm5', '<br> SI es ' + node.game.idymensaje[1]);
 		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
-                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
+                      W.setInnerHTML('notif', '<br> ¡Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop5');
                       var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
                       opt.value = 'D'; // Objeto enviado
@@ -614,14 +614,14 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 var suposicion =  W.getElementById(aux).options[choiceIndex].value;
                 if(node.game.conteoInstrucciones == 1){
                 	node.game.idymensaje.push('D');
-                	W.setInnerHTML('inst', 'Bien! Durante el juego, usted podrá enviar tantos mensajes como desee, aunque su compañero decidirá si los contesta o los ignora. Inténtelo de nuevo con otro perro!');
+                	W.setInnerHTML('inst', '¡Bien! Durante el juego, usted podrá enviar tantos mensajes como desee, aunque su compañero decidirá si los contesta o los ignora. ¡Inténtelo de nuevo con otro perro!');
                 }
                 if(node.game.conteoInstrucciones == 2){
                 	node.game.idymensaje.push('D');
-                  W.setInnerHTML('inst', 'Bien! En unos segundos verá la respuesta al <i>primer</i> mensaje que envió. Unos segundos más tarde, recibirá un mensaje de su compañero.<br> Despliegue el menú de mensajes y abra el mensaje que le envió su compañero');		            if(node.game.idymensaje[0] == 'Perro1'){
+                  W.setInnerHTML('inst', '¡Bien! En unos segundos verá la respuesta al <i>primer</i> mensaje que envió. Unos segundos más tarde, recibirá un mensaje de su compañero.<br> Despliegue el menú de mensajes y abra el mensaje que le envió su compañero.');		            if(node.game.idymensaje[0] == 'Perro1'){
 		                  W.setInnerHTML('confirm1', '<br> SI es ' + node.game.idymensaje[1]);
 		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
-                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
+                      W.setInnerHTML('notif', '<br> ¡Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop1');
                       var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
                       opt.value = 'B'; // Objeto enviado
@@ -632,7 +632,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 		              if(node.game.idymensaje[0] == 'Perro2'){
 		                  W.setInnerHTML('confirm2', '<br> SI es ' + node.game.idymensaje[1]);
 		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
-                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
+                      W.setInnerHTML('notif', '<br> ¡Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop2');
                       var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
                       opt.value = 'B'; // Objeto enviado
@@ -643,7 +643,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 		              if(node.game.idymensaje[0] == 'Perro3'){
 		                  W.setInnerHTML('confirm3', '<br> SI es ' + node.game.idymensaje[1]);
 		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
-                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
+                      W.setInnerHTML('notif', '<br> ¡Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop3');
                       var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
                       opt.value = 'B'; // Objeto enviado
@@ -654,7 +654,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 		              if(node.game.idymensaje[0] == 'Perro4'){
 		                  W.setInnerHTML('confirm4', '<br> SI es ' + node.game.idymensaje[1]);
 		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
-                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
+                      W.setInnerHTML('notif', '<br> ¡Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop4');
                       var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
                       opt.value = 'B'; // Objeto enviado
@@ -665,7 +665,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 		              if(node.game.idymensaje[0] == 'Perro5'){
 		                  W.setInnerHTML('confirm5', '<br> SI es ' + node.game.idymensaje[1]);
 		                  // alert('En este momento verá una notificación con la respuesta a la primera pregunta que hizo. Preste atención al primer perro que arrastró hasta el signo de interrogación');
-                      W.setInnerHTML('notif', '<br> Tiene un nuevo mensaje!');
+                      W.setInnerHTML('notif', '<br> ¡Tiene un nuevo mensaje!');
 		                  node.emit('Muestra_Pop5');
                       var opt = document.createElement('option'); // Crea un item nuevo para la lista desplegable
                       opt.value = 'B'; // Objeto enviado
@@ -678,21 +678,21 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
               if(msg == 'Correcto'){
                 recibida.style.display = "none";
                 W.getElementById('Perro4').style.border = "";
-                W.setInnerHTML('inst', 'Bien! Acaba de contestar el mensaje de su compañero. Presione el botón "Confirmar!" para terminar este tutorial');
+                W.setInnerHTML('inst', '¡Bien! Acaba de contestar el mensaje de su compañero. Presione el botón "Confirmar" para terminar este tutorial.');
                 W.getElementById('confirmar').style.display = "block";
                 W.getElementById('continuar').style.display = "block";
               }
               if(msg == 'Incorrecto'){
                 recibida.style.display = "none";
                 W.getElementById('Perro4').style.border = "";
-                W.setInnerHTML('inst', 'Bien! Acaba de contestar el mensaje de su compañero. Presione el botón "Confirmar!" para terminar este tutorial');
+                W.setInnerHTML('inst', '¡Bien! Acaba de contestar el mensaje de su compañero. Presione el botón "Confirmar" para terminar este tutorial.');
                 W.getElementById('confirmar').style.display = "block";
                 W.getElementById('continuar').style.display = "block";
               }
               if(msg == 'nose'){
                 recibida.style.display = "none";
                 W.getElementById('Perro4').style.border = "";
-                W.setInnerHTML('inst', 'Bien! Acaba de contestar el mensaje de su compañero. Presione el botón "Confirmar!" para terminar este tutorial');
+                W.setInnerHTML('inst', '¡Bien! Acaba de contestar el mensaje de su compañero. Presione el botón "Confirmar" para terminar este tutorial.');
                 W.getElementById('confirmar').style.display = "block";
                 W.getElementById('continuar').style.display = "block";
               }
@@ -770,7 +770,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 this.remove(this.selectedIndex); // Elimina item de la lista desplegable
                 selectMensajes.options[0].text = "Tiene 1 mensaje";
                 W.getElementById('solicitudAbierta').style.display = 'block'; // Abre ventana de responder
-                W.setInnerHTML('inst', 'Acaba de abrir un mensaje de su compañero. Responda si cree que el perro señalado pertenece o no a la categoría A');
+                W.setInnerHTML('inst', 'Acaba de abrir un mensaje de su compañero. Responda si cree que el perro señalado pertenece o no a la categoría A.');
                 W.setInnerHTML('numSol', 'Tiene 0 mensajes');
                 W.setInnerHTML('Solicitud', correo); // Muestra lo que dice el mensaje
                 // console.log('CONTADOR RONDA: ', node.game.contadorMensajesRonda);

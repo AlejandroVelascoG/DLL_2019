@@ -58,10 +58,10 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
     });
 
     stager.extendStep('demograf', {
-    cb: function() {
+      cb: function() {
       console.log('demograf...');
-    }
-});
+      }
+    });
 
     stager.extendStep('end', {
         cb: function() {
@@ -95,25 +95,8 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 
       var rand1 = 1;
       var rand2 = 2;
-      // var rand1 = Math.floor(Math.random()*4)+2;
-      // var rand2 = Math.floor(Math.random()*4)+2;
-      if(rand1 == rand2){
-        if (rand2 == 5){
-          rand2 -= 1;
-        } else {
-          rand2 += 1;
-        }
-      }
-
-      // var rand1 = Math.floor(Math.random()*30) + 21;
-      // var rand2 = Math.floor(Math.random()*30) + 21;
-      // if(rand1 == rand2){
-      // 	if (rand2 == 50){
-      // 		rand2 -= 1;
-      // 	} else {
-      // 		rand2 += 1;
-      // 	}
-      // }
+      // var rand1 = Math.floor(Math.random()*6) + 21;
+      // var rand2 = Math.floor(Math.random()*6) + 39;
       node.say('Rondas', players[0], [rand1, rand2]);
       node.say('Rondas', players[1], [rand1, rand2]);
     }
