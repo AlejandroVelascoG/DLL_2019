@@ -70,7 +70,9 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                                   node.nodename + '.json');
 
             node.on.data('Recompensa', function(msg) {
+              console.log('*************************************');
               console.log('Recompensa:', msg.from, ' ', msg.data);
+              console.log('*************************************');
             });
         }
     });
