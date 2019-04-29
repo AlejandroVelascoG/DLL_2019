@@ -681,7 +681,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                               choices: [
                                   'me basé totalmente en la clasificación de mi compañero',
                                   'apendí a clasificar algunos perros y confié en mi compañero para clasificar otros',
-                                  'aprendía clasificar todos los perros',
+                                  'aprendí a clasificar todos los perros',
                                   'Prefiero no decirlo'
                               ],
                               shuffleChoices: false,
