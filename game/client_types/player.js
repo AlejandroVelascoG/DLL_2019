@@ -60,7 +60,9 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
         frame: 'bienvenida.htm',
         cb: function(){
           var numUsuario = node.player.id;
+          console.log('************************************');
           console.log('Número de usuario: ', numUsuario);
+          console.log('************************************');
           W.setInnerHTML('numUsuario', numUsuario);
           var continuar = W.getElementById('continuar');
           continuar.onclick = function() {

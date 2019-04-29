@@ -93,10 +93,10 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 
       var players = node.game.pl.id.getAllKeys();
 
-      var rand1 = 1;
-      var rand2 = 2;
-      // var rand1 = Math.floor(Math.random()*6) + 21;
-      // var rand2 = Math.floor(Math.random()*6) + 39;
+      // var rand1 = 1;
+      // var rand2 = 2;
+      var rand1 = Math.floor(Math.random()*6) + 21;
+      var rand2 = Math.floor(Math.random()*6) + 39;
       node.say('Rondas', players[0], [rand1, rand2]);
       node.say('Rondas', players[1], [rand1, rand2]);
     }
