@@ -109,7 +109,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 node.set({ParaK: [perros[i], clasif[i]]});
               }
 
-	            var keys = [key1, key3, key3, key4, key5];
+	            var keys = [key1, key2, key3, key4, key5];
 
 	            if (ans1 == key1){
 	              node.game.check.push(1);
@@ -257,7 +257,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 node.set({ParaK: [perros[i], clasif[i]]});
               }
 
-	            var keys = [key1, key3, key3, key4, key5];
+	            var keys = [key1, key2, key3, key4, key5];
 
 	            if (ans1 == key1){
 	              node.game.check.push(1);
