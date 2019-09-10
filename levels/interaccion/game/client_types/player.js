@@ -929,12 +929,12 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             var rand1 = msg.data[0];
             var rand2 = msg.data[1];
 
-            if (rand1 > node.game.settings.REPEAT) {
-              rand1 = 1 + node.game.settings.TRAINING;
-            }
-            if (rand2 > node.game.settings.REPEAT) {
-              rand2 = node.game.settings.REPEAT + node.game.settings.TRAINING;
-            }
+            // if (rand1 > node.game.settings.REPEAT) {
+            //   rand1 = 1 + node.game.settings.TRAINING;
+            // }
+            // if (rand2 > node.game.settings.REPEAT) {
+            //   rand2 = node.game.settings.REPEAT + node.game.settings.TRAINING;
+            // }
 
             console.log('rand1', rand1);
             console.log('rand2', rand2);
