@@ -42,7 +42,7 @@ module.exports = {
      */
     TIMER: {
         training: 60000,
-        game: 80000,
+        game: 90000,
         puntaje: 20000
 
     },
@@ -50,8 +50,8 @@ module.exports = {
     // # Game specific properties
 
     // Number of game rounds repetitions.
-    REPEAT: 2, // Cantidad rondas de juego
-    TRAINING: 2, // Cantidad rondas de entrenamiento
+    REPEAT: 25, // Cantidad rondas de juego
+    TRAINING: 25, // Cantidad rondas de entrenamiento
 
     // In case an incoming offer does not pass validation, which indicates
     // cheating, re-set the dictator's offer to this value.

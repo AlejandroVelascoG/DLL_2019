@@ -216,6 +216,11 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
         sendh.push(hound[i]);
       }
 
+      console.log('::::::::::::::::::::::::::::::::::::');
+      console.log('Jugador 1: ', players[0]);
+      console.log('Jugador 2: ', players[1]);
+      console.log('::::::::::::::::::::::::::::::::::::');
+
       node.say('Settings', players[0], [players[1], sendt, dict, 'terrier']);
       node.say('Settings', players[1], [players[0], sendh, dict, 'hound']);
 

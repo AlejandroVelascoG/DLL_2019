@@ -80,6 +80,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             var perros = MESSAGE[1];
             var claves = MESSAGE[2];
             var raza = MESSAGE[3];
+            node.set({Raza: raza});
 
             console.log('Raza: ', raza);
             if (raza == 'terrier') {
@@ -153,8 +154,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
               }
 	            // var sum = node.game.check.reduce(function(a, b) { return a + b; }, 0);
 	            node.game.puntajeAcumulado[ronda] = sum;
-	            // console.log('puntos', sum);
-	            // console.log('LISTA: ', node.game.perrosMensajes);
+	            console.log('puntos', node.game.puntajeAcumulado[ronda]);
 	            node.set({Puntaje:[clasif, keys, sum]});
 			};
 
@@ -213,7 +213,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             var respuestas = ['Si', 'No', 'No se'];
 
             var rondasTraining = node.game.settings.TRAINING;
-            console.log('Oops', node.game.puntajeAcumulado);
+            console.log('Puntajes anteriores: ', node.game.puntajeAcumulado);
             node.game.puntajeAcumulado[rondasTraining + ronda] = 0;
             node.game.indiceMensaje = 0;
             node.game.contadorComunicacion = 1;
@@ -302,7 +302,6 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 	            // var sum = node.game.check.reduce(function(a, b) { return a + b; }, 0); // PILAS QUE PUEDE ESTAR ERRADO
 	            node.game.puntajeAcumulado[rondasTraining + ronda] = sum;
 	            console.log('puntos', sum);
-	            console.log('LISTA: ', node.game.perrosMensajes);
 	            node.set({Puntaje:[clasif, keys, sum]});
 			};
 
@@ -357,7 +356,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 W.getElementById('botonSolicitud').style.opacity = "1";
                 W.getElementById(idPerro).style.border = "";
               }
-              if (msg == 'A'){
+              if (msg == 'Cairn Terrier'){
                 node.say('Comunicacion', otroJugador, [mensajeEnviado[0], idPerro]);
                 enviar.style.display = "none";
                 W.getElementById(idPerro).style.border = "";
@@ -369,7 +368,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 node.set({Comunicacion: [mensajeEnviado[0], idPerro, suposicion, node.game.contadorComunicacion]});
                 node.game.contadorComunicacion += 1;
               }
-              if (msg == 'B'){
+              if (msg == 'Irish Wolfhound'){
                 node.say('Comunicacion', otroJugador, [mensajeEnviado[1], idPerro]);
                 enviar.style.display = "none";
                 W.getElementById(idPerro).style.border = "";
@@ -381,7 +380,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 node.set({Comunicacion: [mensajeEnviado[1], idPerro, suposicion, node.game.contadorComunicacion]});
                 node.game.contadorComunicacion += 1;
               }
-              if (msg == 'C'){
+              if (msg == 'Norwich Terrier'){
                 node.say('Comunicacion', otroJugador, [mensajeEnviado[2], idPerro]);
                 enviar.style.display = "none";
                 W.getElementById(idPerro).style.border = "";
@@ -393,7 +392,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 node.set({Comunicacion: [mensajeEnviado[2], idPerro, suposicion, node.game.contadorComunicacion]});
                 node.game.contadorComunicacion += 1;
               }
-              if (msg == 'D'){
+              if (msg == 'Scottish Deerhound'){
                 node.say('Comunicacion', otroJugador, [mensajeEnviado[3], idPerro]);
                 enviar.style.display = "none";
                 W.getElementById(idPerro).style.border = "";
@@ -489,7 +488,19 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 	              node.game.contadorMensajes -= 1;
 	              selectMensajes.options[0].text = "Tiene " + node.game.contadorMensajes + " mensajes";
 	              W.getElementById('solicitudAbierta').style.display = 'block'; // Abre ventana de responder
-	              W.setInnerHTML('Solicitud', correo); // Muestra lo que dice el mensaje
+                if (correo == 'A') {
+                  var responder = 'Cairn Terrier';
+                } else if (correo == 'B') {
+                  responder = 'Irish Wolfhound';
+                } else if (correo == 'C') {
+                  responder = 'Norwich Terrier';
+                } else if (correo == 'D') {
+                  responder = 'Scottish Deerhound';
+                } else {
+                  responder = 'Nada';
+                }
+
+	              W.setInnerHTML('Solicitud', responder); // Muestra lo que dice el mensaje
 	              // console.log('CONTADOR RONDA: ', node.game.contadorMensajesRonda);
 	              W.getElementById(idRecibido).style.border = "5px solid Yellow";
 	              // node.game.contadorMensajesRonda -= 1;
@@ -499,17 +510,37 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             // PONE LA RAZA DEL PERRO EN EL POPUP QUE CORRESPONDE
 
             node.on.data('Popup', function(msg){
+              var elPerro = '';
+              switch(msg.data[1]){
+                case 'A':
+                  elPerro = 'Cairn Terrier';
+                  break;
+                case 'B':
+                  elPerro = 'Irish Wolfhound';
+                  break;
+                case 'C':
+                  elPerro = 'Norwich Terrier';
+                  break;
+                case 'D':
+                  elPerro = 'Scottish Deerhound';
+              }
+              console.log('data[1]', msg.data[1]);
+              console.log('elPerro', elPerro);
               switch(msg.data[0]){
                 case 'Perro1':
-                  W.setInnerHTML('popdog1', msg.data[1]);
+                  W.setInnerHTML('popdog1', elPerro);
+                  break;
                 case 'Perro2':
-                  W.setInnerHTML('popdog2', msg.data[1]);
+                  W.setInnerHTML('popdog2', elPerro);
+                  break;
                 case 'Perro3':
-                  W.setInnerHTML('popdog3', msg.data[1]);
+                  W.setInnerHTML('popdog3', elPerro);
+                  break;
                 case 'Perro4':
-                  W.setInnerHTML('popdog4', msg.data[1]);
+                  W.setInnerHTML('popdog4', elPerro);
+                  break;
                 case 'Perro5':
-                  W.setInnerHTML('popdog5', msg.data[1]);
+                  W.setInnerHTML('popdog5', elPerro);
               }
             })
 
@@ -602,6 +633,8 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             respondido[i] = 'Norwich Terrier';
           } else if (node.game.respuestasRonda[i] == 'D') {
             respondido[i] = 'Scottish Deerhound';
+          } else {
+            respondido[i] = 'Nada';
           }
         }
         W.getElementById('select1').options[0].innerHTML = respondido[0];
@@ -895,18 +928,28 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
           node.on.data('Rondas', function(msg){
             var rand1 = msg.data[0];
             var rand2 = msg.data[1];
+
+            if (rand1 > node.game.settings.REPEAT) {
+              rand1 = 1 + node.game.settings.TRAINING;
+            }
+            if (rand2 > node.game.settings.REPEAT) {
+              rand2 = node.game.settings.REPEAT + node.game.settings.TRAINING;
+            }
+
+            console.log('rand1', rand1);
+            console.log('rand2', rand2);
+
             var punt1 = node.game.puntajeAcumulado[rand1];
             var punt2 = node.game.puntajeAcumulado[rand2];
 
-            console.log('punt1', punt1);
-            console.log('punt2', punt2);
-
-            W.setInnerHTML('randRonda1', rand1 - 25);
-            W.setInnerHTML('r1', rand1 - 25);
-            W.setInnerHTML('randRonda2', rand2 - 25);
-            W.setInnerHTML('r2', rand2 - 25);
+            W.setInnerHTML('randRonda1', rand1 - node.game.settings.TRAINING);
+            W.setInnerHTML('r1', rand1 - node.game.settings.TRAINING);
+            W.setInnerHTML('randRonda2', rand2 - node.game.settings.TRAINING);
+            W.setInnerHTML('r2', rand2 - node.game.settings.TRAINING);
 
             console.log('Rondas OK');
+            console.log('punt1', punt1);
+            console.log('punt2', punt2);
 
             W.setInnerHTML('correctPerros1', punt1);
             W.setInnerHTML('correctPerros2', punt2);
