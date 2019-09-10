@@ -95,17 +95,26 @@ button:active {
 </style>
 <body>
 
-  <div id="container_quiz">
+  <div id="container_quiz" style="margin: 0 auto; width:864px;" >
     <h1>Información adicional</h1>
-    <div id="quiz1"></div>
-      <br>
-      <br>
-      <h1>
-      A continuación, elija la opción que mejor describe su estrategia durante el juego
-      </h1>
-      <br>
+    <br>
+    <font size="4">
+    Ahora queremos que califique qué tan bien comprende cada uno de los términos que se presentarán más abajo. La calificación debe realizarse en una escala de 7 puntos, en donde 1 indica "comprensión vaga" y 7 indica "comprensión completa". Abajo encontrará un ejemplo de tres niveles distintos de comprensión del término "Yorkshire Terrier". La comprensión se representa mediante una descripción verbal. Por favor lea la explicación de cada nivel para entender cómo usar la escala de calificación. Como podrá ver, un 7 implica comprensión detallada y profunda del término, mientras que un 1 implica muy poca comprensión.
+    <br>
+    <br>
+    Nivel 7 de comprensión: Una persona con nivel 7 de comprensión puede hacer discriminaciones finas y detalladas de los Yorkshire Terrier. Por ejemplo, sabe que los ejemplares de esta raza son de tamaño pequeño con el cuerpo compacto y el hocico mediano, y con la espalda más bien pareja; orejas medianas en forma de v y se llevan erectas; color de pelo gris oscuro a negro (con un negro más oscuro en la cola) y que toma un rico tono tostado que se hace más ligero en las puntas; y que tienen ojos de color negro.
+    <br>
+    <br>
+    Nivel 4 de comprensión: Una persona con nivel 4 de comprensión puede hacer algunas discriminaciones que caracterizan a los Yorkshire Terrier, aunque no podría dar detalles finos al respecto. Por ejemplo, sabe que los ejemplares de esta raza son de tamaño pequeño, de orejas que se llevan erectas y con color de pelo que toma distintos tonos de negro y café tostado, y que tienen los ojos negros.
+    <br>
+    <br>
+    Nivel 1 de comprensión: Una persona con nivel 1 de comprensión puede hacer muy pocas discriminaciones que caracterizan a los Yorkshire Terrier y no  podría dar mayores detalles al respecto. Por ejemplo, sabe que los ejemplares de esta raza son de tamaño pequeño y con color de pelo café.
+    </font>
+    <br>
+    <br>
+    <br>
     <div id="quiz2"></div>
-  </div>
+    </div>
   <button class="button1" id='continuar'>Continuar</button>
 </body>
 <script type="text/javascript" charset="utf-8">
@@ -119,7 +128,6 @@ button:active {
         console.log('LOADING PAGE SCRIPT');
     }
     var node = parent.node;
-    node.widgets.append(node.game.demo1, document.getElementById('quiz1'));
     node.widgets.append(node.game.demo2, document.getElementById('quiz2'));
   } // End window.onload
 </script>

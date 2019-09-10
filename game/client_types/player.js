@@ -926,9 +926,9 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
       }
     });
 
-    stager.extendStep('recompensa', {
+    stager.extendStep('tiempo', {
     donebutton: false,
-    frame: 'recompensa.htm',
+    frame: 'tiempo.htm',
     cb: function(){
       var continuar = W.getElementById('continuar');
       continuar.onclick = function() {
@@ -937,10 +937,9 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
     }
     });
 
-
-    stager.extendStep('tiempo', {
+    stager.extendStep('recompensa', {
     donebutton: false,
-    frame: 'tiempo.htm',
+    frame: 'recompensa.htm',
     cb: function(){
       var continuar = W.getElementById('continuar');
       continuar.onclick = function() {

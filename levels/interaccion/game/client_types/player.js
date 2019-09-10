@@ -65,6 +65,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             var ronda = node.player.stage.round; //Ronda en curso
 
             node.game.puntajeAcumulado[ronda] = 0;
+            console.log('Chequeando puntaje acumulado ronda ', ronda, ':', node.game.puntajeAcumulado[ronda]);
             // node.game.contadorComunicacion = 1;
             node.game.check = [];
             node.game.perrosPantalla = [];
@@ -79,6 +80,14 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             var perros = MESSAGE[1];
             var claves = MESSAGE[2];
             var raza = MESSAGE[3];
+
+            console.log('Raza: ', raza);
+            if (raza == 'terrier') {
+              var texto = 'Observe que los perros de raza Norwich Terrier tienen orejas un poco más puntiagudas, el pelaje siempre de color <font color=\'#882D17\'>siena natural</font> y un poco áspero, y suelen llevar la cola parada.';
+            } else {
+              var texto = 'Observe que los perros de raza Irish Wolfhound tienen el pelaje de un tono más claro y parduzco, y su contextura es más gruesa tanto de cuerpo como de hocico.';
+            }
+            W.setInnerHTML('inst', texto);
 
 			var revision;
 
@@ -97,7 +106,8 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 
 	            var clasif = [ans1, ans2, ans3, ans4, ans5];
               node.game.respuestasRonda = clasif;
-              console.log('Respuestas en game', node.game.respuestasRonda);
+              // console.log('Respuestas en game', node.game.respuestasRonda);
+              console.log('Respuestas en game', clasif);
 
 	            var key1 = claves[perros[0]];
 	            var key2 = claves[perros[1]];
@@ -582,13 +592,29 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
     stager.extendStep('puntaje', {
       frame: 'puntaje.htm',
       cb: function(){
-        W.getElementById('select1').options[0].innerHTML = node.game.respuestasRonda[0];
-        W.getElementById('select2').options[0].innerHTML = node.game.respuestasRonda[1];
-        W.getElementById('select3').options[0].innerHTML = node.game.respuestasRonda[2];
-        W.getElementById('select4').options[0].innerHTML = node.game.respuestasRonda[3];
-        W.getElementById('select5').options[0].innerHTML = node.game.respuestasRonda[4];
+        var respondido = [];
+        for (var i = 0; i < 5; i++) {
+          if (node.game.respuestasRonda[i] == 'A') {
+            respondido[i] = 'Cairn Terrier';
+          } else if (node.game.respuestasRonda[i] == 'B') {
+            respondido[i] = 'Irish Wolfhound';
+          } else if (node.game.respuestasRonda[i] == 'C') {
+            respondido[i] = 'Norwich Terrier';
+          } else if (node.game.respuestasRonda[i] == 'D') {
+            respondido[i] = 'Scottish Deerhound';
+          }
+        }
+        W.getElementById('select1').options[0].innerHTML = respondido[0];
+        W.getElementById('select2').options[0].innerHTML = respondido[1];
+        W.getElementById('select3').options[0].innerHTML = respondido[2];
+        W.getElementById('select4').options[0].innerHTML = respondido[3];
+        W.getElementById('select5').options[0].innerHTML = respondido[4];
+        // W.getElementById('select1').options[0].innerHTML = node.game.respuestasRonda[0];
+        // W.getElementById('select2').options[0].innerHTML = node.game.respuestasRonda[1];
+        // W.getElementById('select3').options[0].innerHTML = node.game.respuestasRonda[2];
+        // W.getElementById('select4').options[0].innerHTML = node.game.respuestasRonda[3];
+        // W.getElementById('select5').options[0].innerHTML = node.game.respuestasRonda[4];
         // W.getElementById('select1').options[0].innerHTML = "I'm a genius!";
-        console.log('Respuestas en puntaje', node.game.respuestasRonda[i-1]);
         for(var i = 1; i < 6; i++){
           var foto = 'Perro' + i;
           var ubicacion = node.game.perrosPantalla[i-1];
@@ -616,110 +642,77 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
         init: function() {
             var w;
             w = node.widgets;
-            this.demo1 = w.get('ChoiceManager', {
-                id: 'demo1',
-                title: false,
-                shuffleForms: false,
-                forms: [
-                    w.get('ChoiceTable', {
-                        id: 'gender',
-                        mainText: '¿Cuál es su género?',
-                        choices: [
-                            'Masculino',
-                            'Femenino',
-                            'Otro',
-                            'Prefiero no decirlo'
-                        ],
-                        shuffleChoices: false,
-                        title: false,
-                        requiredChoice: true
-                    }),
-                    w.get('ChoiceTable', {
-                        id: 'age',
-                        mainText: '¿Cuál es su grupo de edad?',
-                        choices: [
-                            '18-20',
-                            '21-30',
-                            '31-40',
-                            '41-50',
-                            '51-60',
-                            '61-70',
-                            '71+',
-                            'Prefiero no decirlo'
-                        ],
-                        shuffleChoices: false,
-                        title: false,
-                        requiredChoice: true
-                    }),
-                    w.get('ChoiceTable', {
-                        id: 'carreer',
-                        mainText: 'Seleccione su unidad académica (si es de doble programa, escoja solo la unidad académica de su programa base):',
-                        choices: [
-                            'Facultad de Ciencias Naturales y Matemáticas',
-                            'Escuela de Medicina Ciencias de la Salud',
-                            'Escuela de Ciencias Humanas',
-                            'Escuela de Administración',
-                            'Facultad de Ciencia Política, Gobierno y Relaciones Internacionales',
-                            'Facultad de Economía',
-                            'Facultad de Jurisprudencia',
-                            'Prefiero no decirlo'
-                        ],
-                        shuffleChoices: false,
-                        title: false,
-                        requiredChoice: true
-                    })
-                  ]
-                });
-                this.demo2 = w.get('ChoiceManager', {
-                      id: 'demo2',
-                      title: false,
-                      shuffleForms: false,
-                      forms: [
+              this.demo2 = w.get('ChoiceManager', {
+                    id: 'demo2',
+                    title: false,
+                    shuffleForms: false,
+                    forms: [
+                        w.get('ChoiceTable', {
+                            id: 'Cairn',
+                            mainText: 'Cairn Terrier',
+                            choices: [
+                                '1',
+                                '2',
+                                '3',
+                                '4',
+                                '5',
+                                '6',
+                                '7'
+                            ],
+                            shuffleChoices: false,
+                            title: false,
+                            requiredChoice: true
+                          }),
                           w.get('ChoiceTable', {
-                              id: 'strategy',
-                              mainText: 'Durante el juego,',
+                              id: 'Norwich',
+                              mainText: 'Norwich Terrier',
                               choices: [
-                                  'me basé totalmente en la clasificación de mi compañero',
-                                  'apendí a clasificar algunos perros y confié en mi compañero para clasificar otros',
-                                  'aprendí a clasificar todos los perros',
-                                  'Prefiero no decirlo'
+                                '1',
+                                '2',
+                                '3',
+                                '4',
+                                '5',
+                                '6',
+                                '7'
                               ],
                               shuffleChoices: false,
                               title: false,
                               requiredChoice: true
                             }),
                             w.get('ChoiceTable', {
-                                id: 'messages',
-                                mainText: 'Hacia el final del juego, pregunté sobre la(s) categoría(s) (puede escoger varias opciones):',
+                                id: 'Irish',
+                                mainText: 'Irish Wolfhound',
                                 choices: [
-                                    'A',
-                                    'B',
-                                    'C',
-                                    'D',
-                                    'Prefiero no decirlo'
+                                    '1',
+                                    '2',
+                                    '3',
+                                    '4',
+                                    '5',
+                                    '6',
+                                    '7'
                                 ],
-                                selectMultiple: true,
                                 shuffleChoices: false,
                                 title: false,
-                                requiredChoice: false
+                                requiredChoice: true
                               }),
-                            w.get('ChoiceTable', {
-                                id: 'recognition',
-                                mainText: 'Al finalizar el juego podía reconocer los perros de las categorías (puede escoger varias opciones):',
-                                choices: [
-                                    'A',
-                                    'B',
-                                    'C',
-                                    'D',
-                                    'Prefiero no decirlo'
-                                ],
-                                selectMultiple: true,
-                                shuffleChoices: false,
-                                title: false,
-                                requiredChoice: false
-                          })
-                      ]
-            });
+                              w.get('ChoiceTable', {
+                                  id: 'Scottish',
+                                  mainText: 'Scottish Deerhound',
+                                  choices: [
+                                    '1',
+                                    '2',
+                                    '3',
+                                    '4',
+                                    '5',
+                                    '6',
+                                    '7'
+                                  ],
+                                  shuffleChoices: false,
+                                  title: false,
+                                  requiredChoice: true
+                                })
+                    ]
+          });
         },
         donebutton: false,
         frame: 'demograf.htm', // must exist, or remove.
@@ -730,23 +723,157 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             }
         },
         done: function() {
-            var values1, values2, isTimeup;
-            values1 = this.demo1.getValues({ highlight: true });
+            var values2, isTimeup;
             values2 = this.demo2.getValues({ highlight: true });
-            console.log(values1);
             console.log(values2);
             // In case you have a timer running, block done procedure
             // if something is missing in the form and it is not a timeup yet.
             isTimeup = node.game.timer.isTimeup();
-            if (values1.missValues.length && !isTimeup) return false;
+            if (values2.missValues.length && !isTimeup) return false;
             // if (values2.missValues.length && !isTimeup) return false;
             // Adds it to the done message sent to server.
             return {
-              valores_demogra: values1,
-              valores_strat: values2,
+              valores_comprension: values2,
             };
         }
     });
+
+
+    // stager.extendStep('demograf', {
+    //     init: function() {
+    //         var w;
+    //         w = node.widgets;
+    //         this.demo1 = w.get('ChoiceManager', {
+    //             id: 'demo1',
+    //             title: false,
+    //             shuffleForms: false,
+    //             forms: [
+    //                 w.get('ChoiceTable', {
+    //                     id: 'gender',
+    //                     mainText: '¿Cuál es su género?',
+    //                     choices: [
+    //                         'Masculino',
+    //                         'Femenino',
+    //                         'Otro',
+    //                         'Prefiero no decirlo'
+    //                     ],
+    //                     shuffleChoices: false,
+    //                     title: false,
+    //                     requiredChoice: true
+    //                 }),
+    //                 w.get('ChoiceTable', {
+    //                     id: 'age',
+    //                     mainText: '¿Cuál es su grupo de edad?',
+    //                     choices: [
+    //                         '18-20',
+    //                         '21-30',
+    //                         '31-40',
+    //                         '41-50',
+    //                         '51-60',
+    //                         '61-70',
+    //                         '71+',
+    //                         'Prefiero no decirlo'
+    //                     ],
+    //                     shuffleChoices: false,
+    //                     title: false,
+    //                     requiredChoice: true
+    //                 }),
+    //                 w.get('ChoiceTable', {
+    //                     id: 'carreer',
+    //                     mainText: 'Seleccione su unidad académica (si es de doble programa, escoja solo la unidad académica de su programa base):',
+    //                     choices: [
+    //                         'Facultad de Ciencias Naturales y Matemáticas',
+    //                         'Escuela de Medicina Ciencias de la Salud',
+    //                         'Escuela de Ciencias Humanas',
+    //                         'Escuela de Administración',
+    //                         'Facultad de Ciencia Política, Gobierno y Relaciones Internacionales',
+    //                         'Facultad de Economía',
+    //                         'Facultad de Jurisprudencia',
+    //                         'Prefiero no decirlo'
+    //                     ],
+    //                     shuffleChoices: false,
+    //                     title: false,
+    //                     requiredChoice: true
+    //                 })
+    //               ]
+    //             });
+    //             this.demo2 = w.get('ChoiceManager', {
+    //                   id: 'demo2',
+    //                   title: false,
+    //                   shuffleForms: false,
+    //                   forms: [
+    //                       w.get('ChoiceTable', {
+    //                           id: 'strategy',
+    //                           mainText: 'Durante el juego,',
+    //                           choices: [
+    //                               'me basé totalmente en la clasificación de mi compañero',
+    //                               'apendí a clasificar algunos perros y confié en mi compañero para clasificar otros',
+    //                               'aprendí a clasificar todos los perros',
+    //                               'Prefiero no decirlo'
+    //                           ],
+    //                           shuffleChoices: false,
+    //                           title: false,
+    //                           requiredChoice: true
+    //                         }),
+    //                         w.get('ChoiceTable', {
+    //                             id: 'messages',
+    //                             mainText: 'Hacia el final del juego, pregunté sobre la(s) categoría(s) (puede escoger varias opciones):',
+    //                             choices: [
+    //                                 'A',
+    //                                 'B',
+    //                                 'C',
+    //                                 'D',
+    //                                 'Prefiero no decirlo'
+    //                             ],
+    //                             selectMultiple: true,
+    //                             shuffleChoices: false,
+    //                             title: false,
+    //                             requiredChoice: false
+    //                           }),
+    //                         w.get('ChoiceTable', {
+    //                             id: 'recognition',
+    //                             mainText: 'Al finalizar el juego podía reconocer los perros de las categorías (puede escoger varias opciones):',
+    //                             choices: [
+    //                                 'A',
+    //                                 'B',
+    //                                 'C',
+    //                                 'D',
+    //                                 'Prefiero no decirlo'
+    //                             ],
+    //                             selectMultiple: true,
+    //                             shuffleChoices: false,
+    //                             title: false,
+    //                             requiredChoice: false
+    //                       })
+    //                   ]
+    //         });
+    //     },
+    //     donebutton: false,
+    //     frame: 'demograf.htm', // must exist, or remove.
+    //     cb: function() {
+    //         var buttonSubmit = W.getElementById('continuar');
+    //         buttonSubmit.onclick = function() {
+    //             node.done();
+    //         }
+    //     },
+    //     done: function() {
+    //         var values1, values2, isTimeup;
+    //         values1 = this.demo1.getValues({ highlight: true });
+    //         values2 = this.demo2.getValues({ highlight: true });
+    //         console.log(values1);
+    //         console.log(values2);
+    //         // In case you have a timer running, block done procedure
+    //         // if something is missing in the form and it is not a timeup yet.
+    //         isTimeup = node.game.timer.isTimeup();
+    //         if (values1.missValues.length && !isTimeup) return false;
+    //         // if (values2.missValues.length && !isTimeup) return false;
+    //         // Adds it to the done message sent to server.
+    //         return {
+    //           valores_demogra: values1,
+    //           valores_strat: values2,
+    //         };
+    //     }
+    // });
 
     stager.extendStep('debrief', {
         donebutton: false,
@@ -771,13 +898,20 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             var punt1 = node.game.puntajeAcumulado[rand1];
             var punt2 = node.game.puntajeAcumulado[rand2];
 
-            W.setInnerHTML('randRonda1', rand1 - 20);
-            W.setInnerHTML('r1', rand1 - 20);
-            W.setInnerHTML('randRonda2', rand2 - 20);
-            W.setInnerHTML('r2', rand2 - 20);
+            console.log('punt1', punt1);
+            console.log('punt2', punt2);
+
+            W.setInnerHTML('randRonda1', rand1 - 25);
+            W.setInnerHTML('r1', rand1 - 25);
+            W.setInnerHTML('randRonda2', rand2 - 25);
+            W.setInnerHTML('r2', rand2 - 25);
+
+            console.log('Rondas OK');
 
             W.setInnerHTML('correctPerros1', punt1);
             W.setInnerHTML('correctPerros2', punt2);
+
+            console.log('Perros OK');
 
             var tot = 0;
 
@@ -828,6 +962,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 tot += 10;
               }
 
+              console.log('Recompensas OK');
 
                 W.setInnerHTML('recompensaTotal', tot + 10);
 
