@@ -51,9 +51,9 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
         }
     });
 
-    stager.extendStep('debrief', {
+    stager.extendStep('rating', {
         cb: function() {
-            console.log('Debrief');
+            console.log('rating...');
         }
     });
 

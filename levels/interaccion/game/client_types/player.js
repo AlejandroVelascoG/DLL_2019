@@ -671,7 +671,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
       }
     });
 
-    stager.extendStep('demograf', {
+    stager.extendStep('rating', {
         init: function() {
             var w;
             w = node.widgets;
@@ -748,7 +748,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
           });
         },
         donebutton: false,
-        frame: 'demograf.htm', // must exist, or remove.
+        frame: 'rating.htm', // must exist, or remove.
         cb: function() {
             var buttonSubmit = W.getElementById('continuar');
             buttonSubmit.onclick = function() {
@@ -772,154 +772,124 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
     });
 
 
-    // stager.extendStep('demograf', {
-    //     init: function() {
-    //         var w;
-    //         w = node.widgets;
-    //         this.demo1 = w.get('ChoiceManager', {
-    //             id: 'demo1',
-    //             title: false,
-    //             shuffleForms: false,
-    //             forms: [
-    //                 w.get('ChoiceTable', {
-    //                     id: 'gender',
-    //                     mainText: '¿Cuál es su género?',
-    //                     choices: [
-    //                         'Masculino',
-    //                         'Femenino',
-    //                         'Otro',
-    //                         'Prefiero no decirlo'
-    //                     ],
-    //                     shuffleChoices: false,
-    //                     title: false,
-    //                     requiredChoice: true
-    //                 }),
-    //                 w.get('ChoiceTable', {
-    //                     id: 'age',
-    //                     mainText: '¿Cuál es su grupo de edad?',
-    //                     choices: [
-    //                         '18-20',
-    //                         '21-30',
-    //                         '31-40',
-    //                         '41-50',
-    //                         '51-60',
-    //                         '61-70',
-    //                         '71+',
-    //                         'Prefiero no decirlo'
-    //                     ],
-    //                     shuffleChoices: false,
-    //                     title: false,
-    //                     requiredChoice: true
-    //                 }),
-    //                 w.get('ChoiceTable', {
-    //                     id: 'carreer',
-    //                     mainText: 'Seleccione su unidad académica (si es de doble programa, escoja solo la unidad académica de su programa base):',
-    //                     choices: [
-    //                         'Facultad de Ciencias Naturales y Matemáticas',
-    //                         'Escuela de Medicina Ciencias de la Salud',
-    //                         'Escuela de Ciencias Humanas',
-    //                         'Escuela de Administración',
-    //                         'Facultad de Ciencia Política, Gobierno y Relaciones Internacionales',
-    //                         'Facultad de Economía',
-    //                         'Facultad de Jurisprudencia',
-    //                         'Prefiero no decirlo'
-    //                     ],
-    //                     shuffleChoices: false,
-    //                     title: false,
-    //                     requiredChoice: true
-    //                 })
-    //               ]
-    //             });
-    //             this.demo2 = w.get('ChoiceManager', {
-    //                   id: 'demo2',
-    //                   title: false,
-    //                   shuffleForms: false,
-    //                   forms: [
-    //                       w.get('ChoiceTable', {
-    //                           id: 'strategy',
-    //                           mainText: 'Durante el juego,',
-    //                           choices: [
-    //                               'me basé totalmente en la clasificación de mi compañero',
-    //                               'apendí a clasificar algunos perros y confié en mi compañero para clasificar otros',
-    //                               'aprendí a clasificar todos los perros',
-    //                               'Prefiero no decirlo'
-    //                           ],
-    //                           shuffleChoices: false,
-    //                           title: false,
-    //                           requiredChoice: true
-    //                         }),
-    //                         w.get('ChoiceTable', {
-    //                             id: 'messages',
-    //                             mainText: 'Hacia el final del juego, pregunté sobre la(s) categoría(s) (puede escoger varias opciones):',
-    //                             choices: [
-    //                                 'A',
-    //                                 'B',
-    //                                 'C',
-    //                                 'D',
-    //                                 'Prefiero no decirlo'
-    //                             ],
-    //                             selectMultiple: true,
-    //                             shuffleChoices: false,
-    //                             title: false,
-    //                             requiredChoice: false
-    //                           }),
-    //                         w.get('ChoiceTable', {
-    //                             id: 'recognition',
-    //                             mainText: 'Al finalizar el juego podía reconocer los perros de las categorías (puede escoger varias opciones):',
-    //                             choices: [
-    //                                 'A',
-    //                                 'B',
-    //                                 'C',
-    //                                 'D',
-    //                                 'Prefiero no decirlo'
-    //                             ],
-    //                             selectMultiple: true,
-    //                             shuffleChoices: false,
-    //                             title: false,
-    //                             requiredChoice: false
-    //                       })
-    //                   ]
-    //         });
-    //     },
-    //     donebutton: false,
-    //     frame: 'demograf.htm', // must exist, or remove.
-    //     cb: function() {
-    //         var buttonSubmit = W.getElementById('continuar');
-    //         buttonSubmit.onclick = function() {
-    //             node.done();
-    //         }
-    //     },
-    //     done: function() {
-    //         var values1, values2, isTimeup;
-    //         values1 = this.demo1.getValues({ highlight: true });
-    //         values2 = this.demo2.getValues({ highlight: true });
-    //         console.log(values1);
-    //         console.log(values2);
-    //         // In case you have a timer running, block done procedure
-    //         // if something is missing in the form and it is not a timeup yet.
-    //         isTimeup = node.game.timer.isTimeup();
-    //         if (values1.missValues.length && !isTimeup) return false;
-    //         // if (values2.missValues.length && !isTimeup) return false;
-    //         // Adds it to the done message sent to server.
-    //         return {
-    //           valores_demogra: values1,
-    //           valores_strat: values2,
-    //         };
-    //     }
-    // });
-
-    stager.extendStep('debrief', {
+    stager.extendStep('demograf', {
+        init: function() {
+            var w;
+            w = node.widgets;
+            this.demo1 = w.get('ChoiceManager', {
+                id: 'demo1',
+                title: false,
+                shuffleForms: false,
+                forms: [
+                    w.get('ChoiceTable', {
+                        id: 'gender',
+                        mainText: '¿Cuál es su género?',
+                        choices: [
+                            'Masculino',
+                            'Femenino',
+                            'Otro',
+                            'Prefiero no decirlo'
+                        ],
+                        shuffleChoices: false,
+                        title: false,
+                        requiredChoice: true
+                    }),
+                    w.get('ChoiceTable', {
+                        id: 'age',
+                        mainText: '¿Cuál es su grupo de edad?',
+                        choices: [
+                            '18-20',
+                            '21-30',
+                            '31-40',
+                            '41-50',
+                            '51-60',
+                            '61-70',
+                            '71+',
+                            'Prefiero no decirlo'
+                        ],
+                        shuffleChoices: false,
+                        title: false,
+                        requiredChoice: true
+                    }),
+                    w.get('ChoiceTable', {
+                        id: 'carreer',
+                        mainText: 'Seleccione su unidad académica (si es de doble programa, escoja solo la unidad académica de su programa base):',
+                        choices: [
+                            'Facultad de Ciencias Naturales y Matemáticas',
+                            'Escuela de Medicina Ciencias de la Salud',
+                            'Escuela de Ciencias Humanas',
+                            'Escuela de Administración',
+                            'Facultad de Ciencia Política, Gobierno y Relaciones Internacionales',
+                            'Facultad de Economía',
+                            'Facultad de Jurisprudencia',
+                            'Prefiero no decirlo'
+                        ],
+                        shuffleChoices: false,
+                        title: false,
+                        requiredChoice: true
+                    })
+                  ]
+                });
+                this.demo2 = w.get('ChoiceManager', {
+                      id: 'demo2',
+                      title: false,
+                      shuffleForms: false,
+                      forms: [
+                          w.get('ChoiceTable', {
+                              id: 'strategy',
+                              mainText: 'Durante el juego,',
+                              choices: [
+                                  'me basé totalmente en la clasificación de mi compañero',
+                                  'apendí a clasificar algunos perros y confié en mi compañero para clasificar otros',
+                                  'aprendí a clasificar todos los perros',
+                                  'Prefiero no decirlo'
+                              ],
+                              shuffleChoices: false,
+                              title: false,
+                              requiredChoice: true
+                            })
+                      ]
+            });
+        },
         donebutton: false,
-        frame: 'debrief.htm',
+        frame: 'demograf.htm', // must exist, or remove.
         cb: function() {
-          var continuar = W.getElementById('continuar');
-          continuar.onclick = function() {
-            node.done();
-          };
+            var buttonSubmit = W.getElementById('continuar');
+            buttonSubmit.onclick = function() {
+                node.done();
+            }
+        },
+        done: function() {
+            var values1, values2, isTimeup;
+            values1 = this.demo1.getValues({ highlight: true });
+            values2 = this.demo2.getValues({ highlight: true });
+            console.log(values1);
+            console.log(values2);
+            // In case you have a timer running, block done procedure
+            // if something is missing in the form and it is not a timeup yet.
+            isTimeup = node.game.timer.isTimeup();
+            if (values1.missValues.length && !isTimeup) return false;
+            // if (values2.missValues.length && !isTimeup) return false;
+            // Adds it to the done message sent to server.
+            return {
+              valores_demogra: values1,
+              valores_strat: values2,
+            };
         }
     });
 
-
+    // stager.extendStep('debrief', {
+    //     donebutton: false,
+    //     frame: 'debrief.htm',
+    //     cb: function() {
+    //       var continuar = W.getElementById('continuar');
+    //       continuar.onclick = function() {
+    //         node.done();
+    //       };
+    //     }
+    // });
+    //
+    //
 
     stager.extendStep('end', {
         donebutton: false,
@@ -962,23 +932,23 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 W.setInnerHTML('recompensa1', 0);
               }
               if (punt1 == 1){
-                W.setInnerHTML('recompensa1', 1);
+                W.setInnerHTML('recompensa1', 3);
                 tot += 1;
               }
               if (punt1 == 2){
-                W.setInnerHTML('recompensa1', 2);
+                W.setInnerHTML('recompensa1', 5);
                 tot += 2;
               }
               if (punt1 == 3){
-                W.setInnerHTML('recompensa1', 4);
+                W.setInnerHTML('recompensa1', 7);
                 tot += 4;
               }
               if (punt1 == 4){
-                W.setInnerHTML('recompensa1', 7);
+                W.setInnerHTML('recompensa1', 10);
                 tot += 7;
               }
               if (punt1 == 5){
-                W.setInnerHTML('recompensa1', 10);
+                W.setInnerHTML('recompensa1', 13);
                 tot += 10;
               }
               if (punt2 == 0){

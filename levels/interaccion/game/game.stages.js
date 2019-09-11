@@ -15,8 +15,8 @@
       stager
          .repeat('prep', settings.TRAINING)
          .repeat('trials', settings.REPEAT)
+         .next('rating')
          .next('demograf')
-         .next('debrief')
          .next('end')
          .gameover();
 
@@ -37,8 +37,8 @@
      // Modify the stager to skip one stage.
      // stager.skip('prep');
      // stager.skip('trials');
+     // stager.skip('rating');
      // stager.skip('demograf');
-     stager.skip('debrief');
      // stager.skip('end');
 
      return stager.getState();
