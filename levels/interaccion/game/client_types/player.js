@@ -932,19 +932,19 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                 W.setInnerHTML('recompensa1', 0);
               }
               if (punt1 == 1){
-                W.setInnerHTML('recompensa1', 3);
+                W.setInnerHTML('recompensa1', 2);
                 tot += 1;
               }
               if (punt1 == 2){
-                W.setInnerHTML('recompensa1', 5);
+                W.setInnerHTML('recompensa1', 4);
                 tot += 2;
               }
               if (punt1 == 3){
-                W.setInnerHTML('recompensa1', 7);
+                W.setInnerHTML('recompensa1', 6);
                 tot += 4;
               }
               if (punt1 == 4){
-                W.setInnerHTML('recompensa1', 10);
+                W.setInnerHTML('recompensa1', 9);
                 tot += 7;
               }
               if (punt1 == 5){
@@ -955,23 +955,23 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
                   W.setInnerHTML('recompensa2', 0);
                 }
               if (punt2 == 1){
-                W.setInnerHTML('recompensa2', 1);
+                W.setInnerHTML('recompensa2', 2);
                 tot += 1;
               }
               if (punt2 == 2){
-                W.setInnerHTML('recompensa2', 2);
+                W.setInnerHTML('recompensa2', 4);
                 tot += 2;
               }
               if (punt2 == 3){
-                W.setInnerHTML('recompensa2', 4);
+                W.setInnerHTML('recompensa2', 6);
                 tot += 4;
               }
               if (punt2 == 4){
-                W.setInnerHTML('recompensa2', 7);
+                W.setInnerHTML('recompensa2', 9);
                 tot += 7;
               }
               if (punt2 == 5){
-                W.setInnerHTML('recompensa2', 10);
+                W.setInnerHTML('recompensa2', 13);
                 tot += 10;
               }
 
