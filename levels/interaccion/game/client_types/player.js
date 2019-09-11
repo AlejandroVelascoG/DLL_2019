@@ -305,10 +305,10 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 	            node.set({Puntaje:[clasif, keys, sum]});
 			};
 
-            var crono = node.game.timer;
-            var act = crono.hooks;
-            act.push(revision);
-            crono.update = 80000;
+            // var crono = node.game.timer;
+            // var act = crono.hooks;
+            // act.push(revision);
+            // crono.update = 80000;
 
                   // carga las imágenes de los cinco perros
 
