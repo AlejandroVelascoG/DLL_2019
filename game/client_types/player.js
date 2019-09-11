@@ -972,7 +972,7 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
           });
           console.log('Quiz');
           }
-});
+    });
 
     game = setup;
     game.plot = stager.getState();
